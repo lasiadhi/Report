@@ -12,32 +12,40 @@ function dat = getBC(var,startT,endT)
 % FORMAT NOTE: 
 %
 % var - must be entered in quotes (i.e. 'waveHs')
-%
-% starT and endT - must be input in 'yyyy-mm-dd' (IN QUOTES)
+% starT and endT - must be input in 'yyyy-mm-dd HH-MM-SS' (IN QUOTES)
 %-------------------------------------------------------------------------
-% Start/End time NOTE:
-%
-%
 
     filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc';
     
     if nargin == 3 
         % if startT and endT are provided
-        % NOTE: This is currently broken!!!!!!!!!!!!!!!!!!!!!!!!!
-        formatIn = 'yyyy-mm-dd';
-        datenum_start = datenum(startT,formatIn);
-        datenum_end = datenum(endT,formatIn);
+        % 
+        % http://chlthredds.erdc.dren.mil/ data is recorded in seconds from
+        % 1970-01-01 00:00:00, while matlabs datenum function measures days
+        % from 0000-01-01 00:00:00, thus the dates must be converted.
+        
+        format = 'yyyy-mm-dd HH:MM:SS';
+        datenum_conv = datenum('1970-01-01 00:00:00',format);
+        converted_start = (datenum(startT,format)-datenum_conv)*3600*24; % convert to seconds
+        converted_end = (datenum(endT,format)-datenum_conv)*3600*24;
         
         time = ncread(filename,'time');
+        ii = find(and(time >= converted_start, time <= converted_end)); 
         
-        
-        ii = find(and(time >= datenum_start, time <= datenum_end)); 
         dat = ncread(filename,var,min(ii),length(ii));
+        
+        actual_start = time(min(ii))/(3600*24) + datenum_conv;
+        actual_start_str = datestr(actual_start,format);
+        
+        disp('Note: Actual start time:')
+        disp(actual_start_str)
+        
     elseif nargin == 1
         % if only variable type is provided
         dat = ncread(filename,var);
     else
-        errormessage = ('Improper amount of input arguments. Either soley input the desired variable, or the desired variable, a start time, and end time');
+        % out put error message 
+        errormessage = ('Improper amount of input arguments. Either soley input the desired variable, or the desired variable, a start time, and end time. See getBC.m for notes on formats.');
         error(errormessage)
     end
 
