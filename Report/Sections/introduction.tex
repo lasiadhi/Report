@@ -2,10 +2,29 @@ It should be written as much as possible in non-technical terms, so that a
 lay reader can understand the context and the contribution of the paper.
 
 \begin{itemize}
+
 \item Describe the problem you are trying to solve, the approach
 you took, and summarize your contribution and results.
 
 \item Review the history of this problem, and existing literature.
 
 \item Give an outline of the rest of the paper.
+
+Bathymetry is the measurement of the depth of water and can be used to understand the possible shifts of the ocean floor and its depth. Bathymetry is hard to understand and measure nearshore, due to the uncertainty of wave length, speed (celerity), and the depth from the wave to the ocean floor. Bathymetry can be used for marine transportation for the military and to predict the effects of storms on the ocean bottom. Several methods have been raised to measure bathymetry by the military such as the use of the Coastal Research Amphibious Buggy, it collects data which captures the bottom of the nearshore. The military has also used LIDAR, an airborne sensor that can get an accurate display of the ocean floor; however, it ony works in clear waters. GPS equipped jet skis with fathometers use echo sounding to determine the depth of the water and waves make it difficult for laborers to work through tough waves. All of the methods are useful but are very expensive and inefficient against strong infragravity (intermediate long waves) waves. 
+
+
+Although there have been uncertainties in capturing the topography of the ocean nearshore, mathematical methods could prove to be possible solutions to this problem using the dispersion relationship between wavelength and the period.
+
+ $$sigma^2=gktanh(kh)$$
+
+where sigma equals 2pi/T, where T is the period, g is the acceleration of gravity, k is 2pi/L, where L is the wavelength, and h is the depth of the wave from still water. Stockdon and Holman used vieo imagery, which compared true wave signal and remotely sensed video signal to create a linear representation between wave amplitudes and phases. Holman used a 2-dimenisional method with Kalman filtering to estimate the depth, h.
+
+Our research will compute the wave depth using wave length and wave number with a 1D model derived from using the energy flux method to create a correlation between the wave length and the wave depth from the surface. **briefly explain how we are exactly doing this with the model and true data**
+
+**other possible methods **
+
+
+
+
+
 \end{itemize}
