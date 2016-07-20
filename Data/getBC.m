@@ -50,3 +50,27 @@ function dat = getBC(var,startT,endT)
     end
 
 end
+% Possible var values
+% -----------------------
+% waveHs
+% wavePeakFrequency
+% station_name
+% wavePeakDirectionPeakFrequency
+% waveEnergyDensity
+% directionalWaveEnergyDensity
+% waveFrequency
+% waveDirectionBins
+% time
+% depth
+% depthP
+% lat
+% lon
+% qcFlagE
+% qcFlagD
+% directionalPeakSpread
+% spectralWidthParameter
+% waveDirectionEstimator
+% waveA1Value
+% waveB1Value
+% waveA2Value
+% waveB2Value
