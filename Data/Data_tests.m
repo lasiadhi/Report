@@ -53,3 +53,31 @@ for i = 1:length(point_input)
    
    wavedata(:).(fieldname) = deal(value);
 end
+
+
+%% Gridded survey data
+
+date = [20151030,20151023,20151021,20151019,20151014,20151008,20151001];
+ptnum = [8,7,6,5,3,2,1];
+version = [20151030,20151028,20160104,20151030,20151019,20151009,20151001];
+max_ind_lat = [32,41,58,41,57,41,11];
+max_ind_lon = [59,55,71,55,192,54,54];
+instrument = ['CRAB';'CRAB';'LARC';'CRAB';'LARC';'CRAB';'CRAB'];
+
+
+for i = 1:length(date)
+   
+   filename = sprintf('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/survey/gridded/FRF_BD_%d_%04d_NAVD88_%s_GPS_UTC_v%d_grid.nc?time[0:1:0],lat[0:1:%d],lon[0:1:%d],FRF_Yshore[0:1:%d],FRF_Xshore[0:1:%d],elevation[0:1:0][0:1:%d][0:1:%d]',date(i),ptnum(i),instrument(i,:),version(i),max_ind_lat(i),max_ind_lon(i),max_ind_lat(i),max_ind_lon(i),max_ind_lat(i),max_ind_lon(i));
+   fieldname = sprintf('gd%04d',ptnum(i));
+    
+   time = ncread(filename,'time');
+   lat = ncread(filename,'lat');
+   lon = ncread(filename,'lon');
+   FRF_Xshore = ncread(filename,'FRF_Xshore');
+   FRF_Yshore = ncread(filename,'FRF_Yshore');
+   elevation = ncread(filename,'elevation');
+   
+   value = {time,lat,lon,FRF_Xshore,FRF_Yshore,elevation};
+   
+   surveydata(:).(fieldname) = deal(value);
+end
