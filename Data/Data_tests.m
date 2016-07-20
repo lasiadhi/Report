@@ -2,6 +2,9 @@
 % http://chlthredds.erdc.dren.mil/thredds/catalog/frf/projects/bathyduck/data/catalog.html
 
 %% Boundary Condition Data %% 
+% Load in Boundary Condition data from bathyduck/data 
+% FRF-ocean_waves_awac04_201510
+
 bc.time=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','time');
 bc.waveHs=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','waveHs');
 bc.depth=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','depth');
@@ -9,6 +12,10 @@ bc.lat=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyd
 bc.lon=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','lon');
 
 %% Bathy Data %%
+% Load in bathymetric data from bathyduck/data
+% BathyDuck-ocean_bathy_p*_201510
+% Note: * changes
+
 point_input = [04,11,12,13,14,22,23,24,83]';
 max_ind_input = [6931,5497,5493,3047,3908,5452,5450,4014,5165];
 
@@ -28,11 +35,10 @@ for i = 1:length(point_input)
     bathydata(:).(fieldname) = deal(value);
 end 
 
-%% Bathy Spatial Check %%
-point_input = [04,11,12,13,14,22,23,24,83]';
-
-
 %% Wave Data %%
+% Load in wave data fomr bathyduck/data
+% Bathyduck-ocean_waves_p*_201510
+
 point_input = [11,12,13,14,21,22,23,24,83,84];
 max_ind_input = [474,451,474,474,450,450,473,451,426,357];
 
@@ -53,6 +59,36 @@ for i = 1:length(point_input)
    
    wavedata(:).(fieldname) = deal(value);
 end
+
+%% Spatial Check %%
+% plot the various x and y locations 
+
+% wave points
+point_input = [11,12,13,14,21,22,23,24,83,84];
+for i = 1:length(point_input)
+   
+    fieldname = sprintf('p%02d',point_input(i));
+    x_wave(i) = wavedata.(fieldname){5}(1);
+    y_wave(i) = wavedata.(fieldname){6}(1); 
+end
+
+% bathymetry points
+point_input = [04,11,12,13,14,22,23,24,83]';
+for i = 1:length(point_input)
+   
+    fieldname = sprintf('p%02d',point_input(i));
+    x_bathy(i) = bathydata.(fieldname){2};
+    y_bathy(i) = bathydata.(fieldname){3};
+end
+
+figure (1)
+hold on
+scatter(x_bathy,y_bathy,'b','s');
+scatter(x_wave,y_wave,'r','p');
+xlabel('x-location');
+ylabel('y-location');
+title('Spatial Check');
+legend('Bathy Points', 'Wave Points','location','northwest');
 
 
 %% Gridded survey data
