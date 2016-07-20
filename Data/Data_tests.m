@@ -5,11 +5,12 @@
 % Load in Boundary Condition data from bathyduck/data 
 % FRF-ocean_waves_awac04_201510
 
-bc.time=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','time');
-bc.waveHs=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','waveHs');
-bc.depth=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','depth');
-bc.lat=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','lat');
-bc.lon=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','lon');
+bc.time=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],wavePeakFrequency[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','time');
+bc.waveHs=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],wavePeakFrequency[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','waveHs');
+bc.wavePeakFrequency=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],wavePeakFrequency[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','wavePeakFrequency');
+bc.depth=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],wavePeakFrequency[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','depth');
+bc.lat=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],wavePeakFrequency[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','lat');
+bc.lon=ncread('http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/FRF-ocean_waves_awac04_201510.nc?waveHs[0:1:644],wavePeakFrequency[0:1:644],time[0:1:644],depth[0:1:0],lat,lon','lon');
 
 %% Bathy Data %%
 % Load in bathymetric data from bathyduck/data
@@ -92,7 +93,7 @@ legend('Bathy Points', 'Wave Points','location','northwest');
 
 
 %% Gridded survey data
-
+%filename params
 date = [20151030,20151023,20151021,20151019,20151014,20151008,20151001];
 ptnum = [8,7,6,5,3,2,1];
 version = [20151030,20151028,20160104,20151030,20151019,20151009,20151001];
@@ -114,6 +115,20 @@ for i = 1:length(date)
    elevation = ncread(filename,'elevation');
    
    value = {time,lat,lon,FRF_Xshore,FRF_Yshore,elevation};
-   
    surveydata(:).(fieldname) = deal(value);
 end
+
+%% Plotting spatial grid
+
+figure(2)
+clf
+ptnum = [8,7,6,5,3,2,1];
+for i=1:length(ptnum)
+%i=2;
+    hold on;
+    fieldname = sprintf('gd%04d',ptnum(i));
+    [Xgrd,Ygrd]=meshgrid(surveydata.(fieldname){6});
+    plot(Xgrd,Ygrd,'.')
+end
+
+
