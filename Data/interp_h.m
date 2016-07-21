@@ -1,6 +1,14 @@
 function [hgrid,xq] = interp_h(h,x,dx)
 % This function turns the h values taken from the transect of interest into
 % gridded values for (0 >= x >= 1150 m).
+%
+%-------------------------------------------------------------------------
+% USAGE STATEMENT
+% [hgrid, xq] = interp_h(h,x,dx)
+% where h = original h data
+% where x = original x data
+% where dx = the specified resolution
+%-------------------------------------------------------------------------%
 
     num_pnts = 1150/dx-1;
     xq(1) = dx;
