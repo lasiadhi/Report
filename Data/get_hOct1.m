@@ -5,10 +5,10 @@ function [h,x] = get_hOct1()
 % Transect is located at approximately y = 950 m.
 %
 % profileNumber of interest 951
-% 
-% NOTE: This survey is measured relative to NAVD88, the time of writing
-% this code, I am not certain if a shift is needed but this function has
-% the ability to incorporate one - it is currently set to zero.
+%-------------------------------------------------------------------------
+% USAGE STATEMENT:
+% [h,x] = get_hOct1
+%-------------------------------------------------------------------------
 
     filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/survey/transect/FRF_BD_20151001_0001_NAVD88_CRAB_GPS_UTC_v20151001.nc';
     profileNumber = ncread(filename, 'profileNumber');

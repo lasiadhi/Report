@@ -7,7 +7,13 @@ function dat = getBC(var,startT,endT)
 % Data is produced via a 34 minute timeseries analysis.
 %
 % See below the function for possible var values.
-% 
+%-------------------------------------------------------------------------
+% USAGE STATEMENT:
+% H = getBC('waveHs', '2015-10-01 00:00:00', '2015-10-02 00:00:00')
+%
+% or with no dates
+% H = getBC('waveHs')
+%
 %-------------------------------------------------------------------------
 % FORMAT NOTE: 
 %
