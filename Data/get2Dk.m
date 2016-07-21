@@ -22,7 +22,7 @@ starT and endT - must be input in 'yyyy-mm-dd HH-MM-SS' (IN QUOTES)
 %}
     %Iterate over data files, read select fields,save to data structure with 
     %one cell array for each file's data
-
+    
     filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/BathyDuck-ocean_bathy_argus_201510.nc';
 
     if nargin == 0 || nargin == 2
@@ -54,9 +54,9 @@ starT and endT - must be input in 'yyyy-mm-dd HH-MM-SS' (IN QUOTES)
     ii = find(and(time >= converted_start, time <= converted_end)); 
 
     first = [1,1,1,min(ii)];
-    last =  [1,Inf,Inf,length(ii)];
+    count =  [1,Inf,Inf,length(ii)];
     
-    k = ncread(filename,'k',first,last);
+    k = ncread(filename,'k',first,count);
 
     actual_start = time(min(ii))/(3600*24) + datenum_conv;
     actual_start_str = datestr(actual_start,form);
