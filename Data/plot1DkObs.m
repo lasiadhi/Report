@@ -10,7 +10,10 @@ plot1DkObs
     xm = ncread(filename,'xm');
     
     % get mean and variance of 1D k values over time
-    [k1Dmean,k1Dstd]=get1DkStats(k1D);
+    [k1Dmean,k1Dstd]=get1DkStats();
+    
+    % access matlab functions below
+    addpath('mfunc/confplot')
     
     %plot mean with +/- 1std envelope
     figure

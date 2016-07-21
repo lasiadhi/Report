@@ -10,11 +10,12 @@ plot2DBath
     [bathdata,date]=get2DtrueBath;
 
     %2D bathymetry data in lat/lon
-    figure(1)
+    figure
     clf
     for i=length(date):length(date)
         hold on;
-        fieldname = sprintf('gd%04d',date(i));
+        grid on;
+        fieldname = sprintf('d%04d',date(i));
         surf(bathdata.(fieldname){2},bathdata.(fieldname){3},bathdata.(fieldname){6})
         xlabel('latitude (\circ)')
         ylabel('longitude (\circ)')
