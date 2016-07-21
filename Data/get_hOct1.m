@@ -15,12 +15,17 @@ function [h,x] = get_hOct1()
     
     ii = find(profileNumber == 951);
     
-    % potential shift
-    shift = 0;
+    % water level shift
+    % --------------------------------------------------------------------
+    % Time of survey: 19:25:48 UTC (October 1st 2015)
+    % Tide data taken from:
+    % https://tidesandcurrents.noaa.gov/waterlevels.html?id=8651370&units=metric&bdate=20151010&edate=20151011&timezone=GMT&datum=NAVD&interval=6&action=
+    % Time of measurement: 19:24 GMT
+    water_level = 0.156; % NAVD88
     
     x_org = ncread(filename, 'FRF_Xshore',min(ii),length(ii));
     elevation = ncread(filename, 'elevation', min(ii), length(ii));
-    h_org = -1*(elevation + shift);
+    h_org = -1*(elevation - water_level);
     
     % flip the vector to account for model co-orinate system, where the
     % boundary condition is at x = 0 and not at x = 1150 m.
