@@ -28,7 +28,7 @@ plot1DkObs
     t=title('wave number along y=950m transect');
     set(t,'Interpreter','Latex');
     set (gca,'Xdir','reverse')
-    shorestr = 'Shoreline';
+    shorestr = 'Shoreward';
     nshorestr = sprintf('Away from\nshoreline');
     text(0,0.025,nshorestr,'HorizontalAlignment','right');
     text(max(xm)-min(xm),0.025,shorestr,'HorizontalAlignment','left');
