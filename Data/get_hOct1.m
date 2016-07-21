@@ -2,6 +2,11 @@ function [h,x] = get_hOct1()
 % This function pulls the transect data for the 1-D cross section of
 % interest from a specified date in October 01, 2015.
 %
+%-------------------------------------------------------------------------
+% Usage Statement
+% [h,x] = get_hOct1
+%-------------------------------------------------------------------------
+%
 % Transect is located at approximately y = 950 m.
 %
 % profileNumber of interest 951
