@@ -15,9 +15,11 @@ function [hgrid,xq] = interp_h(h,x,dx)
         xq(i) = xq(i-1)+dx;
     end
     
-    % use spline to interpolate the points with-in the domain of the
-    % original h
-    hgrid = interp1(x,h,xq,'spline',NaN);
+    % use spline interpolate the points with-in the domain of the
+    % original h.
+    % pchip has be used instead of spline because pchip is shape
+    % preserving.
+    hgrid = interp1(x,h,xq,'pchip',NaN);
     
     
     NaNcheck = isnan(hgrid);
