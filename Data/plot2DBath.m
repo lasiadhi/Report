@@ -1,15 +1,14 @@
 function plot2DBath
 %{
-Plot 2D Bathymetry data. Will eventually call function for getting 2D
-bathymetry data.
+Plot 2D Bathymetry data in lat/lon coordinates. For either one or many
+dates when we have data. Current setup is for only plotting Oct 1.
 %}
-
+    %get bathymetry data
     [bathdata,date]=get2DtrueBath;
 
     %2D bathymetry data in lat/lon
     figure(1)
     clf
-    %for i=1:length(ptnum)
     for i=length(date):length(date)
         hold on;
         fieldname = sprintf('gd%04d',date(i));
@@ -21,6 +20,4 @@ bathymetry data.
         titstr = sprintf('True bathymetry for %s October 2015',datestr(end-1:end));
         title(titstr)
     end
-
-
 end
