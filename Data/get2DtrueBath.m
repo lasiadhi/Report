@@ -4,7 +4,7 @@ Read in 2D gridded bathymetry data from bathyduck/survey/gridded
 FRF_BD_*_NAVD88_CRAB/LARC_GPS_UTC_*_grid
 
 USAGE: 
-> griddata=get2DtrueBath
+griddata=get2DtrueBath
 
 Output fields are: 
 time

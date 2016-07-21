@@ -1,12 +1,5 @@
 function dat = getBC(var,startT,endT)
-% This function gets the boundary conditions for the 1-D forward problem.
-% 
-%--------------------------------------------------------------------------
-% Usage statements: 
-% H = getBC('waveHs','2015-10-01 00:00:00', '2015-10-02 00:00:00')
-% H = getBC('waveHs')
-%-------------------------------------------------------------------------
-%
+% This function gets the boundary conditions for the 1-D forward problem
 % time_coverage_start: 2015-10-01 00:00:02
 % time_coverage_end: 2015-10-31 23:00:03
 % 
