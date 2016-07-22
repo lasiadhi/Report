@@ -124,14 +124,36 @@ figure;
 plot(x, H, '-*', x, -h, '-o', x, k, '-^')
 xlabel('x')
 ylabel('H & h & k')
+grid
 legend('Wave Height', 'Depth', 'Wave Number')
 
 figure;
 subplot(2,1,1)
-plot(x,k,'-^');
+plot(x,k.*h,'-^');
 xlabel('x');
 ylabel('Wave Number')
+grid
 subplot(2,1,2)
 plot(x,H,'-*');
 xlabel('x');
 ylabel('Wave Height')
+grid
+
+c = 2*pi./(k.*Tb);
+n = 0.5+((k.*h)./(sinh(2.*k.*h)));
+figure
+subplot(3,1,1)
+plot(x,c,'.')
+xlabel('x');
+ylabel('c');
+grid
+subplot(3,1,2)
+plot(x,n,'.')
+xlabel('x');
+ylabel('n');
+grid
+subplot(3,1,3)
+plot(x,c.*n,'.')
+xlabel('x');
+ylabel('cg');
+grid
