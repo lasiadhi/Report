@@ -35,8 +35,8 @@ function [h,x] = get_hOct1()
     
     for i = 2:length(ii)-1
         delta = x_org(length(ii)-(i-1)) - x_org(length(ii)-i);
-        x(i) = x(i-1) + delta;
-        h(i) = h_org(length(ii)-i);
+        x(i+1) = x(i) + delta;
+        h(i+1) = h_org(length(ii)-i);
     end
     
     % replace negative values with 0
