@@ -15,9 +15,11 @@ Bathymetry is the measurement of the depth of water and can be used to understan
 
 Although there have been uncertainties in capturing the topography of the ocean nearshore, mathematical methods could prove to be possible solutions to this problem using the dispersion relationship between wavelength and the period.
 
- $$sigma^2=gktanh(kh)$$
+ $$
+ \sigma^2=gk \tanh (kh) 
+ $$
 
-where sigma equals 2pi/T, where T is the period, g is the acceleration of gravity, k is 2pi/L, where L is the wavelength, and h is the depth of the wave from still water. Stockdon and Holman used vieo imagery, which compared true wave signal and remotely sensed video signal to create a linear representation between wave amplitudes and phases. Holman used a 2-dimenisional method with Kalman filtering to estimate the depth, h.
+where $\sigma$ equals $2\pi / T$, where T is the period, g is the acceleration of gravity, k is $2\pi/L$, where $L$ is the wavelength, and h is the depth of the wave from still water. Stockdon and Holman used video imagery, which compared true wave signal and remotely sensed video signal to create a linear representation between wave amplitudes and phases. Holman used a 2-dimenisional method with Kalman filtering to estimate the depth, h.
 
 Our research will compute the wave depth using wave length and wave number with a 1D model derived from using the energy flux method to create a correlation between the wave length and the wave depth from the surface. **briefly explain how we are exactly doing this with the model and true data**
 
