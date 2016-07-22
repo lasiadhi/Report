@@ -40,7 +40,7 @@ A beautiful plot of 2D bathymetry
     for i=startind:length(date)
         hold on;
         grid on;
-        fieldname = sprintf('d%04d',date(i))
+        fieldname = sprintf('d%04d',date(i));
         surf(bathdata.(fieldname){2},bathdata.(fieldname){3},bathdata.(fieldname){6})
         xlabel('latitude (\circ)')
         ylabel('longitude (\circ)')
