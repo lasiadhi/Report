@@ -2,6 +2,14 @@
 \usepackage[final]{graphicx}
 \usepackage{amsfonts}
 
+\usepackage{float}
+\usepackage{subfig}
+\usepackage{natbib}
+
+
+% lasith added 
+\usepackage{amsmath, amsthm}
+
 \topmargin-.5in
 \textwidth6.6in
 \textheight9in
@@ -44,6 +52,12 @@ Mentor 2\footnote{University}
 \section{The Problem}
 \input{Sections/problem.tex}
 
+\section{Data}
+\input{Sections/data_intro.tex}
+\input{Sections/data_bc.tex}
+\input{Sections/data_truebath.tex}
+\input{Sections/data_k.tex}
+
 \section{The Approach}
 \input{Sections/approach.tex}
 
@@ -53,6 +67,6 @@ Mentor 2\footnote{University}
 \section{Summary and Future Work}
 \input{Sections/summary.tex}
 
-
+\bibliography{bib}
 
 \end{document}
