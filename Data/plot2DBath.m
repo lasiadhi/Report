@@ -62,6 +62,7 @@ A beautiful plot of 2D bathymetry
     % draw line with z=elevation at indices where FRF_Yshore = 950
     p=plot3(bathprofile_lat_vector,bathdata.(fieldname){3},bathdata.(fieldname){6}(:,transect_yind),'LineWidth',8,'Color','r','Linestyle','-');
     legend(p,'Transect in 1D model','Location','northwest')
+    print('figs/trueBath2D','-dpng')
     
 end
 

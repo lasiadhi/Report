@@ -37,5 +37,6 @@ Plot 2D k for the first measurement on October 1
     
     p=plot3(xm,ym,k1D(:,1),'LineWidth',8,'Color','r','Linestyle','-');
     legend(p,'Transect in 1D model','Location','northwest')
+    print('figs/k2D','-dpng')
 
 end
