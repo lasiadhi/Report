@@ -116,6 +116,8 @@ ptnum = [8,7,6,5,3,2,1];
 version = [20151030,20151028,20160104,20151030,20151019,20151009,20151001];
 instrument = ['CRAB';'CRAB';'LARC';'CRAB';'LARC';'CRAB';'CRAB'];
 
+
+surveydata = struct;
 %Iterate over files (each containing 1 spatial data pt), read select fields,
 %save to data structure with one cell array for each file's data
 for i = 1:length(date)
@@ -144,7 +146,7 @@ for i=1:length(ptnum)
     hold on;
     fieldname = sprintf('gd%04d',ptnum(i));
     [Xgrd,Ygrd]=meshgrid(surveydata.(fieldname){6});
-    plot(Xgrd,Ygrd,'.')
+    plot(Xgrd,Ygrd)
 end
 
 
