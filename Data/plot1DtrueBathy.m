@@ -21,6 +21,6 @@ function plot1DtrueBathy
     hold on
     subplot(1,2,1)
     plot(x,z);
-    plot(x,water_level,'k-.','Lineweight',2);
+    plot(x,water_level,'k-.','lineweight',2);
     
 end
