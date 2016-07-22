@@ -1,7 +1,7 @@
 function plot1DkObs
 %{
 Plot mean and standard deviation of k along y=950m transect
-
+ 
 USAGE:
 plot1DkObs
 %}
@@ -16,7 +16,7 @@ plot1DkObs
     addpath('mfunc/confplot')
     
     %plot mean with +/- 1std envelope
-    figure
+    figure(1)
     clf
     hold on;
     confplot(flipud(xm)-min(xm),k1Dmean,k1Dstd,k1Dstd,'LineWidth',3,'Color',[1 0 0]);
@@ -25,11 +25,12 @@ plot1DkObs
     xlim([0 max(xm)-min(xm)])
     l=legend('mean $\textit{k} \pm 1\sigma$');
     set(l,'Interpreter','Latex');
-    t=title('wave number along y=950m transect');
-    set(t,'Interpreter','Latex');
+    %t=title('wave number along y=950m transect');
+    %set(t,'Interpreter','Latex');
     set (gca,'Xdir','reverse')
     shorestr = 'Shoreward';
     nshorestr = sprintf('Away from\nshoreline');
     text(0,0.025,nshorestr,'HorizontalAlignment','right');
     text(max(xm)-min(xm),0.025,shorestr,'HorizontalAlignment','left');
+    print('figs/k1Dmean_std','-dpng')
 end

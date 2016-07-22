@@ -11,7 +11,7 @@ Plot 2D k for the first measurement on October 1
 
     % make missing values disappear into the ether
     k2D(k2D == -999.99) = NaN;
-    
+     
 
     [xgrd,ygrd]=meshgrid(ym,xm);
     figure
@@ -21,11 +21,11 @@ Plot 2D k for the first measurement on October 1
     y=xlabel('y (m)');
     x=ylabel('x (m)');
     z=zlabel('wave number, \textit{k}');
-    tit=title('Observed wave number on 1 October 2015');
+    %tit=title('Observed wave number on 1 October 2015');
     set(x,'Interpreter','Latex');
     set(y,'Interpreter','Latex');
     set(z,'Interpreter','Latex');
-    set(tit,'Interpreter','Latex');
+    %set(tit,'Interpreter','Latex');
     
     
     %plot profile of 1D model
@@ -37,5 +37,6 @@ Plot 2D k for the first measurement on October 1
     
     p=plot3(xm,ym,k1D(:,1),'LineWidth',8,'Color','r','Linestyle','-');
     legend(p,'Transect in 1D model','Location','northwest')
+    print('figs/k2D','-dpng')
 
 end

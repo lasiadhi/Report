@@ -35,8 +35,8 @@ A beautiful plot of 2D bathymetry
     startind = find(date == start,1);
 
     %2D bathymetry data in lat/lon
-    %figure
-    %clf
+    figure
+    clf
     for i=startind:length(date)
         hold on;
         grid on;
@@ -46,11 +46,11 @@ A beautiful plot of 2D bathymetry
         ylabel('longitude (\circ)')
         zlabel('elevation (m)')
         datestr=num2str(date(i));
-        titstr = sprintf('True bathymetry for %s October 2015',datestr(end-1:end));
-        title(titstr)
+        %titstr = sprintf('True bathymetry for %s October 2015',datestr(end-1:end));
+        %title(titstr)
         view(55, 35)
     end   
-
+ 
     
     % show 1D profile on 2D surface
     % get indices for FRF_Yshore = 950m 
@@ -62,6 +62,7 @@ A beautiful plot of 2D bathymetry
     % draw line with z=elevation at indices where FRF_Yshore = 950
     p=plot3(bathprofile_lat_vector,bathdata.(fieldname){3},bathdata.(fieldname){6}(:,transect_yind),'LineWidth',8,'Color','r','Linestyle','-');
     legend(p,'Transect in 1D model','Location','northwest')
+    print('figs/trueBath2D','-dpng')
     
 end
 
