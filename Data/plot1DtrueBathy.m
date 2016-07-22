@@ -18,6 +18,7 @@ function plot1DtrueBathy
     [hgrid,xgrid] = interp_h(h,x,10);
     
     figure
+    clf
     subplot(1,2,1)
     plot(x,z,'r','LineWidth',2);
     hold on
@@ -25,10 +26,14 @@ function plot1DtrueBathy
     ylim([-12.844,3.156]);
     xlim([0,1500]);
     set(gca,'Xdir','reverse');
-    legend('Survey Data','Survey Water Level');
-    xlabel('x Position (meters)');
-    ylabel('Elevation (meters)');
-    title('Elevation');
+    ll=legend('Survey Data','Survey Water Level');
+    xx=xlabel('x Position (meters)');
+    yy=ylabel('Elevation (meters)');
+    tt=title('Elevation');
+    set(ll,'Interpreter','Latex');
+    set(xx,'Interpreter','Latex');
+    set(yy,'Interpreter','Latex');
+    set(tt,'Interpreter','Latex');
     
     subplot(1,2,2)
     plot(xgrid,hgrid,'--','LineWidth',2);
@@ -38,10 +43,15 @@ function plot1DtrueBathy
     xlim([0,1500]);
     set(gca,'Xdir','reverse');
     set(gca,'Ydir','reverse');
-    legend('Interpolated/Extrapolated Data','Survey Data');
-    xlabel('x Position (meters)');
-    ylabel('Depth (meters)');
-    title('Depth');
+    l=legend('Interpolated/Extrapolated Data','Measured Data');
+    x=xlabel('x Position (meters)');
+    y=ylabel('Depth (meters)');
+    tit=title('Depth');
+    set(l,'Interpreter','Latex');
+    set(x,'Interpreter','Latex');
+    set(y,'Interpreter','Latex');
+    set(tit,'Interpreter','Latex');
+    print('figs/trueBath1D','-dpng')
     
     
 end

@@ -35,8 +35,8 @@ A beautiful plot of 2D bathymetry
     startind = find(date == start,1);
 
     %2D bathymetry data in lat/lon
-    %figure
-    %clf
+    figure
+    clf
     for i=startind:length(date)
         hold on;
         grid on;
@@ -46,8 +46,8 @@ A beautiful plot of 2D bathymetry
         ylabel('longitude (\circ)')
         zlabel('elevation (m)')
         datestr=num2str(date(i));
-        titstr = sprintf('True bathymetry for %s October 2015',datestr(end-1:end));
-        title(titstr)
+        %titstr = sprintf('True bathymetry for %s October 2015',datestr(end-1:end));
+        %title(titstr)
         view(55, 35)
     end   
  

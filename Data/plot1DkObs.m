@@ -25,8 +25,8 @@ plot1DkObs
     xlim([0 max(xm)-min(xm)])
     l=legend('mean $\textit{k} \pm 1\sigma$');
     set(l,'Interpreter','Latex');
-    t=title('wave number along y=950m transect');
-    set(t,'Interpreter','Latex');
+    %t=title('wave number along y=950m transect');
+    %set(t,'Interpreter','Latex');
     set (gca,'Xdir','reverse')
     shorestr = 'Shoreward';
     nshorestr = sprintf('Away from\nshoreline');
