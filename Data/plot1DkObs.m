@@ -1,7 +1,7 @@
 function plot1DkObs
 %{
 Plot mean and standard deviation of k along y=950m transect
-
+ 
 USAGE:
 plot1DkObs
 %}

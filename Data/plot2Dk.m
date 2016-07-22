@@ -11,7 +11,7 @@ Plot 2D k for the first measurement on October 1
 
     % make missing values disappear into the ether
     k2D(k2D == -999.99) = NaN;
-    
+     
 
     [xgrd,ygrd]=meshgrid(ym,xm);
     figure

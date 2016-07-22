@@ -1,8 +1,21 @@
 function [Hmean,Hstd,Tmean,Tstd]=getplotBCStats()
-%{
+%{ 
 Calculate simple statistics in time on various variables at the boundary condition
+
+USAGE:
+[Hmean,Hstd,Tmean,Tstd]=getplotBCStats()
+
+OUTPUT:
+Hmean is the mean wave height during October 2015 at the boundary condition
+point
+Hstd is the standard deviation
+figs/waveHeight_BC1D_Stats.png is the histogram of wave height
+Tmean is the mean wave period
+Tstd is the standard deviation
+figs/wavePeriod_BC1D_Stats.png is the histogram of wave period 
+
 %}  
-    %stats on wave height during October
+    %stats on wave height during October 2015
     H = getBC('waveHs');
     Hmean = nanmean(H); %mean over time dimension
     Hstd = nanstd(H); %std over time
@@ -29,6 +42,7 @@ Calculate simple statistics in time on various variables at the boundary conditi
     fp = getBC('wavePeakFrequency');
     %transform frequency intp period
     T = 1./fp;
+    %stats on wave period during October 2015
     Tmean = nanmean(T); %mean over time dimension
     Tstd = nanstd(T); %std over time
     

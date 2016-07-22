@@ -50,7 +50,7 @@ A beautiful plot of 2D bathymetry
         title(titstr)
         view(55, 35)
     end   
-
+ 
     
     % show 1D profile on 2D surface
     % get indices for FRF_Yshore = 950m 
