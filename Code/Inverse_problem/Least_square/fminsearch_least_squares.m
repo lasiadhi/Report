@@ -13,15 +13,15 @@ load('k_1percNoisedata_N47.mat','k');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fmincon: Find minimum of constrained nonlinear multivariable function
 %options = optimoptions('Display','off');
-options  = optimset('Display','iter','TolFun',1e-3,'MaxIter',15);
-h_hat3   = fminsearch(@objective_2norm, repmat(5,[N,1]), [],[],[],[], zeros(N,1), repmat(12,[N,1]),[], options);
+options  = optimset('Display','iter','TolFun',1e-3,'MaxIter',50);
+h_hat3   = fminsearch(@objective_2norm, h_guess, options);
 
 
 figure(3)
 stem(hgrid, 'b');
 hold on
 stem(h_hat3, 'r');
-title('fmincon method', 'fontSize',14)
+title('fminsearch method', 'fontSize',14)
 xlabel('Distance from the coastline','FontSize',14);
 ylabel('Depth','FontSize',14);
 legend({'True h', 'Recovered h'},'FontSize',14);
