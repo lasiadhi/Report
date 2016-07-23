@@ -2,36 +2,33 @@
 clc
 clear
 
-% generate synthatic Gaussian noisy data
-L    = 1;
-dx   = 0.01;
-xvec = [0:dx:L]';
-
-truealpha  = 2;
-truesigma0 = 1;
-
-true_sol = ODE_sol(truealpha, xvec);
-noisy_data = true_sol + truesigma0 * randn(length(xvec), 1);
+%Get k data
+k1D=get1Dk();
 
 
-% algorithm parameters
+% Metropolis things
 burnin   = 1000;   % markov chain need to converge 
 numsteps = 10000;
 totsteps = numsteps + burnin;
 
-x0(1) = 0.5;  % initial guess for the alpha
+%Initial guess for h (from previous data)
+%x0(1) = 0.5;  % initial guess for the alpha
 
-oldpost = likelihood(noisy_data, x0(1), truesigma0, xvec)  + myprior(x0(1));
+%Initial posterior
+oldpost = loglikelihood(k1D, kFor, sigk)  + logprior(x0(1));
 
-
+%Metropolis loop
 for i = 1 : (totsteps-1)
+
+    %Get modeled k
+    [kFor, H] = forward(hgrid);
 
     % generate proposal
     z = 0.5^2 * randn(1);    % change SD 0.5 here
     prop = x0(i) + z;
     
     % calculate posterior density
-    proppost = likelihood(noisy_data, prop, truesigma0, xvec) +  myprior(prop);
+    proppost = loglikelihood(noisy_data, prop, truesigma0, xvec) +  logprior(prop);
     rho = exp(proppost - oldpost);
     
     % accept/reject step
