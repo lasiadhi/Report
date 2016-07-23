@@ -10,10 +10,13 @@ function [hgrid,xq] = interp_h(h,x,dx)
 % where dx = the specified resolution
 %-------------------------------------------------------------------------%
 
-    num_pnts = 1150/dx-1;
-    xq(1) = dx;
+    num_pnts = 1150/dx + 1;
     
-    for i=2:num_pnts
+    nn = num_pnts;
+    
+    xq = zeros(nn, 1);
+    
+    for i=2: nn
         xq(i) = xq(i-1)+dx;
     end
     

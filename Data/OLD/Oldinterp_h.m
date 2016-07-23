@@ -1,4 +1,4 @@
-function [hgrid,xq, nn] = interp_h(h,x,dx)
+function [hgrid,xq] = interp_h(h,x,dx)
 % This function turns the h values taken from the transect of interest into
 % gridded values for (0 >= x >= 1150 m).
 %
@@ -10,13 +10,10 @@ function [hgrid,xq, nn] = interp_h(h,x,dx)
 % where dx = the specified resolution
 %-------------------------------------------------------------------------%
 
-    num_pnts = 1150/dx + 1;
+    num_pnts = 1150/dx-1;
+    xq(1) = dx;
     
-    nn = num_pnts;
-    
-    xq = zeros(nn, 1);
-    
-    for i=2: nn
+    for i=2:num_pnts
         xq(i) = xq(i-1)+dx;
     end
     
