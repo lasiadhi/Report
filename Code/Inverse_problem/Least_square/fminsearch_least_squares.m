@@ -13,8 +13,8 @@ load('k_1percNoisedata_N47.mat','k');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fmincon: Find minimum of constrained nonlinear multivariable function
 %options = optimoptions('Display','off');
-options  = optimset('Display','iter','TolFun',1e-3,'MaxIter',15);
-h_hat3   = fminsearch(@objective_2norm, repmat(5,[N,1]), [],[],[],[], zeros(N,1), repmat(12,[N,1]),[], options);
+options  = optimset('Display', 'iter', 'TolFun', 1e-4, 'MaxIter', 20);          %,'MaxIter',10   %,'TolFun',1e-3
+h_hat3   = fminsearch(@objective_2norm, repmat(5,[N,1]), options);              %, [], [], [], [], zeros(N,1), repmat(12, [N,1]), []
 
 
 figure(3)

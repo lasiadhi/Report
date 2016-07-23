@@ -5,13 +5,15 @@ dx = 25; %10;
 %% CALL-1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get Boundary Conditions (vector for a fixed time period, record hourly)
-Hmax_vec = getBC('waveHs', '2015-10-01 00:00:00', '2015-10-02 00:00:00');
-  Tb_vec = getBC('wavePeakFrequency', '2015-10-01 00:00:00', '2015-10-02 00:00:00');
+%Hmax_vec = getBC('waveHs', '2015-10-01 00:00:00', '2015-10-02 00:00:00');
+%  Tb_vec = getBC('wavePeakFrequency', '2015-10-01 00:00:00', '2015-10-02 00:00:00');
   
 % Choose one set of Hmax_vec & Tb_max (index must match)
-Hmax = Hmax_vec(1);
-  Tb = (Tb_vec(1))^(-1);
-  
+%Hmax = Hmax_vec(1);
+%  Tb = (Tb_vec(1))^(-1);
+
+Tb = 10.00;
+
 %% CALL-4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get wave number
