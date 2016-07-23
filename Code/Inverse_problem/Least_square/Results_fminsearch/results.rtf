@@ -145,5 +145,228 @@ Exiting: Maximum number of iterations has been exceeded\
          - increase MaxIter option.\
          Current function value: 10016478388321.322266 
 \fs24 \
+%%%%%%%%%%%%%%%%%%% plot3\
+
+\fs22 options  = optimset(\cf2 'Display'\cf0 ,\cf2 'iter'\cf0 ,\cf2 'TolFun'\cf0 ,1e-4,\cf2 'MaxIter'\cf0 ,150);
+\fs24 \
+
+\fs22 h_hat3   = fminsearch(@objective_2norm, h_guess, options);\
+f =  norm(k_appro - k_noisy)^2 +  1e-2 * norm(h)^2;
+\fs24 \
+\
+\
+ Iteration   Func-count     min f(x)         Procedure\
+     0            1      2.13439e+13         \
+     1           48      2.03276e+13         initial simplex\
+     2           49      2.03276e+13         reflect\
+     3           50      2.03276e+13         reflect\
+     4           51      2.03276e+13         reflect\
+     5           52      2.03276e+13         reflect\
+     6           53      2.03276e+13         reflect\
+     7           54      2.03276e+13         reflect\
+     8           55      2.03276e+13         reflect\
+     9           56      2.03276e+13         reflect\
+    10           57      2.03276e+13         reflect\
+    11           58      2.03276e+13         reflect\
+    12           59      2.03276e+13         reflect\
+    13           60      2.03276e+13         reflect\
+    14           61      2.03276e+13         reflect\
+    15           62      2.03276e+13         reflect\
+    16           63      2.03276e+13         reflect\
+    17           64      2.03276e+13         reflect\
+    18           65      2.03276e+13         reflect\
+    19           66      2.03276e+13         reflect\
+    20           67      2.03276e+13         reflect\
+    21           68      2.03276e+13         reflect\
+    22           69      2.03276e+13         reflect\
+    23           70      2.03276e+13         reflect\
+    24           71      2.03276e+13         reflect\
+    25           72      2.03276e+13         reflect\
+    26           73      2.03276e+13         reflect\
+    27           74      2.03276e+13         reflect\
+    28           75      2.03276e+13         reflect\
+    29           76      2.03276e+13         reflect\
+    30           77      2.03276e+13         reflect\
+    31           78      2.03276e+13         reflect\
+    32           79      2.03276e+13         reflect\
+    33           80      2.03276e+13         reflect\
+    34           81      2.03276e+13         reflect\
+    35           82      2.03276e+13         reflect\
+    36           83      2.03276e+13         reflect\
+    37           84      2.03276e+13         reflect\
+    38           85      2.03276e+13         reflect\
+    39           86      2.03276e+13         reflect\
+    40           87      2.03276e+13         reflect\
+    41           88      2.03276e+13         reflect\
+    42           89      2.03276e+13         reflect\
+    43           90      2.03276e+13         reflect\
+    44           91      2.03276e+13         reflect\
+    45           92      2.03276e+13         reflect\
+    46           93      2.03276e+13         reflect\
+    47           94      2.03276e+13         reflect\
+    48           95      2.03276e+13         reflect\
+    49           96      2.03276e+13         reflect\
+    50           97      2.03276e+13         reflect\
+    51           98      2.03276e+13         reflect\
+    52           99      2.03276e+13         reflect\
+    53          100      2.03276e+13         reflect\
+    54          101      2.03276e+13         reflect\
+    55          102      2.03276e+13         reflect\
+    56          103      2.03276e+13         reflect\
+    57          104      2.03276e+13         reflect\
+    58          105      2.03276e+13         reflect\
+    59          106      2.03276e+13         reflect\
+    60          107      2.03276e+13         reflect\
+    61          108      2.03276e+13         reflect\
+    62          109      2.03276e+13         reflect\
+    63          110      2.03276e+13         reflect\
+    64          111      2.03276e+13         reflect\
+    65          112      2.03276e+13         reflect\
+    66          113      2.03276e+13         reflect\
+    67          114      2.03276e+13         reflect\
+    68          115      2.03276e+13         reflect\
+    69          116      2.03276e+13         reflect\
+    70          117      2.03276e+13         reflect\
+    71          118      2.03276e+13         reflect\
+    72          119      2.03276e+13         reflect\
+    73          120      2.03276e+13         reflect\
+    74          121      2.03276e+13         reflect\
+    75          122      2.03276e+13         reflect\
+    76          123      2.03276e+13         reflect\
+    77          124      2.03276e+13         reflect\
+    78          125      2.03276e+13         reflect\
+    79          126      2.03276e+13         reflect\
+    80          127      2.03276e+13         reflect\
+    81          128      2.03276e+13         reflect\
+    82          129      2.03276e+13         reflect\
+    83          130      2.03276e+13         reflect\
+    84          131      2.03276e+13         reflect\
+    85          132      2.03276e+13         reflect\
+    86          133      2.03276e+13         reflect\
+    87          134      2.03276e+13         reflect\
+    88          135      2.03276e+13         reflect\
+    89          136      2.03276e+13         reflect\
+    90          137      2.03276e+13         reflect\
+    91          138      2.03276e+13         reflect\
+    92          139      2.03276e+13         reflect\
+    93          140      2.03276e+13         reflect\
+    94          141      2.03276e+13         reflect\
+    95          142      2.03276e+13         reflect\
+    96          143      2.03276e+13         reflect\
+    97          144      2.03276e+13         reflect\
+    98          145      2.03276e+13         reflect\
+    99          146      2.03276e+13         reflect\
+   100          147      2.03276e+13         reflect\
+   101          148      2.03276e+13         reflect\
+   102          149      2.03276e+13         reflect\
+   103          150      2.03276e+13         reflect\
+   104          151      2.03276e+13         reflect\
+   105          152      2.03276e+13         reflect\
+   106          153      2.03276e+13         reflect\
+   107          154      2.03276e+13         reflect\
+   108          155      2.03276e+13         reflect\
+   109          156      2.03276e+13         reflect\
+   110          157      2.03276e+13         reflect\
+   111          158      2.03276e+13         reflect\
+   112          159      2.03276e+13         reflect\
+   113          160      2.03276e+13         reflect\
+   114          161      2.03276e+13         reflect\
+   115          162      2.03276e+13         reflect\
+   116          163      2.03276e+13         reflect\
+   117          164      2.03276e+13         reflect\
+   118          165      2.03276e+13         reflect\
+   119          166      2.03276e+13         reflect\
+   120          167      2.03276e+13         reflect\
+   121          168      2.03276e+13         reflect\
+   122          169      2.03276e+13         reflect\
+   123          170      2.03276e+13         reflect\
+   124          171      2.03276e+13         reflect\
+   125          172      2.03276e+13         reflect\
+   126          173      2.03276e+13         reflect\
+   127          175      2.00989e+13         expand\
+   128          176      2.00989e+13         reflect\
+   129          177      2.00989e+13         reflect\
+   130          178      2.00989e+13         reflect\
+   131          179      2.00989e+13         reflect\
+   132          180      2.00989e+13         reflect\
+   133          181      2.00989e+13         reflect\
+   134          182      2.00989e+13         reflect\
+   135          183      2.00989e+13         reflect\
+   136          184      2.00989e+13         reflect\
+   137          185      2.00989e+13         reflect\
+   138          186      2.00989e+13         reflect\
+   139          187      2.00989e+13         reflect\
+   140          188      2.00989e+13         reflect\
+   141          189      2.00989e+13         reflect\
+   142          190      2.00989e+13         reflect\
+   143          191      2.00989e+13         reflect\
+   144          192      2.00989e+13         reflect\
+   145          193      2.00989e+13         reflect\
+   146          195      1.98494e+13         expand\
+   147          196      1.98494e+13         reflect\
+   148          197      1.98494e+13         reflect\
+   149          198      1.98494e+13         reflect\
+   150          199      1.98494e+13         reflect\
+ \
+Exiting: Maximum number of iterations has been exceeded\
+         - increase MaxIter option.\
+         Current function value: 19849377992430.378906 \
+%%%%%%%%%%%%%%%%%%%%%% plot 04\
+
+\fs22 options  = optimset(\cf2 'Display'\cf0 ,\cf2 'iter'\cf0 ,\cf2 'TolFun'\cf0 ,1e-6,\cf2 'MaxIter'\cf0 ,1500);
+\fs24 \
+
+\fs22 h_hat3   = fminsearch(@objective_2norm, h_guess, options);
+\fs24 \
+
+\fs22 f =  norm(k_appro - k_noisy)^2 +  1e+5 * norm(h)^2;
+\fs24 \
+\
+ 1500         1613      3.82435e+11         reflect\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  plot 05\
+
+\fs22 options  = optimset(\cf2 'Display'\cf0 ,\cf2 'iter'\cf0 ,\cf2 'TolFun'\cf0 ,1e-6,\cf2 'MaxIter'\cf0 ,1500);
+\fs24 \
+
+\fs22 h_hat3   = fminsearch(@objective_2norm, ones(N,1), options);
+\fs24 \
+
+\fs22 f =  norm(k_appro - k_noisy)^2 +  1e-6 * norm(h)^2;\
+\
+f is 0.69\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% plot 06\
+\pard\pardeftab720\partightenfactor0
+
+\fs22 \cf0 f =  norm(k_appro - k_noisy)^2 +  1e-8 * norm(h)^2;
+\fs24 \
+
+\fs22 options  = optimset(\cf2 'Display'\cf0 ,\cf2 'iter'\cf0 ,\cf2 'TolFun'\cf0 ,1e-6,\cf2 'MaxIter'\cf0 ,2000);
+\fs24 \
+
+\fs22 h_hat3   = fminsearch(@objective_2norm, ones(N,1), options);
+\fs24 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+  2000         2217         0.616317         reflect\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+tau = 
+\fs22 1e-8
+\fs24 \
+  5000         5557        0.0926416         reflect\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
+\pard\pardeftab720\partightenfactor0
+
+\fs22 \cf0 f =  norm(k_appro - k_noisy)^2 +  1e-9 * norm(h)^2;
+\fs24 \
+
+\fs22 options  = optimset(\cf2 'Display'\cf0 ,\cf2 'iter'\cf0 ,\cf2 'TolFun'\cf0 ,1e-3,\cf2 'MaxIter'\cf0 ,5000);
+\fs24 \
+
+\fs22 h_hat3   = fminsearch(@objective_2norm, h_guess, options);
+\fs24 \
 \
 }
