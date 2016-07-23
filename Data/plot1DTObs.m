@@ -23,9 +23,7 @@ plot1DkObs
     hold on;
     xlabel('x distance (m)')
     ylabel('mean \it{T}')
-    xlim([0 max(xm)-min(xm)])
-    l=legend('mean $\textit{T} \pm 1\sigma$');
-    set(l,'Interpreter','Latex');
+    xlim([0 max(xm)-min(xm)])  
     %t=title('wave period along y=950m transect');
     %set(t,'Interpreter','Latex');
     set (gca,'Xdir','reverse')
@@ -33,6 +31,10 @@ plot1DkObs
     nshorestr = sprintf('Away from\nshore');
     text(0,3,nshorestr,'HorizontalAlignment','right');
     text(max(xm)-min(xm),3,shorestr,'HorizontalAlignment','left');
-    plot(flipud(xm)-min(xm),ones(length(xm),1)*mean(T1Dmean),'k','Linewidth',1)
+    plot(flipud(xm)-min(xm),ones(length(xm),1)*mean(T1Dmean),'k','Linewidth',1);
+    %ll=text(700,mean(T1Dmean),'Mean T_{mean}');
+    l=legend('mean $\textit{T} \pm 1\sigma$');
+    set(l,'Interpreter','Latex');
+    %set(ll,'Interpreter','Latex');   
     print('figs/T1Dmean_std','-dpng')
 end
