@@ -1,7 +1,7 @@
 function [k, H] = forward(hgrid)
 
 xmax = 1150;
-
+dx = 10;
 %% CALL-1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get Boundary Conditions (vector for a fixed time period, record hourly)
@@ -26,7 +26,7 @@ delta = rhs_delta(hgrid, Tb, Hmax);
 %% CALL-6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get wave height from energy flux eqn by FDM
-[H, x] = waveheight(xmax, Hmax, hgrid, Tb, k, delta);
+[H] = waveheight(Hmax, hgrid, Tb, k, delta, dx);
 
 
 
