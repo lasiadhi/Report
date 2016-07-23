@@ -1,0 +1,149 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red160\green32\blue240;}
+\margl1440\margr1440\vieww16780\viewh13180\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 dataset: 
+\f1\fs22 \cf2 k_1percNoisedata_N47.mat
+\f0\fs24 \cf0  \
+\
+plot-1\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf0 options  = optimset(\cf2 'Display'\cf0 ,\cf2 'iter'\cf0 ,\cf2 'TolFun'\cf0 ,1e-3,\cf2 'MaxIter'\cf0 ,50);
+\fs24 \
+
+\fs22 h_hat3   = fminsearch(@objective_2norm, hgrid + 0.1 * randn(N,1), options);
+\fs24 \
+
+\fs22 f =  norm(k_appro - k_noisy)^2 +  1e-1 * norm(h)^2;
+\fs24 \
+\
+Iteration   Func-count     min f(x)         Procedure\
+     0            1          231.985         \
+     1           48          229.544         initial simplex\
+     2           49          229.544         reflect\
+     3           51          228.661         expand\
+     4           52          228.661         reflect\
+     5           54          228.661         contract inside\
+     6           55          228.661         reflect\
+     7          104          228.661         shrink\
+     8          106          228.661         contract inside\
+     9          107          228.661         reflect\
+    10          108          228.661         reflect\
+    11          157          228.661         shrink\
+    12          158          228.661         reflect\
+    13          159          228.661         reflect\
+    14          160          228.661         reflect\
+    15          161          228.661         reflect\
+    16          162          228.661         reflect\
+    17          163          228.661         reflect\
+    18          164          228.661         reflect\
+    19          165          228.661         reflect\
+    20          166          228.661         reflect\
+    21          167          228.661         reflect\
+    22          168          228.661         reflect\
+    23          169          228.661         reflect\
+    24          170          228.661         reflect\
+    25          171          228.661         reflect\
+    26          172          228.661         reflect\
+    27          173          228.661         reflect\
+    28          174          228.661         reflect\
+    29          175          228.661         reflect\
+    30          176          228.661         reflect\
+    31          177          228.661         reflect\
+    32          178          228.661         reflect\
+    33          179          228.661         reflect\
+    34          180          228.661         reflect\
+    35          181          228.661         reflect\
+    36          182          228.661         reflect\
+    37          183          228.661         reflect\
+    38          184          228.661         reflect\
+    39          185          228.661         reflect\
+    40          186          228.661         reflect\
+    41          187          228.661         reflect\
+    42          189          228.651         reflect\
+    43          190          228.651         reflect\
+    44          191          228.651         reflect\
+    45          192          228.651         reflect\
+    46          193          228.651         reflect\
+    47          194          228.651         reflect\
+    48          195          228.651         reflect\
+    49          196          228.651         reflect\
+    50          197          228.651         reflect\
+ \
+Exiting: Maximum number of iterations has been exceeded\
+         - increase MaxIter option.\
+         Current function value: 228.651323 \
+\
+#################################################\
+Plot2\
+
+\fs22 options  = optimset(\cf2 'Display'\cf0 ,\cf2 'iter'\cf0 ,\cf2 'TolFun'\cf0 ,1e-3,\cf2 'MaxIter'\cf0 ,50);
+\fs24 \
+
+\fs22 h_hat3   = fminsearch(@objective_2norm, h_guess, options);
+\fs24 \
+
+\fs22 f        = norm(k_appro - k_noisy)^2 +  1e+2 * norm(h)^2;\
+\
+Iteration   Func-count     min f(x)         Procedure\
+     0            1      1.05173e+13         \
+     1           48      1.00165e+13         initial simplex\
+     2           49      1.00165e+13         reflect\
+     3           50      1.00165e+13         reflect\
+     4           51      1.00165e+13         reflect\
+     5           52      1.00165e+13         reflect\
+     6           53      1.00165e+13         reflect\
+     7           54      1.00165e+13         reflect\
+     8           55      1.00165e+13         reflect\
+     9           56      1.00165e+13         reflect\
+    10           57      1.00165e+13         reflect\
+    11           58      1.00165e+13         reflect\
+    12           59      1.00165e+13         reflect\
+    13           60      1.00165e+13         reflect\
+    14           61      1.00165e+13         reflect\
+    15           62      1.00165e+13         reflect\
+    16           63      1.00165e+13         reflect\
+    17           64      1.00165e+13         reflect\
+    18           65      1.00165e+13         reflect\
+    19           66      1.00165e+13         reflect\
+    20           67      1.00165e+13         reflect\
+    21           68      1.00165e+13         reflect\
+    22           69      1.00165e+13         reflect\
+    23           70      1.00165e+13         reflect\
+    24           71      1.00165e+13         reflect\
+    25           72      1.00165e+13         reflect\
+    26           73      1.00165e+13         reflect\
+    27           74      1.00165e+13         reflect\
+    28           75      1.00165e+13         reflect\
+    29           76      1.00165e+13         reflect\
+    30           77      1.00165e+13         reflect\
+    31           78      1.00165e+13         reflect\
+    32           79      1.00165e+13         reflect\
+    33           80      1.00165e+13         reflect\
+    34           81      1.00165e+13         reflect\
+    35           82      1.00165e+13         reflect\
+    36           83      1.00165e+13         reflect\
+    37           84      1.00165e+13         reflect\
+    38           85      1.00165e+13         reflect\
+    39           86      1.00165e+13         reflect\
+    40           87      1.00165e+13         reflect\
+    41           88      1.00165e+13         reflect\
+    42           89      1.00165e+13         reflect\
+    43           90      1.00165e+13         reflect\
+    44           91      1.00165e+13         reflect\
+    45           92      1.00165e+13         reflect\
+    46           93      1.00165e+13         reflect\
+    47           94      1.00165e+13         reflect\
+    48           95      1.00165e+13         reflect\
+    49           96      1.00165e+13         reflect\
+    50           97      1.00165e+13         reflect\
+ \
+Exiting: Maximum number of iterations has been exceeded\
+         - increase MaxIter option.\
+         Current function value: 10016478388321.322266 
+\fs24 \
+\
+}

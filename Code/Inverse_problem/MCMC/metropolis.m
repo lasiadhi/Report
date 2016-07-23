@@ -2,59 +2,72 @@
 clc
 clear
 
-% generate synthatic Gaussian noisy data
-L    = 1;
-dx   = 0.01;
-xvec = [0:dx:L]';
+%Get k data and variance
+addpath('../../../Data/')
+kdat=get1Dk();
+[~,k1Dstd]=get1DkStats();
+kdat_std = mean(k1Dstd_dat);
+vark = kdat_std^2;
 
-truealpha  = 2;
-truesigma0 = 1;
+%Data for prior
+bath=load('../../../Data/transect_depth_ensembles_500_dx_10.mat');
+%x = [0:10:1140]'; %bath.x doesn't have the correct dims, so fixing that
 
-true_sol = ODE_sol(truealpha, xvec);
-noisy_data = true_sol + truesigma0 * randn(length(xvec), 1);
-
-
-% algorithm parameters
+% Metropolis things
 burnin   = 1000;   % markov chain need to converge 
 numsteps = 10000;
 totsteps = numsteps + burnin;
 
-x0(1) = 0.5;  % initial guess for the alpha
+% Initial vector for quantity of interest we're estimating
+h = zeros(length(bath.depth),totsteps);
 
-oldpost = likelihood(noisy_data, x0(1), truesigma0, xvec)  + myprior(x0(1));
+% Initial guess for h (from previous data)
+% For the moment this is the true bathymetry
+% will eventually be like proposal
+[h(:,1),~] = get_hOct1();
 
+%Initial guess for forward model
+[kFor, ~] = forward(h(:,1));
 
+%Initial posterior
+[ lprior, depthmean_prior, depthstd_prior] = logprior(h(:,1),bath);
+llikelihood = loglikelihood(kdat, kFor, vark);
+oldpost =  llikelihood + lprior;
+
+%Metropolis loop
 for i = 1 : (totsteps-1)
 
-    % generate proposal
-    z = 0.5^2 * randn(1);    % change SD 0.5 here
-    prop = x0(i) + z;
-    
+    % Propose h
+    hprop = normrnd(depthmean_prior,depthstd_prior);
+    %Get proposed k | h
+    [kprop, ~] = forward(hprop);
+
     % calculate posterior density
-    proppost = likelihood(noisy_data, prop, truesigma0, xvec) +  myprior(prop);
+    proppost = loglikelihood(kdat, kprop, vark) +  logprior(hprop);
     rho = exp(proppost - oldpost);
     
     % accept/reject step
     u = rand;
     if rho > u
-        x0(i+1) = prop;
+        h(i+1) = prop;
         oldpost = proppost;
     else
-        x0(i+1) = x0(i);
+        h(i+1) = h(i);
     end   
-     
-    
+
 end
 
-
 % throw away the burnin steps
-    x = x0((burnin+1):totsteps);
+    h_final = h((burnin+1):totsteps);
     
     % keep every 10th step
-    x = x(1:10:length(x));
+    h_final = h_final(1:10:length(f_final));
     
-    [f,x]=ksdensity(x);
-    plot(x,f);
-    [M I] = max(f)
+
+
+
+%     [f,x]=ksdensity(x);
+%     plot(x,f);
+%     [M I] = max(f)
 
 
