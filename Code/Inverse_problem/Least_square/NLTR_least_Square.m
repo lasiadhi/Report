@@ -2,18 +2,23 @@
 % lsqnonlin: trust-region-reflective method
 clc
 N = 116;
+dx = 10;
+[h,x] = get_hOct1;
+[hgrid,xq] = interp_h(h,x,dx);
+h_guess = initialize_h_guess(hgrid,dx);
+h_guess = h_guess';
 
 load('k_2_5percNoisedata.mat','k'); 
 
 options = optimoptions('lsqnonlin','Display','iter');
-[k_hat,resnorm2] = lsqnonlin(@objective, zeros(N,1), zeros(N,1),inf(N,1),options);
-resnorm2
+[h_hat,resnorm2] = lsqnonlin(@objective, h_guess, zeros(N,1),repmat(11,[N,1]),options);
+resnorm2;
 %resnorm2_1 = norm(ht - h_hat2)
 
 figure(2)
-stem(k, 'b');
+stem(hgrid, 'b');
 hold on
-stem(k_hat, 'r');
+stem(h_hat, 'r');
 title('Trust-region-reflective method', 'fontSize',14)
 xlabel('Distance from the coastline','FontSize',14);
 ylabel('k','FontSize',14);
