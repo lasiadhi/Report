@@ -1,0 +1,402 @@
+\documentclass[7pt]{beamer}
+\usepackage{beamerthemesplit}
+\usepackage{amsfonts}
+\usepackage{amsmath}		
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{makeidx}
+\usepackage{rotating}
+\usepackage{wasysym}
+
+%\usepackage[latin2]{inputenc}
+%\usepackage[romanian,magyar]{babel}
+\usepackage{graphicx}
+%\usepackage{dsfont}
+\usepackage{beamerthemesplit}
+\usepackage{hyperref}
+\definecolor{red}{RGB}{130,0,0}
+\mode<presentation>
+{
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{lem}[dfn]{Lemma}
+\newtheorem{thm}[dfn]{Theorem}
+\newtheorem{prop}[dfn]{Proposition}
+\newtheorem{rem}[dfn]{Remark}
+\newtheorem{cor}[dfn]{Corollary}
+\newtheorem{ex}[dfn]{Example}
+\newtheorem{pf}[dfn]{Proof}
+%\newtheorem{notn}[dfn]{Notation.}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newenvironment{notn}[1][Notation]{\noindent\textbf{#1.} }{\ \rule{0.0em}{0.0em}}
+%Defining Caligraphic letters
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calR}{\mathcal{R}}
+%\begin{comment}
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\te}{\theta}
+\newcommand{\et}{\eta}
+\newcommand{\om}{\omega}
+\newcommand{\Om}{\Omega}
+\newcommand{\ps}{\psi}
+\newcommand{\Ps}{\Psi}
+\newcommand{\daba}{\partial}
+%\newcommand{\p}{\pi}
+\newcommand{\ph}{\phi}
+\newcommand{\de}{\delta}
+\newcommand{\ro}{\rho}
+\newcommand{\si}{\sigma}
+\newcommand{\Si}{\Sigma}
+\newcommand{\la}{\lambda}
+%\newcommand{\m}{\mu\psi}
+\newcommand{\vp}{\varphi}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\id}{\,\mathrm{d}}
+
+
+
+
+%\setbeamertemplate{itemize item}[ball]
+
+  \useoutertheme{infolines}
+  \usetheme[hideothersubsections]{Berkeley}
+  \usecolortheme[named=red]{structure}
+  \usecolortheme{whale}
+  \useinnertheme{rounded}
+  \usefonttheme[onlymath]{serif}
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+  \setbeamertemplate{navigation symbols}{}
+  \usecolortheme{sidebartab}
+}
+
+
+\title[Sobolev Spaces and Variational Method in Linear Elliptic Partial Differential Equations]{Sobolev Spaces and Variational Method in Linear Elliptic PDEs}
+\author[IYIOLA OLANIYI SAMUEL]{Presented \\ by\\Iyiola Olaniyi Samuel\\Supervised\\by\\Prof. Ngalla Djitte}
+\institute[AUST, Abuja, Nigeria]{Pure and Applied Mathematics\\African University of Science and Technology}
+\date{December, 2011}
+\logo{\includegraphics[height=1.4cm,width=1.5cm]{aust_logo}}
+\begin{document}
+ \frame{\titlepage}
+\frame{
+\frametitle{Outline}
+\tableofcontents
+}
+\section{Introduction and Motivation}
+%==============================================================================================================================
+\begin{frame}
+\frametitle{Introduction and Motivation}
+ \begin{itemize}
+\item In this research we presented Lax-Milgram Theorem and its application to the study of existence and uniqueness of solutions of some elliptic PDEs.
+\item My main objective is to understand Variational Method.
+\item To study existence and uniqueness of solutions of some Boundary Value Problems via Variational Method.
+\end{itemize}
+\end{frame}
+%==========================================================================================================================================
+\section{Variational Problem}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Variational Problems}
+We want to consider the following general variational problem:
+\begin{eqnarray}
+\left \{
+\begin{array}{lll}
+\text{Find u}\,\,\in H\,\, \text{such that}\\
+\\
+a(u,v) = L(v)\,\,\,\,\forall\,v\,\in\,H.
+\end{array}
+\right. \label{vp}
+\end{eqnarray}
+where $H$ is a Hilbert space equipped with a norm $\|\cdot\|_H$
+and a inner-product $(\cdot,\cdot)_H$, $L: H\rightarrow \R$ is a
+linear form and $a: H\times H\rightarrow \R$ is a bilinear form on H.
+
+\end{frame}
+%==========================================================================================================================================
+\section{Lax-Milgram Theorem}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Lax-Milgram's Theorem}
+\begin{Definition}
+\begin{itemize}
+\item Let $a:H\times H\rightarrow \R$ be a bilinear form. It is said to be continuous if there exists a constant $M\,>\,0$ such that
+\begin{equation}
+|a(u,v)|\leq M\|u\| \|v\|,\,\,\,\text{for all}\,\,\,u,v\in H.
+\end{equation}
+\item It is said to be $H$-elliptic if there exists a constant $\delta
+\,>\,0$ such that
+\begin{equation}
+a(u,u)\geq \delta \|u\|^2,\,\,\,\,\forall\,u\in H.
+\end{equation}
+\end{itemize}
+\end{Definition}
+\end{frame}
+%==========================================================================================================================================
+
+%==========================================================================================================================================
+ \begin{frame}
+\frametitle{Lax-Milgram's Theorem}
+\begin{theorem}[Lax-Milgram Representation Theorem]
+Let $H$ be a Hilbert space and let $a(\cdot,\cdot)$ be a continuous and $H-elliptic$ bilinear form on $H$. Then given any $L\in H^*$, there exists a unique $u\in H$ such that
+\begin{equation}
+a(u,v) = L(v)\,\,\,\,\forall\,v\,\in\,H.
+\end{equation}
+\label{laxm}
+\end{theorem}
+
+\end{frame}
+%==========================================================================================================================================
+
+\section{Applications of Lax-Milgram Theorem to Linear Elliptic PDEs}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Applications of Lax-Milgram Theorem to Linear Elliptic PDEs}
+\begin{itemize}
+\item In this section, Homogeneous Neumann problem (P) will be considered to illustrate the application of 
+Lax-Milgram thoerem by formulating Variational Problem (Weak Formulation) associated with (P).\\
+\item There are three steps in achieving our aim here which is particularly to get the existence and uniqueness of solution to (P);
+Step A: Weak Formulation, Stap B: Existence and uniqueness of weak solution of (P), Step C: Recovery of classical solution
+\end{itemize}
+\end{frame}
+%==========================================================================================================================================
+
+
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Homogeneous Neumann Problem}
+Let  $\Om$ be a  bounded open subset of $\R^N$ of class $C^1.$. We look for a function
+$u: \bar\Om\longrightarrow \R$ satisfying
+\begin{eqnarray}
+(P) \left \{
+\begin{array}{lll}
+-\Delta u + u &=& f\,\,\,\text{in}\,\,\,\Om\\
+\\
+\hspace*{1.3cm}\frac{\partial u}{\partial \textbf{n}} &=&0\,\,\,\text{on}\,\,\,\partial \Om
+\end{array}
+\right. \label{laplace}
+\end{eqnarray}
+where
+$\Delta u = \sum_{i=1}^N\frac{\partial^2 u}{\partial x_i^2} = \,\,\text{laplacian of}\,\,\,u \,\,and\,\,f\in L^2(\Om)$; $\frac{\partial u}{\partial \textbf{n}}$ 
+denotes the outward normal derivative of $u$ i.e $\frac{\partial u}{\partial \textbf{n}}= \nabla u. \textbf{n}$, where $\textbf{n}$ is the unit normal vector to $\partial\Om$,
+pointing outward. The boundary condition $\frac{\partial u}{\partial \textbf{n}}=0 \,\,on\,\, \partial\Om$ is called the (homogeneous) Neumann condition.
+\end{frame}
+%==========================================================================================================================================
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Step A: Weak Formulation}
+Formally, multiplying (\ref{laplace}) by $v\in H^1(\Om)$ and integrating over $\Om$, we get
+$$\int_\Om-\Delta u\cdot v\,dx + \int_\Om uv\,dx = \int_\Om fv\,dx.$$
+Then using Green formular and the fact that $\frac{\partial u}{\partial \textbf{n}} = 0 \,\,\,\,on \,\,\,\,the\,\,\,\, \partial \Om $  we have 
+$$\int_\Om\nabla u\cdot\nabla v\,dx + \int_\Om uv\,dx = \int_\Om fv\,dx.$$
+Therefore weak formulation is
+$$\int_\Om\nabla u\cdot\nabla v\,dx + \int_\Om uv\,dx = \int_\Om fv\,dx \,\,\,\forall v\in H^1(\Om)$$
+\end{frame}
+%==========================================================================================================================================
+
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Definitions of a classical and a weak solution of (P)}
+\begin{definition}
+A classical solution of (\ref{laplace}) is a
+function $u\in C^2(\Om)\cap C(\bar \Om)$ satisfying (\ref{laplace}).
+\end{definition}
+\begin{definition}
+A function $u\in H^1(\Om)$ is called a \textsl{weak solution} of
+(\ref{laplace}) if
+$$\int_\Om\nabla u\cdot\nabla v\,dx + \int_\Om uv\,dx = \int_\Om fv\,dx,\,\,\,\,\forall\,v\in H^1(\Om).$$
+\end{definition}
+\end{frame}
+%=========================================================================================================================================
+
+%=========================================================================================================================================
+\begin{frame}
+\frametitle{Every Classical solution is a weak solution.}
+Assume that $u$ is a classical solution of (P) and let $\vp \in D(\Om)$, then by Green formular we have
+$$
+\int_\Om \nabla u\cdot \nabla \vp\,dx + \int_{\Om} u\vp \,dx = \int_\Om
+f\vp\,dx,\,\,\,\,\forall\,\vp\in D(\Om).
+$$
+We conclude by density of $D(\Om)$ in $H^1(\Om)$ that
+$$
+\int_\Om \nabla u\cdot \nabla v\,dx + \int_{\Om} uv \,dx = \int_\Om
+fv\,dx,\,\,\,\,\forall\,v\in H^1(\Om).
+$$
+therefore $u$ is a weak solution.
+\end{frame}
+
+%==========================================================================================================================================
+
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Step B: Existence and uniqueness solution of the weak solution}
+The question at this juncture is do we have the existence and uniqueness of weak solution of (P)?
+\begin{center}
+The answer is yes.
+\end{center}
+Let $H=H^1(\Om)$. Then from the weak formulation, we define
+$$a(u,v)=\int_\Om \nabla u\cdot \nabla v \,dx + \int_{\Om} uv \,dx \,\,\,\,\forall\,u,v\in H$$ 
+and $$L(v)=\int_\Om
+fv\,dx\,\,\,\,\forall\,v\in H.$$
+\end{frame}
+%=========================================================================================================================================
+
+%=========================================================================================================================================
+\begin{frame}
+ \frametitle{Step B Cont'd}
+So, we have the variational problem
+\begin{eqnarray}
+(P^*) \left \{
+\begin{array}{lll}
+\text{Find u}\,\,\in H\,\, \text{such that}\\
+\\
+a(u,v) = L(v)\,\,\,\,\forall\,v\,\in\,H.
+\end{array}
+\right. \label{vp}
+\end{eqnarray}
+where $H$ is Hilbert, $a$ is bilinear, continuous and H-elliptic and finally, $L$ is linear and continuous.\\
+Therefore, using Lax-Milgram Representation Theorem, we have the existence and uniqueness of weak solution to (P).
+\end{frame}
+%=========================================================================================================================================
+
+%=========================================================================================================================================
+\begin{frame}
+ \frametitle{Step C: Recovery of a classical solution}
+\textbf{Claim:}\\
+If $u\in C^2(\Om)\cap C(\bar\Om)$ is a weak solution of (P), then it
+is a classical solution.\\
+\textbf{Proof:}\\
+Let $u\in C^2(\Om)\cap C(\bar\Om)$ be a weak solution.\\
+Then 
+$$
+\int_\Om \nabla u\cdot \nabla v\,dx + \int_{\Om} uv \,dx = \int_\Om
+fv\,dx,\,\,\,\,\forall\,v\in H^1(\Om).
+$$
+Using the fact that $D(\bar\Om)\subset H^1(\Om)$, we have
+$$
+\int_\Om \nabla u\cdot \nabla \vp\,dx + \int_{\Om} u\vp \,dx = \int_\Om
+fv\,dx,\,\,\,\,\forall\,\vp\in D(\bar\Om).
+$$
+which gives
+$$\langle{-\Delta u,\vp}\rangle + \langle{u,\vp}\rangle= \langle{f,\vp}\rangle \,\,\,\forall\vp\in D(\Om)$$ then  we have
+$-\Delta u + u = f\,\,\,\,\,\text{in \,\,the \,\,sense \,\,of \,\,distribution}.$\\
+\end{frame}
+%=========================================================================================================================================
+
+%===========================================================================================================================================
+\begin{frame}
+ \frametitle{Step C Cont'd}
+Using now the assumption that $u\in C^2(\Om)\cap C(\bar\Om)$, we have that $$-\Delta u + u = f \,\,\,in \,\,\,\Om.$$ \label{bondss}
+In order to recover the boundary condition, we use the fact that $D(\bar\Om)$ is dense in $H^1(\Om)$ and the result above to get
+$$\int_{\partial\Om}{\frac{\partial u}{\partial n}} vd\sigma = 0 \,\,\,\,\,\, \forall v\in H^1(\Om)$$
+which implies $$\int_{\partial\Om}{\frac{\partial u}{\partial \textbf{n}}} wd\sigma = 0 \,\,\,\,\,\, \forall w\in Im(\gamma_0).$$
+\end{frame}
+%=========================================================================================================================================
+
+%=========================================================================================================================================
+\begin{frame}
+ \frametitle{Step C Cont'd}
+Using the fact that Im$(\gamma_O)$ is dense in $L^2(\partial\Om)$, then
+$$\int_{\partial\Om}{\frac{\partial u}{\partial \textbf{n}}} gd\sigma = 0 \,\,\,\,\,\, \forall g\in L^2(\partial\Om).$$
+Taking $g = \frac{\partial u}{\partial \textbf{n}}$ on $\partial\Om$, we get obtain the desired boundary condition\\
+i.e $$\frac{\partial u}{\partial \textbf{n}}= 0 \,\,\,\text{on}\,\,\, \partial\Om$$
+\end{frame}
+%=========================================================================================================================================
+\section{Conclusion}
+%=========================================================================================================================================
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+\item Existence and uniqueness of solutions of PDEs is of altmost importance to almost every fields in Science. This is very difficult to do by mere analytic means.
+\item The task is then to get if possible, what we called weak formulation problem associated with such problem which might be easier to investigate compare to the original problem (PDE).
+\item After the investigation, we can now show that this weak solution is actually a classical solution of the PDE under some certain assumptions.
+\end{itemize}
+\end{frame}
+%=========================================================================================================================================
+
+%=========================================================================================================================================
+\section{References}
+%===========================================================================================================================================
+\begin{frame}
+\frametitle{References}
+\begin{thebibliography}{00}
+
+\bibitem{aa} N. Djitte; 
+\emph{Sobolev Space and Linear Elliptic Partial Differential Equation Lecture Note}, AUST-Abuja, 2011.
+
+%\bibitem{ab} Fred Brauer and John A. Nohel.
+%\emph{The qualitative theory of ordinary differential equations. An introduction},\\
+%Dover Publications, INC., New York ,1989.
+
+%\bibitem{ac}  Kevin Zumbrun;
+%\emph{Lecture notes on Ordinary differential equation and Floquet Theory }, Indiana University, Bloomington. December 8, 2007.
+
+\bibitem{ad} C.E. Chidume;
+\emph{Applicable functional analysis}, International Centre for Theoretical Physics
+Trieste, Italy, July 2006.
+%\end{thebibliography}
+%\end{frame}
+%===========================================================================================================================================
+
+
+%===========================================================================================================================================
+%\begin{frame}
+%$\frametitle{References}
+%$\begin{thebibliography}{00}
+
+\bibitem{ae} D. Adams;
+\emph{Sobolev spaces}, Acadamic Press 1975.
+
+\bibitem{ag} A. Balakrishman;
+\emph{Applied Functional Analysis}, Springer 1976. 1979.
+
+%\bibitem{af1} Roberto Triggiani;
+%\emph{On the Stabilization Problem in Banach Space}, Journal of Mathematical Analysis and Applications 52, 383-403 (1975).
+
+\bibitem{ai} I.Ekeland,  J.P.Aubin;
+\emph{Applied Nonlinear Analysis},  Wiley, 1984, 520p.
+
+%\bibitem{af} Zheng-Hua Luo, Zhu Guo and \"{O}mer M\"{o}rgul;
+%\emph{Stability  and Stabilization of Infinite Dimensional Systems with Applications}, Springer Verlag London Limited, 1999.
+\end{thebibliography}
+\end{frame}
+%===========================================================================================================================================
+
+
+%===========================================================================================================================================
+\begin{frame}
+\frametitle{}
+\hspace{2.5cm}
+\begin{minipage}{50mm}   
+                                                                                                                           
+      \begin{alertblock}{}    
+                                          
+            \begin{center}
+                                                                                                                                                                                  
+                  \textbf{THANK YOU!}
+                            
+                                                                       
+            \end{center}
+      \end{alertblock}
+\end{minipage}
+\end{frame}
+%===========================================================================================================================================
+
+
+\end{document}
+
