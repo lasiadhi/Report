@@ -1,7 +1,11 @@
 Although there have been uncertainties in capturing the topography of the ocean nearshore, mathematical methods could prove to be possible solutions to this problem using the dispersion relationship between wavelength and the period. Stockdon and Holman used video imagery, which compared true wave signal and remotely sensed video signal to create a linear representation between wave amplitudes and phases. Holman used a 2-dimenisional method with Kalman filtering to estimate the depth, $h$.
 
 Our research will compute the wave depth using wave length and wave number with a 1D model derived from using the energy flux method to create a correlation between the wave length and the wave depth from the surface.
+<<<<<<< HEAD
+\subsection{The Problem}
+=======
 \subsection{Forward Problem}
+>>>>>>> d803194192f48b5ea85a4e33663dee36530ee249
 We consider the following models for the forward problem.
 \begin{eqnarray}
 \label{fp1}
@@ -14,7 +18,11 @@ We consider the following models for the forward problem.
 \end{array}
 \right.
 \end{eqnarray}
+<<<<<<< HEAD
+where the speed at which the energy is transmitted, $C_g$, called linear theory group speed, which is given as
+=======
 where the speed at which the energy is transmitted, $C_g$, called linear theory group speed is given as
+>>>>>>> d803194192f48b5ea85a4e33663dee36530ee249
 \begin{equation}
 \label{cg}
 C_g=\frac{c}{2}\left(1+\frac{2kh}{\sinh(2kh)}\right),
@@ -29,6 +37,10 @@ $\rho$ is the density of water, $g$ is the gravitational acceleration, $\sigma$ 
 
 \noindent Observe that equation \ref{fp1} is coupled using the fact that $\sigma=\frac{2\pi}{T}$. Hence, using equation \ref{cg} and \ref{e} in \ref{fp1}, we obtain
 \begin{equation}
+<<<<<<< HEAD
+\label{fpdelta}
+=======
+>>>>>>> d803194192f48b5ea85a4e33663dee36530ee249
 \frac{d}{dx}\left( \frac{\lambda}{k}\left(1+\frac{2kh}{\sinh(2kh)}\right)H^2 \right)=-\delta,
 \end{equation}  
 and 
@@ -40,4 +52,52 @@ The wave breaking, $\delta$, proposed by (Janssen and Battjes, 2007) given as
 \begin{equation}
 \delta = \frac{1}{4h}B\rho g f H_{rms}\left[(R^3+\frac{3}{2}R)e^{-R^2}+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right],
 \end{equation}
+<<<<<<< HEAD
 where $$R=\frac{H_b}{H_{rms}}, \quad H_b = 2\sqrt{2}H_{m0},\quad H_b=0.78h,\quad f=\frac{1}{T},\quad B=1.$$
+\subsection{Numerical Solution of the Forward Model}
+
+Finite difference scheme is applied to obtain numerical solution with appropriate initial and boundary conditions. In the scheme of finite differences, the derivatives are replaced using their finite-difference approximations. The goal is to provide wave height using the finite difference method. In the process, MATLAB fsolve function is applied to obtain the wave number. Furthermore, Newton-Raphson method is used to verify solution obtained for the  wave number.
+\subsubsection{Discretization of the Model}
+Forward difference is applied depending on the nature of the model given in equation (\ref{fpdelta}).
+The ordinary differential equation of the model applied in the method is as follows
+\begin{equation}
+\frac{d}{dx}\left( c^{*}H^{2}\right)=-\delta
+\end{equation}
+where 
+$$c^{*} = \frac{c_{g}\lambda}{k},\quad c_{g} = nc =\frac{2\pi n}{T},$$
+with 
+$$\lambda = \frac{1}{8}\rho g, \quad n = \frac{1}{2}\left(1+\frac{2hk}{sinh(2hk)}\right).$$
+For implementation purposes, we let
+\begin{equation*}
+\tilde{H}=H^{2}.
+\end{equation*}
+Thus, the required expression becomes 
+\begin{equation*}
+\frac{d}{dx}\left( c^{*}\tilde{H}\right)=-\delta
+\end{equation*}
+
+Applying the finite difference method the above expression becomes
+\begin{eqnarray*}
+\frac{c_{i}^{*}\tilde{H}_{i}-c_{i-1}^{*}\tilde{H}_{i-1}}{\triangle x}= \delta
+\\ \tilde{H}_{i}=\frac{c_{i-1}^{*}\tilde{H}_{i-1}+\triangle x \delta}{c_{i}^{*}}
+\end{eqnarray*}
+After determining ${\tilde{H}}$ we take the square root on that to determine ${H}$ at each index point in the discretization.
+\begin{equation*}
+H=\sqrt{\tilde{H}}
+\end{equation*}
+\subsubsection*{fsolve}
+Wave numbers are generated at each index points applying MATLAB function fsolve. fsolve is applied in the  dispersion relationship
+\begin{equation*}
+\sigma^{2}=gk tanh(kh)
+\end{equation*} 
+MATLAB function fsolve is used as non-linear solver. In this case ${f(k)=gk tanh(kh)-\sigma^{2}}$ is provided as function handle in the input argument. Together to this,     ${\sigma/\sqrt{gh}}$ is used as initial condition in fsolve.
+\subsubsection*{Newton-Raphson Method}
+Newton-Raphson method is an widely used method for root finding. This method is used in the numerical experiment to verify the wave number extracted using fsolve. In Newton -Raphson method roots are calculated using the following expression
+\begin{equation*}
+k_{i+1}=k_{i}-\frac{f(k_{i})}{f'(k_{i})}
+\end{equation*}
+This provides the wave number in each index.
+\subsubsection{Numerical Results}
+=======
+where $$R=\frac{H_b}{H_{rms}}, \quad H_b = 2\sqrt{2}H_{m0},\quad H_b=0.78h,\quad f=\frac{1}{T},\quad B=1.$$
+>>>>>>> d803194192f48b5ea85a4e33663dee36530ee249
