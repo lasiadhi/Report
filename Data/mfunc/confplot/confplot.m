@@ -81,4 +81,4 @@ set(gca,'Layer','top');
 
 H = [p, a1, a2];
 
-if (nargout>1) varargout{1} = H; end;
+if (nargout>=1) varargout{1} = H; end;

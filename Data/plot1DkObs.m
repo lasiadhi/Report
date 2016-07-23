@@ -29,7 +29,7 @@ plot1DkObs
     %set(t,'Interpreter','Latex');
     set (gca,'Xdir','reverse')
     shorestr = 'Shoreward';
-    nshorestr = sprintf('Away from\nshoreline');
+    nshorestr = sprintf('Away from\nshore');
     text(0,0.025,nshorestr,'HorizontalAlignment','right');
     text(max(xm)-min(xm),0.025,shorestr,'HorizontalAlignment','left');
     print('figs/k1Dmean_std','-dpng')

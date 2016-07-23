@@ -19,8 +19,6 @@ FORMAT NOTE:
 starT and endT (optional)- must be input in 'yyyy-mm-dd HH-MM-SS' (IN QUOTES)
 -------------------------------------------------------------------------
 %}
-    %Iterate over data files, read select fields,save to data structure with 
-    %one cell array for each file's data
 
     %filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/BathyDuck-ocean_bathy_argus_201510.nc';
     filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/BathyDuck-ocean_bathy_argus_201510.nc';
