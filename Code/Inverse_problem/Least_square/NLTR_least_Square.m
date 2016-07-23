@@ -16,5 +16,5 @@ hold on
 stem(k_hat, 'r');
 title('Trust-region-reflective method', 'fontSize',14)
 xlabel('Distance from the coastline','FontSize',14);
-ylabel('Depth','FontSize',14);
-legend({'True Bathymetry', 'Recovered Bathymetry'},'FontSize',14);
+ylabel('k','FontSize',14);
+legend({'True k', 'Recovered k'},'FontSize',14);
