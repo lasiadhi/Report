@@ -1,16 +1,64 @@
 \subsection{Bayesian MCMC Inverse Method}
+\subsubsection{Bayesian Formulation}
 
-The Bayesian MCMC Method can be used with the Forward Model to gather an estimate for depth, \textit{h}, given wave number, \textit{k}, and wave height, \textit{H}. To estimate depth, we had to create a prior distribution function of bathymetry with given samples of depths from (add location).  Given the sample bathymetry, we inputed these values in the Forward Model to produce wavelengths and wave numbers. This model is then compared with a function of parameters \textit{k} and \textit{H} given depth, formally known as a likelihood function to compare the simulated data with the survey data from (location). This makes a good estimate of the depths to create a distribution of depths profile, known as the posterior probability function.  The modeled relationship is given by equation below
+We use a Bayesian Markov Chain Monte Carlo (MCMC) method to estimate depth, \textit{h}, given wave number, \textit{k}.%, and wave height, \textit{H}.
+This method computes the posterior probability distribution of \textit{h} by combining prior information about \textit{h} with a likelihood function according to Bayes Rule in Equation~\ref{bayes}: 
+
+$$P(h|%H,
+k) \propto P(h)L(h|%H,
+k),$$ \label{bayes}
+
+where $P(h|%H,
+k)$ represents the posterior probability function, $P(h)$ is the prior distribution function and $L(h|%H,
+k)$ is the likelihood function.
+
+We use a random walk Metropolis algorithm \citep{Metropolis1953} which samples proposed depth profiles and updates the posterior probability distribution of \textit{h} according to the likelihood that the proposed depth profiles describe the true bathymetry. 
+
+To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry [which come from somewhere we should probably mention].  We assume a normal prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}. 
+
+$$P(h) \sim N(\bar{h}_{sim},\sigma_{sim}^2)$$
+
+Here $\bar{h}_{sim}$ is the mean and $\sigma_{sim}^2$ is the variance of the simulated \textit{h} profiles. 
+
+Given the sample bathymetry, we evaluated the forward model to compute wave numbers along the 1D profile%and wave heights
+. A loglikelihood function (Equation~\ref{likely}) compares the computed \textit{k} profile to \textit{k} values observed along the 1D profile. 
+
+\[ L(h|%H,
+k)=\log{e^{(-\sum\limits_{i=1}^n \frac{({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2})}}\] \label{likely}
+
+Modeled and observed \textit{k} are ${k}_{m,i}$ and $k_{d,i}$, respectively, where \textit{i} corresponds to the points along the 1D profile for which we have inferred \textit{k} measurements and $\sigma_{d}^2$ is the variance of \textit{k} values observed along the 1D profile during October 2015. (See section~\ref{datak} for more information about the observations.) 
+
+The loglikelihood uses the sum of square errors between simulated and observed \textit{k} to quantify the probability that the modeled \textit{k} represents the true \textit{k} profile as observed. Inclusion of the $\sigma_{d}^2$ acknowledges that a perfect match between modeled and observed \textit{k} cannot be expected due to uncertainty in the measurements of \textit{k}.
+
+\subsubsection{Metropolis Algorithm}
+The Metropolis algorithm begins with an initial \textit{h} profile sampled from the simulated distribution of bathymetry. This initial estimate of \textit{h} is used to compute an initial prior probability distribution. An initial likelihood probability distribution is computed using observed values of \textit{k}, modeled values of \textit{k} determined by using the sampled \textit{h} as input to the forward model (see Section~\ref{forward}), and $\sigma_{d}^2$. The prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}, shown in equation~\ref{post}:
+
+\begin{equation}
+P(h|%H,
+k) = log(P(h)) + log(L(h|%H,
+k))
+\end{equation}
+
+The algorithm then uses a markov chain random walk to propose new \textit{h} profiles. Each proposed \textit{h} is evaluated in the forward model to get a proposed \textit{k} profile. The proposed \textit{k} is then compared to observed \textit{k} using the likelihood function and a proposed posterior distribution is computed.
+
+A unique characteristic of the Metropolis algorithm is the way in which proposed posteriors are accepted or rejected by comparison to the previous step's posterior probability. The probabilty of accepting a proposed posterior is 
+
+\begin{equation}
+\rho = exp(P(h|%H,
+k)_{prop} - P(h|%H,
+k)_{current})
+\end{equation}
+
+This formulation implies that if the proposed posterior probability is higher than the current posterior probability than the proposed posterior probability replaces the current posterior probability and the proposed \textit{h} is also accepted as a solution. The algorithm is then incremented and a new proposal is selected and evaluated. We perform 10,000 iterations to arrive at a posterior distribution of \textit{h} profiles which are expected to describe the true bathymetry.
 
 
-$$P(h|H,k) \propto P(h)L(h|H,k),$$ 
-
-$$P(h)=$$
-
-\[ L(h|H,k)=\log{e^{-\sum\limits_{i=1}^n \frac{({k}_{mi}-k_{di})^2}{2\sigma_{d}^2}}}\]
 
 
-and $P(h|H,k)$ represents the posterior probability function, $P(h)$ is the prior distribution function and $L(h|H,k)$ is the likelihood function.
+
+
+
+
+
 
 
 
