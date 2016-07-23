@@ -6,7 +6,7 @@
 
 % original version by dwb
 
-function[H, n, cc, c_g, x] = waveheight(xmax, Hmax, h, Tb, k, delta)
+function[H, n, cc, c_g, x] = waveheight(xmax, Hmax, h, Tb, k, delta, dx)
 
 %% INPUT:
 % xmax(the maximum length in x-direction)
@@ -31,18 +31,18 @@ rho = 1000;     % kg/m3
 N1 = length(h);
 
 % Number of grid
-N = N1-1;
+%N = N1-1;
 
 % Boundary Condition
 H = zeros(N1, 1);
 H(1) = Hmax;
 
-% mesh size
-xmin = 0;
-dx = (xmax - xmin)/N;
+% mesh size                 %%%% not using anymore, just for test
+%xmin = 0;
+%dx = (xmax - xmin)/N;
 
 % x vector for plot
-x = xmin: dx: xmax;
+%x = xmin: dx: xmax;
 
 % Constant
 lambda = rho*g*pi/(8*Tb);

@@ -32,7 +32,7 @@ Hmax = Hmax_vec(1);
 % This part is to get the interpolated data (depth vector: hgrid & location vector: xp)
 
 % grid size
-dx = 25;
+dx = 10;
 
 [hgrid, xq] = interp_h(h,x,dx);
 
@@ -68,7 +68,7 @@ delta = rhs_delta(hgrid, Tb, Hmax);
 %% CALL-6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get wave height from energy flux eqn by FDM
-[H, n, cc, c_g, x] = waveheight(xmax, Hmax, hgrid, Tb, k, delta);
+[H, n, cc, c_g] = waveheight(xmax, Hmax, hgrid, Tb, k, delta, dx);
 
 
 %% Energy
@@ -79,11 +79,11 @@ end
 
 
 %% OUTPUT data to EXCEL
-TIT = {'hgrid', ' ', 'wave height', ' ', 'wave number'};
-xlswrite('Resuit for h&H&k', TIT);
-xlswrite('Resuit for h&H&k', hgrid, 'sheet1', 'A2');
-xlswrite('Resuit for h&H&k', H, 'sheet1', 'C2');
-xlswrite('Resuit for h&H&k', k, 'sheet1', 'E2');
+% TIT = {'hgrid', ' ', 'wave height', ' ', 'wave number'};
+% xlswrite('Resuit for h&H&k', TIT);
+% xlswrite('Resuit for h&H&k', hgrid, 'sheet1', 'A2');
+% xlswrite('Resuit for h&H&k', H, 'sheet1', 'C2');
+% xlswrite('Resuit for h&H&k', k, 'sheet1', 'E2');
 
 
 
@@ -147,7 +147,7 @@ title(str, 'FontSize', 20)
 %% PLOT-7
 %% x & n
 figure;
-plot(x, n,'-*b')
+plot(xq, n,'-*b')
 xlabel('x', 'FontSize', 18)
 ylabel('n', 'FontSize', 18)
 str = sprintf('Hmax=%f, Tb=%f', Hmax, Tb);
@@ -156,7 +156,7 @@ title(str, 'FontSize', 20)
 %% PLOT-8
 %% x & c
 figure;
-plot(x, cc,'-^g')
+plot(xq, cc,'-^g')
 xlabel('x', 'FontSize', 18)
 ylabel('wave phase speed (c)', 'FontSize', 18)
 str = sprintf('Hmax=%f, Tb=%f', Hmax, Tb);
@@ -165,7 +165,7 @@ title(str, 'FontSize', 20)
 %% PLOT-9
 %% x & c_g
 figure;
-plot(x, c_g,'-+k')
+plot(xq, c_g,'-+k')
 xlabel('x', 'FontSize', 18)
 ylabel('wave breaking (\delta)', 'FontSize', 18)
 str = sprintf('Hmax=%f, Tb=%f', Hmax, Tb);
@@ -174,7 +174,7 @@ title(str, 'FontSize', 20)
 %% PLOT-10
 %% x & delta
 figure;
-plot(x, -delta,'-+b')
+plot(xq, -delta,'-+b')
 xlabel('x', 'FontSize', 18)
 ylabel('wave breaking (\delta)', 'FontSize', 18)
 str = sprintf('Hmax=%f, Tb=%f', Hmax, Tb);
