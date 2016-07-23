@@ -1,0 +1,21 @@
+\subsection{Bayesian MCMC Inverse Method}
+
+The Bayesian MCMC Method can be used with the Forward Model to gather an estimate for depth, \textit{h}, given wave number, \textit{k}, and wave height, \textit{H}. To estimate depth, we had to create a prior distribution function of bathymetry with given samples of depths from (add location).  Given the sample bathymetry, we inputed these values in the Forward Model to produce wavelengths and wave numbers. This model is then compared with a function of parameters \textit{k} and \textit{H} given depth, formally known as a likelihood function to compare the simulated data with the survey data from (location). This makes a good estimate of the depths to create a distribution of depths profile, known as the posterior probability function.  The modeled relationship is given by equation below
+
+
+$$P(h|H,k) \propto P(h)L(h|H,k),$$ 
+
+$$P(h)=$$
+
+\[ L(h|H,k)=\sum\limits_{i=1}^n \frac{(\bar{k}-k_{i})^2}{\sigma_{i}^2}\]
+
+
+and $P(h|H,k)$ represents the posterior probability function, $P(h)$ is the prior distribution function and $L(h|H,k)$ is the likelihood function.
+
+%\begin{equation}
+%\end{equation}
+
+
+
+
+
