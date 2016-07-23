@@ -112,8 +112,8 @@ figure;
 plot(xq, kh, '-*')
 xlabel('x', 'FontSize', 18)
 ylabel('hk', 'FontSize', 18)
-y1 = graph2d.constantline(1, 'Color',[1 0 0]);
-changedependvar(y1,'y');
+% y1 = graph2d.constantline(1, 'Color',[1 0 0]);
+% changedependvar(y1,'y');
 str = sprintf('Hmax=%f, Tb=%f', Hmax, Tb);
 title(str, 'FontSize', 20)
 
