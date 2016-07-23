@@ -10,10 +10,13 @@ function [hgrid,xq] = interp_h(h,x,dx)
 % where dx = the specified resolution
 %-------------------------------------------------------------------------%
 
-    num_pnts = 1150/dx-1;
-    xq(1) = dx;
+    num_pnts = 1150/dx + 1;
     
-    for i=2:num_pnts
+    nn = num_pnts;
+    
+    xq = zeros(nn, 1);
+    
+    for i=2: nn
         xq(i) = xq(i-1)+dx;
     end
     
@@ -29,7 +32,7 @@ function [hgrid,xq] = interp_h(h,x,dx)
     
     % slope for linear interpolation further off shore
     slope = -(11-hgrid(min(ii)))/(xq(min(ii)));
-    hgrid(1) = 11 + slope*dx;
+    hgrid(1) = 11;
     
     % fill points between survey data and BC
     for i = 2:min(ii)-1
