@@ -1,18 +1,13 @@
 clc
 clear 
 
-% N = 116; 
-% dx = 10; 
-
-N = 47; 
-dx = 25; 
-
+N = 47; %116;  %47
+dx = 25; %10;  %25
 [h,x] = get_hOct1;
 [hgrid,xq] = interp_h(h,x,dx);
 h_guess = initialize_h_guess_pointwise(hgrid, xq, dx);
 
-% load('k_2_5percNoisedata.mat','k'); 
- load('k_1percNoisedata_N47.mat','k'); 
+load('k_2_5percNoisedata.mat','k'); 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
