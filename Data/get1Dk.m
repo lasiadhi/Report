@@ -29,11 +29,17 @@ starT and endT (optional)- must be input in 'yyyy-mm-dd HH:MM:SS' (IN QUOTES)
         endT = '2015-10-31 23:59:59';
     end
         
-    k2D = get2Dk(startT,endT);
+    [k2D,~] = get2Dk(startT,endT);
     
-    filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/BathyDuck-ocean_bathy_argus_201510.nc';
+    %filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/data/BathyDuck-ocean_bathy_argus_201510.nc';
+    filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/BathyDuck-ocean_bathy_argus_201510.nc';
+
     ym = ncread(filename,'ym');
-    x_k = ncread(filename,'xm');
+
+    xorig = ncread(filename,'xm');
+    xmax = 1150 - min(xorig);
+    xmin = xmax - range(xorig);
+    x_k = [xmin:10:xmax]';
     
     
     % find the indices corresponding to y=950m
