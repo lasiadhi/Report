@@ -1,4 +1,4 @@
-function [hgrid,xq, nn] = interp_h(h,x,dx)
+function [hgrid,xq] = interp_h(h,x,dx)
 % This function turns the h values taken from the transect of interest into
 % gridded values for (0 >= x >= 1150 m).
 %
