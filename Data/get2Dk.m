@@ -1,4 +1,4 @@
-function k = get2Dk(startT,endT)
+function [k, x] = get2Dk(startT,endT)
 %{
 USAGE:
 k = get2DK('2015-10-01 00:00:00','2015-10-31 23:00:00')
@@ -54,7 +54,12 @@ starT and endT (optional)- must be input in 'yyyy-mm-dd HH-MM-SS' (IN QUOTES)
     last =  [1,Inf,Inf,length(ii)];
     
     k = ncread(filename,'k',first,last);
+
+    %flip x axis and assign properly referenced x values to x=0 at 1150m
+    %offshore
+    k = ncread(filename,'k',first,last);
     k = flip(k,2);
+
 
     actual_start = time(min(ii))/(3600*24) + datenum_conv;
     actual_start_str = datestr(actual_start,form);
