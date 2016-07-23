@@ -39,7 +39,7 @@ g = 9.8;        % m/s2
 rho = 1000;     % kg/m3
 
 % to get the value of number of subinterval
-[N1 ,N2] = size(h);
+N1 = length(h);
 
 % N number of subinterval
 N = N1-1;
@@ -47,7 +47,6 @@ N = N1-1;
 % Boundary Condition
 H    = zeros(N1, 1);
 H(1) = Hmax;
-%H(N1) = Hmax;
 
 % mesh size
 xmin = 0;

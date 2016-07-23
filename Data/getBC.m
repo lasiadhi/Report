@@ -43,8 +43,8 @@ function dat = getBC(var,startT,endT)
         actual_start = time(min(ii))/(3600*24) + datenum_conv;
         actual_start_str = datestr(actual_start,format);
         
-        disp('Note: Actual start time:')
-        disp(actual_start_str)
+        %disp('Note: Actual start time:')
+        %disp(actual_start_str)
         
     elseif nargin == 1
         % if only variable type is provided
