@@ -34,8 +34,9 @@ for i = 1: N1
     if h(i) ~= 0
         k0 = af/(sqrt(h(i)*g));
         hh = abs(h(i));
+   options = optimset('Display','off');
        fct = @(kk) (g*kk*tanh(kk*hh)-af^2);
-        kk = fsolve(fct, k0);
+        kk = fsolve(fct, k0, options);
       k(i) = kk;
     else
         k(i) = 0;
