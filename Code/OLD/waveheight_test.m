@@ -4,7 +4,7 @@
 %
 % This is a subfunction to get wave height
 
-function[H, x, n, c, c_g, E] = waveheight(xmax, Hmax, h, Tb, k, delta)
+function[H, x, n] = waveheight(xmax, Hmax, h, Tb, k, delta)
 
 %% INPUT:
 % xmax(the maximum length in x-direction)
