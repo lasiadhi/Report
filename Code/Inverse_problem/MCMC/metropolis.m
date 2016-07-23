@@ -2,56 +2,72 @@
 clc
 clear
 
-%Get k data
-k1D=get1Dk();
+%Get k data and variance
+addpath('../../../Data/')
+kdat=get1Dk();
+[~,k1Dstd]=get1DkStats();
+kdat_std = mean(k1Dstd_dat);
+vark = kdat_std^2;
 
+%Data for prior
+bath=load('../../../Data/transect_depth_ensembles_500_dx_10.mat');
+%x = [0:10:1140]'; %bath.x doesn't have the correct dims, so fixing that
 
 % Metropolis things
 burnin   = 1000;   % markov chain need to converge 
 numsteps = 10000;
 totsteps = numsteps + burnin;
 
-%Initial guess for h (from previous data)
-%x0(1) = 0.5;  % initial guess for the alpha
+% Initial vector for quantity of interest we're estimating
+h = zeros(length(bath.depth),totsteps);
+
+% Initial guess for h (from previous data)
+% For the moment this is the true bathymetry
+% will eventually be like proposal
+[h(:,1),~] = get_hOct1();
+
+%Initial guess for forward model
+[kFor, ~] = forward(h(:,1));
 
 %Initial posterior
-oldpost = loglikelihood(k1D, kFor, sigk)  + logprior(x0(1));
+[ lprior, depthmean_prior, depthstd_prior] = logprior(h(:,1),bath);
+llikelihood = loglikelihood(kdat, kFor, vark);
+oldpost =  llikelihood + lprior;
 
 %Metropolis loop
 for i = 1 : (totsteps-1)
 
-    %Get modeled k
-    [kFor, H] = forward(hgrid);
+    % Propose h
+    hprop = normrnd(depthmean_prior,depthstd_prior);
+    %Get proposed k | h
+    [kprop, ~] = forward(hprop);
 
-    % generate proposal
-    z = 0.5^2 * randn(1);    % change SD 0.5 here
-    prop = x0(i) + z;
-    
     % calculate posterior density
-    proppost = loglikelihood(noisy_data, prop, truesigma0, xvec) +  logprior(prop);
+    proppost = loglikelihood(kdat, kprop, vark) +  logprior(hprop);
     rho = exp(proppost - oldpost);
     
     % accept/reject step
     u = rand;
     if rho > u
-        x0(i+1) = prop;
+        h(i+1) = prop;
         oldpost = proppost;
     else
-        x0(i+1) = x0(i);
+        h(i+1) = h(i);
     end   
-     
-    
+
 end
 
-
 % throw away the burnin steps
-    x = x0((burnin+1):totsteps);
+    h_final = h((burnin+1):totsteps);
     
     % keep every 10th step
-    x = x(1:10:length(x));
+    h_final = h_final(1:10:length(f_final));
     
-    [f,x]=ksdensity(x);
-    plot(x,f);
-    [M I] = max(f)
+
+
+
+%     [f,x]=ksdensity(x);
+%     plot(x,f);
+%     [M I] = max(f)
 
 
