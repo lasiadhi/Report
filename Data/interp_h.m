@@ -32,7 +32,7 @@ function [hgrid,xq] = interp_h(h,x,dx)
     
     % slope for linear interpolation further off shore
     slope = -(11-hgrid(min(ii)))/(xq(min(ii)));
-    hgrid(1) = 11 + slope*dx;
+    hgrid(1) = 11;
     
     % fill points between survey data and BC
     for i = 2:min(ii)-1
