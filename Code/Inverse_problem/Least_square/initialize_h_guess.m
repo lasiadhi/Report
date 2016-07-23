@@ -4,9 +4,10 @@ function [h_guess] = initialize_h_guess(xgrid,dx)
 % boundary condition.
     
     slope = -11/1150;
-    h_guess(1) = 11 + slope*dx;
+    h_guess = zeros(size(xgrid));
+    h_guess(1) = 11;
     
-    for i = 2,size(xgrid)
+    for i = 2:size(xgrid)
         h_guess(i) = h_guess(i-1) + slope*dx;
     end 
 end 
