@@ -1,12 +1,16 @@
-function prior = logprior(x)
+function [prior,depthmean,depthstd] = logprior(h,bath)
+%{
+Need a prior on what we want: depth, h
+Get this from previous observations. Use this to build a prior distribution
+on h
+%}
 
-% % known values
-% mu    = 0;
-% sigma = 1;
-% 
-% % Gaussian prior
-% p2 = log(normpdf(x,mu,sigma));
+depth = bath.depth;
 
-prior = x;
+%Assume depth distribution is normal and find mean/std at each x
+depthmean = nanmean(depth,2); %mean over time dimension
+depthstd = std(depth,0,2);
+
+prior = log(normpdf(h,depthmean,depthstd));
 
 end
