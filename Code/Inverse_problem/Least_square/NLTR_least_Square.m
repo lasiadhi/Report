@@ -6,7 +6,7 @@ N = 116;
 load('k_2_5percNoisedata.mat','k'); 
 
 options = optimoptions('lsqnonlin','Display','iter');
-[k_hat,resnorm2] = lsqnonlin(@objective, zeros(N,1), zeros(N,1),inf(N,1),options);
+[k_hat,resnorm2] = lsqnonlin(@objective, ones(N,1), zeros(N,1),repmat(5,[N,1]),options);
 resnorm2
 %resnorm2_1 = norm(ht - h_hat2)
 
