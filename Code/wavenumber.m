@@ -31,10 +31,14 @@ af = 2*pi/Tb;
 k = zeros(N1, 1);
 
 for i = 1: N1
-      k0 = 0.5;
-      hh = abs(h(i));
-      fct = @(kk) g*kk*tanh(kk*hh)-af^2;
-      kk = fsolve(fct, k0);
-    k(i) = kk;
+    if h(i) ~= 0
+        k0 = af/(sqrt(h(i)*g));
+        hh = abs(h(i));
+   options = optimset('Display','off');
+       fct = @(kk) (g*kk*tanh(kk*hh)-af^2);
+        kk = fsolve(fct, k0, options);
+      k(i) = kk;
+    else
+        k(i) = 0;
+    end
 end
-    

@@ -2,7 +2,7 @@
 % Purpose
 % to find energy flux vector (?)
 %===================================
-% original version by Monty
+
 %++++++++++++++++++++++++++++++++++++++++
 % called from : bnathymetry
 % call to: none
@@ -29,7 +29,7 @@ for i = 1: N1
       H_b = 0.78*h(i);        % This 0.78 is from breaking condition
         R = abs(H_b)/H_rms;
     
-    delta(i) = 1/(4*h(i))*beta*rho*g*f*H_rms^3*((R^3+(3/2)*R)*exp(-R^2)+(3/4)*sqrt(pi)*(1-erf(R)));
+    delta(i) = 1/(4*h(i))*beta*rho*g*f*H_rms^3*((R^3+(3/2)*R)*exp(-R^2)+(3/4)*sqrt(pi)*(1-erf(R)));  % negative for dissipation
  
 end
 %delta
