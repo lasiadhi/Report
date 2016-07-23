@@ -8,6 +8,9 @@ function plot1Dk_profiles(startT,endT)
 %
 % Usage statement:
 % plot1Dk_profiles('2015-10-09 12:00:00', '2015-10-19 23:59:59')
+%
+% This script was used to pick a "suitable" wave number profile; the wave
+% number profile chosen is '2015-10-09 21:59:00'.
 
     [k,x_k] = get1Dk(startT, endT);
     
@@ -20,7 +23,6 @@ function plot1Dk_profiles(startT,endT)
     ii = find(and(time >= converted_start, time <= converted_end));
     time_sub = time(min(ii):max(ii));
     
-    form = 'yyyy-mm-dd HH:MM:SS';
     time_sub_str = cell(length(ii),1);
     time_sub_tmp = zeros(length(ii));
         % convert to matlab time
