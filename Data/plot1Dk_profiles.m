@@ -39,6 +39,5 @@ function plot1Dk_profiles(startT,endT)
     Titlep2 = 'to';
     Title = [Titlep1,' ',startT,' ',Titlep2,' ',endT];
     title(Title);
-    legend(tim_sub_str);
-    
+    legend(time_sub_str)
 end
