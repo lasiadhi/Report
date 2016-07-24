@@ -40,13 +40,13 @@ totsteps = numsteps + burnin;
 
 [hOrig,x] = get_hOct9();
 dx=10;
-[hgrid,xq] = interp_h(hOrig,x,dx);
-hdat=hgrid;
+[hinit,xq] = interp_h(hOrig,x,dx);
+hdat=hinit;
 
 
 %Initial h and k is same as Lasith's
 addpath('../Least_square');
-hinit = initialize_h_guess(hgrid,dx);
+%hinit = initialize_h_guess(hgrid,dx);
 
 hinit=hinit(1:end-1);
 
