@@ -73,7 +73,7 @@ oldpost =  llikelihood + lprior;
 %% Metropolis loop
 disp('Performing Metropolis')
 %for i = 1 : (totsteps-1)
-cnt=0 ; acceptance rate count
+cnt=0 ; %acceptance rate count
 for i = 1:totsteps-1
     %calculate proposal
     [hprop,kprop] = proposal(fudgestd,h(:,i),bath);
