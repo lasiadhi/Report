@@ -18,6 +18,17 @@
 \def\ds{\displaystyle}
 \def\d{\partial}
 
+%below packages are for algorithm
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother 
+%above packages are for algorithm
+
+
+
 \begin{document}
 
 \centerline{\large \bf Title of Report}
@@ -60,7 +71,7 @@ Mentor 2\footnote{University}
 
 \section{The Approach}
 \input{Sections/approach.tex}
-\input{Sections/Approach_MCMC.tex}
+
 \section{Computational Experiments}
 \input{Sections/experiments.tex}
 
