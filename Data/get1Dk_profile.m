@@ -28,10 +28,8 @@ function [k_data,x_data] = get1Dk_profile(timestamp)
     prof_datenum = datenum(timestamp,form);
     converted_prof_datenum = (prof_datenum-datenum_conv)*3600*24 % convert to seconds
 
-    ii = find(time == converted_prof_datenum);
+    ii = find(and((time >= converted_prof_datenum - 15*60),(time <= converted_prof_datenum + 15*60)));
     
     k_data = k(:,ii);
-    
-    
     
 end
