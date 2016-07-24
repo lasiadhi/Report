@@ -2,7 +2,11 @@ clc
 clear 
 close all
 
+<<<<<<< HEAD
+load('Real_data_2015-10-09_21:59:00_10m.mat','x_data');
+=======
 load('Real_data_2015-10-09_T215900_10m.mat','k_data','x_data');
+>>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
 dx	= x_data(2) - x_data(1);
 N  	= size(x_data,1);
 
@@ -24,6 +28,15 @@ options = optimset('Display','iter');
 h_hat3    = fmincon(@objective_2norm_real, h_guess, [],[],[],[], zeros(N,1), repmat(11,[N,1]),[], options);
 %h_hat3   = fmincon(@objective_2norm, h_guess, [],[],[],[], zeros(N,1), repmat(12,[N,1]),[], options);
 
+<<<<<<< HEAD
+figure(3)
+plot(xq,hgrid, '-*b');
+hold on
+plot(xq,h_hat3, '-^r');
+title('fmincon method', 'fontSize',14)
+xlabel('Distance from the coastline','FontSize',14);
+ylabel('Depth','FontSize',14);
+=======
 % Remove points where there are no measurements for K and replace
 % Linear interpolation
 % We know h = 0 at h(1)
@@ -54,10 +67,15 @@ title('fmincon Method with Real Data', 'fontSize',14);
 xlim([0,1150])
 xlabel('x Position (m)','FontSize',14);
 ylabel('Depth (m)','FontSize',14);
+>>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
 set(gca,'ydir','reverse')
 set(gca,'xdir','reverse')
 hold on
 plot(xq,h_guess,'g')
+<<<<<<< HEAD
+legend({'True h', 'Recovered h','Initial guess'},'FontSize',14);
+
+=======
 legend({'True h','Processed Recovered h','Initial guess'},'FontSize',14);
 
 subplot(2,1,2)
@@ -67,3 +85,4 @@ xlabel('x Position (m)','FontSize',14);
 ylabel('Wave Number');
 set(gca,'xdir','reverse');
 xlim([0,1150])
+>>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
