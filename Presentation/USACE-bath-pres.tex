@@ -1,0 +1,238 @@
+\documentclass[7pt]{beamer}
+\usepackage{beamerthemesplit}
+\usepackage{amsfonts}
+\usepackage{amsmath}		
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{makeidx}
+\usepackage{rotating}
+\usepackage{wasysym}
+
+%\usepackage[latin2]{inputenc}
+%\usepackage[romanian,magyar]{babel}
+\usepackage{graphicx}
+%\usepackage{dsfont}
+\usepackage{beamerthemesplit}
+\usepackage{hyperref}
+\definecolor{red}{RGB}{130,0,0}
+\mode<presentation>
+{
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{lem}[dfn]{Lemma}
+\newtheorem{thm}[dfn]{Theorem}
+\newtheorem{prop}[dfn]{Proposition}
+\newtheorem{rem}[dfn]{Remark}
+\newtheorem{cor}[dfn]{Corollary}
+\newtheorem{ex}[dfn]{Example}
+\newtheorem{pf}[dfn]{Proof}
+%\newtheorem{notn}[dfn]{Notation.}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathbb F}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newenvironment{notn}[1][Notation]{\noindent\textbf{#1.} }{\ \rule{0.0em}{0.0em}}
+%Defining Caligraphic letters
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calR}{\mathcal{R}}
+%\begin{comment}
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\te}{\theta}
+\newcommand{\et}{\eta}
+\newcommand{\om}{\omega}
+\newcommand{\Om}{\Omega}
+\newcommand{\ps}{\psi}
+\newcommand{\Ps}{\Psi}
+\newcommand{\daba}{\partial}
+%\newcommand{\p}{\pi}
+\newcommand{\ph}{\phi}
+\newcommand{\de}{\delta}
+\newcommand{\ro}{\rho}
+\newcommand{\si}{\sigma}
+\newcommand{\Si}{\Sigma}
+\newcommand{\la}{\lambda}
+%\newcommand{\m}{\mu\psi}
+\newcommand{\vp}{\varphi}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\id}{\,\mathrm{d}}
+
+
+
+
+%\setbeamertemplate{itemize item}[ball]
+
+  \useoutertheme{infolines}
+  \usetheme[hideothersubsections]{Berkeley}
+  \usecolortheme[named=red]{structure}
+  \usecolortheme{whale}
+  \useinnertheme{rounded}
+  \usefonttheme[onlymath]{serif}
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+  \setbeamertemplate{navigation symbols}{}
+  \usecolortheme{sidebartab}
+}
+
+
+\title[Bathymetry Inversion from Waves]{Inverting for Near Coastal Bathymetry from Surface Wave Properties}
+\author[USACE Bathymetry]{Presented \\ by\\Us\\Supervised by\\Ty  Hesser (USACE)\\Lea Jenkins (Clemson)}
+\institute[IMSM]{Industrial Mathematical and Statistical Modeling}
+\date{July 2016}
+%\logo{\includegraphics[height=1.4cm,width=1.5cm]{aust_logo}}
+\begin{document}
+ \frame{\titlepage}
+\frame{
+\frametitle{}
+\tableofcontents
+}
+\section{Introduction }
+%==============================================================================================================================
+\begin{frame}
+\frametitle{Bathymetry is topography under the sea}
+It's important for things like
+ \begin{itemize}
+\item Marine navigation
+\item Repairing of storm damage
+\item Military planning
+\end{itemize}
+\end{frame}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Getting measurements of coastal bathymetry can be kind of lame}
+ In situ bathymetry data is
+ \begin{itemize}
+ \item Expensive to collect
+ \item In a hazardous environment (surf zone)
+ \item Sparse in time and space
+ \end{itemize}
+\end{frame}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{But we can invert for bathymetry given surface measurements}
+
+Our goal is to estimate bathymetry with surface wave data instead of direct measurements of the submarine environment
+
+\end{frame}
+%==========================================================================================================================================
+\section{Methods}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{1D wave physics is well known for near coastal regions}
+\centering
+[Insert physics here]
+
+\end{frame}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{We have plenty of wave data...and some bathymetry}
+
+\begin{itemize}
+\item BC (T,H)
+\item Argus (k,f)
+\item Lidar? (H)
+\item CRAB/LARC (h)
+\end{itemize}
+
+
+\end{frame}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{We invert for bathymetry given the surface data and physics}
+
+\begin{itemize}
+\item Least squares
+\item MCMC
+\item fmincon
+\item etc.
+\end{itemize}
+
+
+\end{frame}
+%==========================================================================================================================================
+\section{Results}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{We tried several inverse methods}
+\begin{itemize}
+\item Nonlinear least squares
+\item MCMC
+\item fmincon
+\end{itemize}
+\end{frame}
+%==========================================================================================================================================
+
+%==========================================================================================================================================
+ \begin{frame}
+\frametitle{Nonlinear least squares}
+
+
+\end{frame}
+
+
+%==========================================================================================================================================
+ \begin{frame}
+\frametitle{MCMC}
+
+
+\end{frame}
+
+%==========================================================================================================================================
+ \begin{frame}
+\frametitle{fmincon}
+
+
+\end{frame}
+
+
+%==========================================================================================================================================
+
+
+%==========================================================================================================================================
+
+\section{Discussion}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Future directions}
+ \begin{itemize}
+ \item 2D problem
+ \item Regularization methods
+ \item Use of wave heights
+ \item Other dominant modes of k (and f)
+ \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\hspace{2.5cm}
+\begin{minipage}{50mm}   
+                                                                                                                           
+      \begin{alertblock}{}    
+                                          
+            \begin{center}
+                                                                                                                                                                                  
+                  \textbf{THANK YOU!}
+                            
+                                                                       
+            \end{center}
+      \end{alertblock}
+\end{minipage}
+\end{frame}
+%===========================================================================================================================================
+
+
+\end{document}
+
