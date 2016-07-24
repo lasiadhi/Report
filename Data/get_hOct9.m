@@ -26,7 +26,7 @@ function [h,x] = get_hOct9()
     %
     % Tide data taken from:
     % https://tidesandcurrents.noaa.gov/waterlevels.html?id=8651370&units=metric&bdate=20151010&edate=20151011&timezone=GMT&datum=NAVD&interval=6&action=
-    % Time of measurement: 22:00 GMT
+    % Actual Time of measurement: 22:00 GMT
     water_level = 0.466; % NAVD88
     
     x_org = ncread(filename, 'FRF_Xshore',min(ii),length(ii));
