@@ -46,10 +46,10 @@ h_approx = interp1(x_subset,h_approx_subset,xq,'linear');
 
 figure(3)
 subplot(2,1,1)
-plot(xq,hgrid, '-*b');
+plot(xq,hgrid, '-b');
 hold on
 % plot(xq,h_hat3, '-^r');
-plot(xq,h_approx, '-vk');
+plot(xq,h_approx, '-k');
 title('fmincon Method with Real Data', 'fontSize',14);
 xlim([0,1150])
 xlabel('x Position (m)','FontSize',14);
