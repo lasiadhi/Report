@@ -16,7 +16,7 @@
 %\usepackage{dsfont}
 \usepackage{beamerthemesplit}
 \usepackage{hyperref}
-\definecolor{red}{RGB}{130,0,0}
+\definecolor{red}{RGB}{0,0,200}
 \mode<presentation>
 {
 \newtheorem{dfn}{Definition}[section]
@@ -108,6 +108,9 @@ It's important for things like
 \item Repairing of storm damage
 \item Military planning
 \end{itemize}
+
+
+
 \end{frame}
 %==========================================================================================================================================
 \begin{frame}
@@ -118,12 +121,27 @@ It's important for things like
  \item In a hazardous environment (surf zone)
  \item Sparse in time and space
  \end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=.40\linewidth]{img/LARC.jpg}\hfill
+\includegraphics[width=.40\linewidth]{img/CRAB2.JPG}
+\end{figure}
 \end{frame}
+
+
+
 %==========================================================================================================================================
 \begin{frame}
  \frametitle{But we can invert for bathymetry given surface measurements}
 
 Our goal is to estimate bathymetry with surface wave data instead of direct measurements of the submarine environment
+
+\begin{figure}[H]
+	 	\centering
+	 	\includegraphics[width=0.6\linewidth]{img/trueBath2D.png}
+	 	\caption{Measured and gridded 2D bathymetry in the survey area on 1 October 2015. The red line shows the transect considered in the 1D problem.}
+	 	\label{2D Bath}
+	 	\end{figure}
 
 \end{frame}
 %==========================================================================================================================================
