@@ -85,7 +85,9 @@
   \setbeamertemplate{navigation symbols}{}
   \usecolortheme{sidebartab}
 }
-
+%======================================================================================
+% SLIDE 1: TITLE
+%======================================================================================
 
 \title[Bathymetry Inversion from Waves]{Inverting for Near Coastal Bathymetry from Surface Wave Properties}
 \author[USACE Bathymetry]{Presented \\ by\\Us\\Supervised by\\Ty  Hesser (USACE)\\Lea Jenkins (Clemson)}
@@ -100,25 +102,51 @@
 }
 \section{Introduction }
 %==============================================================================================================================
+%SLIDE 3: Bathymetry is topography under the sea
+%======================================================================================
+
 \begin{frame}
 \frametitle{Bathymetry is topography under the sea}
 It's important for things like
- \begin{itemize}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{itemize}
 \item Marine navigation
 \item Repairing of storm damage
 \item Military planning
 \end{itemize}
+\column{0.5\textwidth}
+\begin{figure}[h]
+\includegraphics[width=.80\linewidth]{img/Flood_D.jpg}\hfill
 
+\end{figure}
+
+\end{columns}
+
+
+%\begin{itemize}
+%\item Marine navigation
+%\item Repairing of storm damage
+%\item Military planning
+%\end{itemize}
+%\begin{figure}[h]
+%\includegraphics[width=.40\linewidth]{img/Flood_D.jpg}\hfill
+
+%\end{figure}
 
 
 \end{frame}
 %==========================================================================================================================================
+% SLIDE 4: Getting measurements of coastal bathymetry can be kind of lame
+%======================================================================================
+
 \begin{frame}
  \frametitle{Getting measurements of coastal bathymetry can be kind of lame}
  In situ bathymetry data is
  \begin{itemize}
  \item Expensive to collect
- \item In a hazardous environment (surf zone)
+ \item Located in a hazardous environment (surf zone)
  \item Sparse in time and space
  \end{itemize}
 
@@ -131,6 +159,9 @@ It's important for things like
 
 
 %==========================================================================================================================================
+% SLIDE 5: But we can invert for bathymetry given surface measurements
+%======================================================================================
+
 \begin{frame}
  \frametitle{But we can invert for bathymetry given surface measurements}
 
@@ -147,26 +178,64 @@ Our goal is to estimate bathymetry with surface wave data instead of direct meas
 %==========================================================================================================================================
 \section{Methods}
 %==========================================================================================================================================
+% SLIDE 6: 1D wave physics is well known for near coastal regions
+%======================================================================================
 \begin{frame}
  \frametitle{1D wave physics is well known for near coastal regions}
 \centering
-[Insert physics here]
-
-\end{frame}
-%==========================================================================================================================================
-\begin{frame}
- \frametitle{We have plenty of wave data...and some bathymetry}
-
 \begin{itemize}
-\item BC (T,H)
-\item Argus (k,f)
-\item Lidar? (H)
-\item CRAB/LARC (h)
+\item 1D Forward Model
 \end{itemize}
 
-
+\begin{eqnarray*}
+\label{fp1}
+\left \{
+\begin{array}{lll}
+\frac{d}{dx}\left(EC_g\right)=-\delta,\\
+\\
+\sigma^2=gk\tanh(kh),
+\label{ode}
+\end{array}
+\right.
+\end{eqnarray*}
+\begin{flushleft}
+where,
+\end{flushleft}
+$${E: Wave \,Energy,\, C_{g}: Group \,celerity,}$$
+$${\quad c: Wave \,celerity,\, \sigma: Angular \,frequency,}$$
+$${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
 \end{frame}
 %==========================================================================================================================================
+% SLIDE 7: We have plenty of wave data...and some bathymetry
+%======================================================================================
+
+\begin{frame}
+\frametitle{We have plenty of wave data...and some bathymetry}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{itemize}
+\item Boundary Conditions (T,H)
+\item Light Detection and Ranging(H)
+\end{itemize}
+\column{0.5\textwidth}
+\begin{itemize}
+\item CRAB/LARC (h)
+\item Argus Video Monitioring (k,f)
+\end{itemize}
+\end{columns}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{img/k1Dmean_std.png}
+\caption{Argus- photogrammetry used to derive wave frequency and wave number.}
+
+\end{figure}
+\end{frame}
+
+%==========================================================================================================================================
+% SLIDE 8: We invert for bathymetry given the surface data and physics
+%======================================================================================
+
 \begin{frame}
  \frametitle{We invert for bathymetry given the surface data and physics}
 
@@ -182,6 +251,9 @@ Our goal is to estimate bathymetry with surface wave data instead of direct meas
 %==========================================================================================================================================
 \section{Results}
 %==========================================================================================================================================
+% SLIDE 9: We tried several inverse methods
+%======================================================================================
+
 \begin{frame}
  \frametitle{We tried several inverse methods}
 \begin{itemize}
@@ -193,6 +265,9 @@ Our goal is to estimate bathymetry with surface wave data instead of direct meas
 %==========================================================================================================================================
 
 %==========================================================================================================================================
+% SLIDE 10: Nonlinear least squares
+%======================================================================================
+
  \begin{frame}
 \frametitle{Nonlinear least squares}
 
@@ -201,6 +276,9 @@ Our goal is to estimate bathymetry with surface wave data instead of direct meas
 
 
 %==========================================================================================================================================
+% SLIDE 11: Bayesian Markov Chain Monte Carlo (MCMC) Method
+%======================================================================================
+
  \begin{frame}
 \frametitle{Bayesian Markov Chain Monte Carlo (MCMC) Method}
 The MCMC method was used to create a posterior distribution of depth profiles, given wave number by using the Bayes relationship
@@ -216,6 +294,8 @@ k)$ is the posterior distribution.
 \end{frame}
 
 %==========================================================================================================================================
+% SLIDE 12: MCMC Method: Log-Likelihood Function
+%======================================================================================
 \begin{frame}
  \frametitle{MCMC Method: Log-Likelihood Function}
 \begin{itemize}
@@ -228,7 +308,7 @@ k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
 \end{itemize}
 \end{frame}
 %==========================================================================================================================================
-
+% SLIDE 13: MCMC Method: Metropolis Algorithm
 
 %==========================================================================================================================================
 \begin{frame}
@@ -246,7 +326,7 @@ arrive at a posterior distribution of \textit{h} profiles which are expected to 
 \end{frame}
 %==========================================================================================================================================
 
-
+%SLIDE 14: fmincon
 %==========================================================================================================================================
  \begin{frame}
 \frametitle{fmincon}
@@ -259,7 +339,7 @@ arrive at a posterior distribution of \textit{h} profiles which are expected to 
 
 
 %==========================================================================================================================================
-
+%SLIDE 15: Future directions
 \section{Discussion}
 %==========================================================================================================================================
 \begin{frame}
@@ -272,7 +352,9 @@ arrive at a posterior distribution of \textit{h} profiles which are expected to 
  \end{itemize}
 
 \end{frame}
-
+%========================================
+% Slide 16: THANK YOU
+%========================================
 \begin{frame}
 \frametitle{}
 \hspace{2.5cm}
