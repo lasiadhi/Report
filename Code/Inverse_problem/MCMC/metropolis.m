@@ -96,7 +96,8 @@ for i = 1:totsteps-1
     end
 end
 %% Clean up and plot
-disp('Acceptance rate:',cnt/)
+disp('Acceptance rate:')
+disp(cnt/totsteps)
 
 disp('Plotting')
 % throw away the burnin steps
