@@ -24,12 +24,12 @@ xi = xgrid(ind);
     h_rand = randi([0 1],n);
     
     for i = 2:ind
-        %h_guess(i) = h_guess(i-1) + slope*dx;% original
+        h_guess(i) = h_guess(i-1) + slope*dx;% original
         %h_guess(i)=sin(h_guess(i-1));
         
-        h_asst(i)=h_asst(i-1)+slope*dx;
-        h_diff=abs(h_asst(i)-hgrid(i));
-        h_guess(i)=h_asst(i)+h_rand(i)*h_diff;
+%         h_asst(i)=h_asst(i-1)+slope*dx;
+%         h_diff=abs(h_asst(i)-hgrid(i));
+%         h_guess(i)=h_asst(i)+h_rand(i)*h_diff;
         
     end 
     for i = ind+1:n
