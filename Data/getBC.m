@@ -6,6 +6,18 @@ function dat = getBC(var,startT,endT)
 % Data time-step: hourly
 % Data is produced via a 34 minute timeseries analysis.
 %
+% To get boundary conditions for October 1st, run getBC with:
+% startT: '2015-10-01 00:00:00'
+% endT: '2015-10-02 00:00:00'
+% and select the first index.
+%
+% To get boundary conditions for October 9th, run getBC with:
+% startT: '2015-10-09 20:00:00'
+% endT: '2015-10-10 01:00:00'
+% and select the first index. This will select values corresponding to 
+% 2015-10-09 22:00:08, which is quite close to our measured k profile, 
+% which is taken at 2015-10-09 21:59:00.
+%
 % See below the function for possible var values.
 %-------------------------------------------------------------------------
 % USAGE STATEMENT:
