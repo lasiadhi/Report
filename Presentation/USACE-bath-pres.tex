@@ -16,6 +16,7 @@
 %\usepackage{dsfont}
 \usepackage{beamerthemesplit}
 \usepackage{hyperref}
+\usepackage{caption}
 \definecolor{red}{RGB}{0,0,200}
 \mode<presentation>
 {
@@ -160,13 +161,16 @@ In situ bathymetry data is
  \item Located in a hazardous environment (surf zone)
  \item Sparse in time and space
 \end{itemize}
-\begin{figure}[h]
+\begin{figure}[h!]
 \includegraphics[width=.60\linewidth]{img/LARC2.jpg}\hfill
+\centering
+\captionsetup{labelformat=empty}
 \caption{LARC}
 \end{figure}
 \column{0.5\textwidth}
 \begin{figure}[h]
 \includegraphics[width=.6\linewidth]{img/CRAB3.JPG}
+\captionsetup{labelformat=empty}
 \caption{CRAB}
 \end{figure}
 
@@ -187,7 +191,7 @@ Our goal is to estimate bathymetry with surface wave data instead of direct meas
 \begin{figure}[H]
 	 	\centering
 	 	\includegraphics[width=0.6\linewidth]{img/trueBath2D.png}
-	 	\caption{Measured and gridded 2D bathymetry in the survey area on 1 October 2015. The red line shows the transect considered in the 1D problem.}
+	 	\caption{Measured and gridded 2D bathymetry from survey data. Red line is the transect for 1D problem.}
 	 	\label{2D Bath}
 	 	\end{figure}
 
@@ -232,18 +236,19 @@ $${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
 \column{0.5\textwidth}
 \begin{itemize}
 \item Boundary Conditions (T,H)
-\item Light Detection and Ranging(H)
+\item Light Detection and Ranging (H)
 \end{itemize}
 \column{0.5\textwidth}
 \begin{itemize}
 \item CRAB/LARC (h)
-\item Argus Video Monitioring (k,f)
+\item Argus Video Monitior (k,f)
 \end{itemize}
 \end{columns}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.45\linewidth]{img/k1Dmean_std.png}
+\captionsetup{labelformat=empty}
 \caption{Argus- photogrammetry used to derive wave frequency and wave number.}
 
 \end{figure}
@@ -358,9 +363,21 @@ arrive at a posterior distribution of \textit{h} profiles %which are expected to
 
 %==========================================================================================================================================
 
+%SLIDE 15: Results
+%==========================================================================================================================================
+ \begin{frame}
+\frametitle{Results}
+
+
+\end{frame}
+
 
 %==========================================================================================================================================
-%SLIDE 15: Future directions
+
+
+
+%==========================================================================================================================================
+%SLIDE 16: Future directions
 \section{Discussion}
 %==========================================================================================================================================
 \begin{frame}
@@ -374,7 +391,7 @@ arrive at a posterior distribution of \textit{h} profiles %which are expected to
 
 \end{frame}
 %========================================
-% Slide 16: THANK YOU
+% Slide 17: THANK YOU
 %========================================
 \begin{frame}
 \frametitle{}
