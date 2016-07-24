@@ -1,10 +1,6 @@
 function f = objective_2norm_real(h)
 
-<<<<<<< HEAD
-	load('Real_data_2015-10-09_21:59:00_10m.mat','k_data','x_data');   % load real k_data
-=======
 	load('Real_data_2015-10-09_T215900_10m.mat','k_data','x_data');   % load real k_data
->>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
 	dx = x_data(2) - x_data(1); % resolution defined by data grid
 
 	[k_appro, H] = forward_real(h,dx);

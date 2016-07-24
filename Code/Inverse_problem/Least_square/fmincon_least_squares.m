@@ -30,9 +30,9 @@ figure(3)
 plot(xq,hgrid, '-*b');
 hold on
 plot(xq,h_hat3, '-^r');
-title('fmincon method', 'fontSize',14)
-xlabel('Distance from the coastline','FontSize',14);
-ylabel('Depth','FontSize',14);
+title('fmincon: Interior-point method', 'fontSize',14)
+xlabel('Distance from the coastline (m)','FontSize',14);
+ylabel('Depth (m)','FontSize',14);
 set(gca,'ydir','reverse')
 set(gca,'xdir','reverse')
 hold on

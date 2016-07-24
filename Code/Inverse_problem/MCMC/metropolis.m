@@ -8,11 +8,8 @@
 disp('Initializing')
 %Get k data 
 addpath('../../../Data/')
-<<<<<<< HEAD
-%[k,x_k]=get1Dk();
-=======
+
 [k,x_k]=get1Dk();
->>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
 
 %Data for prior
 bath=load('../../../Data/transect_depth_ensembles_500_dx_10.mat');
@@ -24,18 +21,7 @@ kdat_std = mean(k1Dstd_dat);
 vark = kdat_std^2;
 
 %use mean k vector as truth
-<<<<<<< HEAD
-%kdat = k1Dmean_dat;
 
-%impute values of k
-%linear regression to extrapolate k
-%nh=length(bath.depth(:,1));
-%kImputed = kImpute(x_k,kdat,nh);
-
-% Metropolis things
-burnin   = 500;   % markov chain need to converge 
-numsteps = 3000;
-=======
 kdat = k1Dmean_dat;
 
 %impute values of k
@@ -46,52 +32,35 @@ kImputed = kImpute(x_k,kdat,nh);
 % Metropolis things
 burnin   = 500;   % markov chain need to converge 
 numsteps = 2000;
->>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
 totsteps = numsteps + burnin;
 
 % Initial guess for h (from previous data)
 % For the moment this is the true bathymetry
 % will eventually be like proposal
-<<<<<<< HEAD
-[hOrig,x] = get_hOct1();
-dx=25;
-[hgrid,xq] = interp_h(hOrig,x,dx);
-hdat=hgrid;
 
-% Initialize vector for quantity of interest we're estimating
-h = nan(length(hgrid),totsteps);
-=======
 [hOrig,x] = get_hOct9();
 dx=10;
-[hgrid,xq] = interp_h(hOrig,x,dx);
-hdat=hgrid;
+[hinit,xq] = interp_h(hOrig,x,dx);
+hdat=hinit;
 
-
->>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
 
 %Initial h and k is same as Lasith's
 addpath('../Least_square');
-hinit = initialize_h_guess(hgrid,dx);
-<<<<<<< HEAD
-[ksim]=load('../k_1percNoisedata_N47.mat');
-kImputed =ksim.k;
-=======
+%hinit = initialize_h_guess(hgrid,dx);
+
 hinit=hinit(1:end-1);
 
 %[ksim]=load('../k_1percNoisedata_N47.mat');
 %kImputed =ksim.k;
->>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
 
-xdat=xq(1:end);
+xdat=xq(1:end-1);
 
 %Initial guess for forward model
 addpath('../../forward/')
 [kinit, ~] = forward(hinit(:,1));
-<<<<<<< HEAD
-=======
+
 % Initialize vector for quantity of interest we're estimating
 h = nan(length(hinit),totsteps);
->>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
 h(:,1) = hinit(:,1);
 
 %% Initialize posterior
@@ -100,22 +69,11 @@ h(:,1) = hinit(:,1);
 llikelihood = loglikelihood(kImputed, kinit, vark);
 oldpost =  llikelihood + lprior;
 
-<<<<<<< HEAD
-
-%% Metropolis loop
-disp('Performing Metropolis')
-for i = 1 : (totsteps-1)
-    %calculate proposal
-    [hprop,kprop] = proposal(fudgestd,h(:,i));
-
-    % calculate proposed posterior density
-    proppost = loglikelihood(kImputed, kprop, vark) +  logprior(hprop,bath);
-
-=======
 
 %% Metropolis loop
 disp('Performing Metropolis')
 %for i = 1 : (totsteps-1)
+cnt=0 ; %acceptance rate count
 for i = 1:totsteps-1
     %calculate proposal
     [hprop,kprop] = proposal(fudgestd,h(:,i),bath);
@@ -123,7 +81,6 @@ for i = 1:totsteps-1
     % calculate proposed posterior density
     proppost = loglikelihood(kImputed, kprop, vark) +  logprior(hprop,bath);
 
->>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
     %compare posteriors
     rho = exp(proppost - oldpost);
 
@@ -133,11 +90,15 @@ for i = 1:totsteps-1
     if rho > u
         h(:,i+1) = hprop;
         oldpost = proppost;
+        cnt=1;
     else
         h(:,i+1) = h(:,i);
     end
 end
 %% Clean up and plot
+disp('Acceptance rate:')
+disp(cnt/totsteps)
+
 disp('Plotting')
 % throw away the burnin steps
     h_final = h(:,(burnin+1):totsteps);
@@ -147,10 +108,6 @@ disp('Plotting')
     
     hdens = nan(length(h_final(:,1)),100);
     f = nan(length(h_final(:,1)),100);
-<<<<<<< HEAD
-    %for i = 1:length(h_final(:,1))
-=======
->>>>>>> 6cc1b8dd0429d740d9277095c093bb92c66cf4c0
     for i = 1:length(h_final(:,1))
         [f(i,:),hdens(i,:)] = ksdensity(h_final(i,:));
     end
@@ -167,9 +124,9 @@ disp('Plotting')
     end
     figure(6)
     clf
-    plot(xdat,maxh,'b'); hold on
+    plot(xdat,flip(maxh),'b'); hold on
     plot(xdat,hinit,'r'); hold on
-    plot(xdat,hdat);
+    plot(xq,hgrid,'k');
     
 
 
