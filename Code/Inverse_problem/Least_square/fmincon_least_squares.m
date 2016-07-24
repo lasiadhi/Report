@@ -7,6 +7,7 @@ dx    = 25; %10;  %25
 [h,x] = get_hOct1;
 [hgrid,xq] = interp_h(h,x,dx);
 %h_guess = initialize_h_guess(hgrid,dx);
+%h_guess    = initialize_h_guess_pointwise_16(hgrid, xq, dx);
 h_guess    = initialize_h_guess_pointwise(hgrid, xq, dx);
 
 
@@ -22,7 +23,7 @@ options = optimset('Display','iter');
 %h_hat3   = fmincon(@objective_2norm, abs(h_guess)', [],[],[],[], -inf(N,1), inf(N,1),[], options);
 %h_hat3   = fmincon(@objective_2norm, abs(h_guess)',[],[],[],[],[],[],[],options);
 %h_hat3   = fmincon(@objective_2norm, hgrid,[],[],[],[],[],[],[],options);
-h_hat3    = fmincon(@objective_2norm, h_guess, [],[],[],[], zeros(N,1), repmat(20,[N,1]),[], options);
+h_hat3    = fmincon(@objective_2norm, h_guess, [],[],[],[], zeros(N,1), repmat(11,[N,1]),[], options);
 %h_hat3   = fmincon(@objective_2norm, h_guess, [],[],[],[], zeros(N,1), repmat(12,[N,1]),[], options);
 
 figure(3)

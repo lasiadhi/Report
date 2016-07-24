@@ -17,7 +17,7 @@ function [k_data,x_data] = get1Dk_profile(timestamp)
         timestamp = '2015-10-09 21:59:00'; % default wave number prof
     end
     
-    [k,x_data] = get1Dk;
+    [k,x] = get1Dk;
     
     filename = 'http://chlthredds.erdc.dren.mil/thredds/dodsC/frf/projects/bathyduck/BathyDuck-ocean_bathy_argus_201510.nc';
     
@@ -31,5 +31,15 @@ function [k_data,x_data] = get1Dk_profile(timestamp)
     ii = find(and((time >= converted_prof_datenum - 15*60),(time <= converted_prof_datenum + 15*60)));
     
     k_data = k(:,ii);
-    
+    dx = x(2) - x(1);
+
+    % Create vectors of NaN to fill k_data over the entire grid.
+    x1 = (0:dx:(x(1)-dx))';
+    k1 = NaN(length(x1),1);
+    x2 = ((x(length(x)) + dx):dx:1150)';
+    k2 = NaN(length(x2),1);
+
+    % Join vectors
+    k_data = vertcat(k1,k_data,k2);
+    x_data = vertcat(x1,x,x2);
 end
