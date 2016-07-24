@@ -6,6 +6,6 @@ function f = objective_2norm(h)
 
 [k_appro, H] = forward(h);
 
-f =  norm(k_appro - k_noisy)^2 +  3e-7 * norm(h)^2;
+f =  norm(k_appro - k_noisy)^2 +  1e-7 * norm(h)^2;
 
 end

@@ -19,42 +19,45 @@ $$
 
 
 
-\subsection{Bathymetric Inversion Method}
+\subsection{Bathymetric Inversion Methods}
 
-As a beginning to approximate the topographic heights of the sea-floor,  we consider the following least-squares minimization problem,
+\subsubsection{Least-Squares Inversion}
+
+As a beginning to approximate the topographic heights of the near-shore sea-floor,  we consider the following least-squares minimization problem,
 \begin{equation}\label{LS}
 \mathbf{\hat{h}}= \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \ \ f(\mathbf{h}) = \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2,
 \end{equation}
-where we minimize the data misfit between the forward predictions and the measurements in least-squares sense. 
-This least-squares minimization problem \eqref{LS} can be solved using the following  MATLAB functions:
+where we minimize the data misfit between the forward predictions and the measurements, in the least-squares sense. In order to test possible Matlab inbuilt solvers to solve the minimization problem in  \eqref{LS}, we have generated dummy measurements with $\nu = 0.1$. In particular, in this test, the forward operator \verb|A = rand(50)|, the true bathymetry \verb| ht = -linspace(-11,0,N)' - 11|, and the Gaussian noise corrupted measurements \verb|b = A * h_t + 0.1 * randn(N,1)|. Recovered bathymetries from different Matlab solvers are given below. Note that the initial guess for all methods is zero. 
 \begin{itemize}
-\item[(1)]  Nonnegative least-squares method:  \verb|lsqnonneg(A,b)|. This Matlab function uses the algorithm so called \textit{active-set} and note that it requires matrix $\mathbf{A}$ explicitly. Residual norm error for the sample dummy data set  with $\nu = 0.1$ is $8.88 \times 10^{-26}$ (see Fig. \ref{nonLS_fig}).   \\
+\item[(1)]  \textit{Nonnegative least-squares method:}  \verb|lsqnonneg(A,b, options)|. This Matlab function uses the algorithm so called \textit{active-set} and note that it requires the matrix $\mathbf{A}$ explicitly. Residual norm error for this nonnegativity reconstruction is $8.88 \times 10^{-26}$ (see Fig. \ref{nonLS_fig}).   \\
 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.6]{img/NonLS_linear.png} 
-\caption{Nonnegative least-squares method reconstruction of depth $\mathbf{h}$ using sample data.}
+\caption{Nonnegative least-squares method reconstruction of depth $\mathbf{h}$ using the dummy dataset.}
 \label{nonLS_fig}
 \end{figure}
-\item[(2)]  Trust-Region-Reflective method:  \verb|lsqnonlin(f)|. Residual norm error for the sample dummy data set  with $\nu = 0.1$ is $4.32 \times 10^{-10}$. 
+\item[(2)]  \textit{Trust-Region-Reflective method:}  \verb|lsqnonlin(@(h) A * h - b, zeros(N,1), zeros(N,1),inf(N,1), options)|. Note that the reconstruction of $\mathbf{h}$ is restricted to the positive x-axis using the function arguments. Residual norm error for the reconstruction is $4.32 \times 10^{-10}$. 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.6]{img/trust_region_linear.png} 
-\caption{Trust-Region-Reflective method reconstruction of depth $\mathbf{h}$ using sample data.}
+\caption{Trust-Region-Reflective method reconstruction of depth $\mathbf{h}$ using the dummy data.}
 \label{trust_region_fig}
 \end{figure}
-\item[(3)]  Levenberg-Marquardt (LM) method:  \verb|lsqnonlin(f, 'Algorithm', 'levenberg-marquardt')|. Residual norm error for the sample dummy data set  with $\nu = 0.1$ is $6.39 \times 10^{-13}$. The Levenberg-Marquardt algorithm does not handle bound constraints. 
+\item[(3)]  \textit{Levenberg-Marquardt (LM) method:}  
+\verb|lsqnonlin(@(h) A * h - b, 'Algorithm', 'levenberg-marquardt')|
+Residual norm error for the reconstruction is $6.39 \times 10^{-13}$. The Levenberg-Marquardt algorithm does not handle bound constraints. 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.6]{img/LM_linear.png} 
-\caption{Levenberg-Marquardt (LM) method reconstruction of depth $\mathbf{h}$ using sample data.}
+\caption{Levenberg-Marquardt (LM) method reconstruction of depth $\mathbf{h}$ using the dummy data.}
 \label{LM_fig}
 \end{figure}
-\item[(4)]  fmincon method:  \verb|fmincon(f)|. Residual norm error for the sample dummy data set  with $\nu = 0.1$ is $1.29$. 
+\item[(4)]  \textit{Interior-point method:} \verb|fmincon(f, zeros(N,1), [],[],[],[], zeros(N,1), inf(N,1))|. Residual norm error for the sample dummy data set  with $\nu = 0.1$ is $1.29$. 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.6]{img/fmincon_linear.png} 
-\caption{fmincon method reconstruction of depth $\mathbf{h}$ using sample data.}
+\caption{fmincon method reconstruction of depth $\mathbf{h}$ using the dummy data.}
 \label{LM_fig}
 \end{figure}
 \end{itemize}
@@ -69,13 +72,22 @@ where $\alpha$ is a regularization parameter $(>0)$. To test this method, Tikhon
 \includegraphics[scale=0.6]{img/Tikhnove_reg.png} 
 \end{center}
 
-Reference: I found a MATLAB package for analysis and solution of discrete ill-posed problems, which is available in http://www2.imm.dtu.dk/~pcha/Regutools/\\
-
-\subsection{Help}
-
-LSQR method: $\hat{\Psi}$ = lsqr(A,d,tol,maxit) it attempts to solve the least squares solution x that minimizes norm$(\mathbf{d}-\mathbf{A\Psi})$ Note that $\mathbf{A}$ need not be square.
+%Reference: I found a MATLAB package for analysis and solution of discrete ill-posed problems, which is available in http://www2.imm.dtu.dk/~pcha/Regutools/\\
 
 
-Conjugate gradients: $\hat{\Psi}$ = cgs(A,b) attempts to solve the system of linear equations $\mathbf{A}\mathbf{\Psi} -  \mathbf{d}$ for $\Psi$.
 
+
+
+
+
+
+%\subsection{Help}
+%
+%LSQR method: $\hat{\Psi}$ = lsqr(A,d,tol,maxit) it attempts to solve the least squares solution x that minimizes norm$(\mathbf{d}-\mathbf{A\Psi})$ Note that $\mathbf{A}$ need not be square.
+%
+%
+%Conjugate gradients: $\hat{\Psi}$ = cgs(A,b) attempts to solve the system of linear equations $\mathbf{A}\mathbf{\Psi} -  \mathbf{d}$ for $\Psi$.
+%
+%
+%why fmincon: \url{http://www.mathworks.com/help/optim/ug/choosing-a-solver.html#bsbwxm7}
 
