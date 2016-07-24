@@ -108,12 +108,32 @@
 \begin{frame}
 \frametitle{Bathymetry is topography under the sea}
 It's important for things like
- \begin{itemize}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{itemize}
 \item Marine navigation
 \item Repairing of storm damage
 \item Military planning
 \end{itemize}
+\column{0.5\textwidth}
+\begin{figure}[h]
+\includegraphics[width=.80\linewidth]{img/Flood_D.jpg}\hfill
 
+\end{figure}
+
+\end{columns}
+
+
+%\begin{itemize}
+%\item Marine navigation
+%\item Repairing of storm damage
+%\item Military planning
+%\end{itemize}
+%\begin{figure}[h]
+%\includegraphics[width=.40\linewidth]{img/Flood_D.jpg}\hfill
+
+%\end{figure}
 
 
 \end{frame}
@@ -126,7 +146,7 @@ It's important for things like
  In situ bathymetry data is
  \begin{itemize}
  \item Expensive to collect
- \item In a hazardous environment (surf zone)
+ \item Located in a hazardous environment (surf zone)
  \item Sparse in time and space
  \end{itemize}
 
@@ -188,19 +208,33 @@ $${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
 %==========================================================================================================================================
 % SLIDE 7: We have plenty of wave data...and some bathymetry
 %======================================================================================
+<<<<<<< HEAD
+=======
 
+>>>>>>> 406c01ca0d552e9b8fc0c32697d8f5a1f0ed64cf
 \begin{frame}
- \frametitle{We have plenty of wave data...and some bathymetry}
-
+\frametitle{We have plenty of wave data...and some bathymetry}
+\begin{columns}
+\column{0.5\textwidth}
 \begin{itemize}
-\item BC (T,H)
-\item Argus (k,f)
-\item Lidar? (H)
-\item CRAB/LARC (h)
+\item Boundary Conditions (T,H)
+\item Light Detection and Ranging(H)
 \end{itemize}
+\column{0.5\textwidth}
+\begin{itemize}
+\item CRAB/LARC (h)
+\item Argus Video Monitioring (k,f)
+\end{itemize}
+\end{columns}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{img/k1Dmean_std.png}
+\caption{Argus- photogrammetry used to derive wave frequency and wave number.}
 
+\end{figure}
 \end{frame}
+
 %==========================================================================================================================================
 % SLIDE 8: We invert for bathymetry given the surface data and physics
 %======================================================================================
