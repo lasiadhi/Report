@@ -162,10 +162,12 @@ In situ bathymetry data is
 \end{itemize}
 \begin{figure}[h]
 \includegraphics[width=.60\linewidth]{img/LARC2.jpg}\hfill
+\caption{LARC}
 \end{figure}
 \column{0.5\textwidth}
 \begin{figure}[h]
 \includegraphics[width=.6\linewidth]{img/CRAB3.JPG}
+\caption{CRAB}
 \end{figure}
 
 
@@ -296,16 +298,20 @@ $${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
 
  \begin{frame}
 \frametitle{Bayesian Markov Chain Monte Carlo (MCMC) Method}
-The MCMC method was used to create a posterior distribution of depth profiles, given wave number by using the Bayes relationship
+The MCMC method creates a posterior distribution of depth profiles, given wave number by using the Bayes relationship
 
 \begin{equation}\label{bayes}
 P(h|%H,
 k) \propto \Pi(h)L(h|%H,
 k),
 \end{equation} 
-where $\Pi(h)$ is the prior distribution, $L(h|%H,
-k)$ is the likelihood function, and $P(h|%H,
-k)$ is the posterior distribution.
+\begin{itemize}
+\item $\Pi(h)$  prior distribution
+\item $L(h|%H,
+k)$ likelihood function
+\item $P(h|%H,
+k)$ posterior distribution
+\end{itemize}
 \end{frame}
 
 %==========================================================================================================================================
@@ -314,7 +320,7 @@ k)$ is the posterior distribution.
 \begin{frame}
  \frametitle{MCMC Method: Log-Likelihood Function}
 \begin{itemize}
-\item The loglikelihood uses the sum of square errors between simulated and observed \textit{k} to quantify the probability that the modeled \textit{k} represents the true \textit{k} profile as observed.
+\item Loglikelihood function compares simulated and observed \textit{k} values
 \begin{equation} \label{likely}
 \log{L(h|%H,
 k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
@@ -329,14 +335,14 @@ k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
 \begin{frame}
  \frametitle{MCMC Method: Metropolis Algorithm}
 \begin{itemize}
-\item The prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}\\
+\item Prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}\\
 \begin{equation}\label{post}
 P(h|%H,
 k) = log(\Pi(h)) + log(L(h|%H,
 k))
 \end{equation}
-\item The algorithm then uses a markov chain random walk to %propose and compare new \textit{h} profiles
-arrive at a posterior distribution of \textit{h} profiles which are expected to describe true bathymetry
+\item Uses a markov chain random walk to %propose and compare new \textit{h} profiles
+arrive at a posterior distribution of \textit{h} profiles %which are expected to describe true bathymetry
 \end{itemize}
 \end{frame}
 %==========================================================================================================================================
