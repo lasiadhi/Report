@@ -50,7 +50,7 @@ hinit=hinit(1:end-1);
 %[ksim]=load('../k_1percNoisedata_N47.mat');
 %kImputed =ksim.k;
 
-xdat=xq(1:end);
+xdat=xq(1:end-1);
 
 %Initial guess for forward model
 addpath('../../forward/')
@@ -69,6 +69,7 @@ oldpost =  llikelihood + lprior;
 %% Metropolis loop
 disp('Performing Metropolis')
 %for i = 1 : (totsteps-1)
+cnt=0 ; acceptance rate count
 for i = 1:totsteps-1
     %calculate proposal
     [hprop,kprop] = proposal(fudgestd,h(:,i),bath);
@@ -85,11 +86,14 @@ for i = 1:totsteps-1
     if rho > u
         h(:,i+1) = hprop;
         oldpost = proppost;
+        cnt=1;
     else
         h(:,i+1) = h(:,i);
     end
 end
 %% Clean up and plot
+disp('Acceptance rate:',cnt/)
+
 disp('Plotting')
 % throw away the burnin steps
     h_final = h(:,(burnin+1):totsteps);
@@ -115,9 +119,9 @@ disp('Plotting')
     end
     figure(6)
     clf
-    plot(xdat,maxh,'b'); hold on
+    plot(xdat,flip(maxh),'b'); hold on
     plot(xdat,hinit,'r'); hold on
-    plot(xdat,hdat);
+    plot(xq,hgrid,'k');
     
 
 
