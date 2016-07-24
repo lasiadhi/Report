@@ -9,12 +9,12 @@ ind = find(~hgrid, 1);
 
 xi = xgrid(ind);
 
-    slope = -11/xi;
+    slope = -hgrid(1)/xi;
     h_guess = zeros(n, 1);
     h_guess(1) = hgrid(1);
      
     h_asst=zeros(n,1);
-    h_asst(1)=hgrid(1);% for test
+    h_asst(1) = hgrid(1);% for test
     
 %     h_or=randn(100);
 %     h_1=h_or(h_or<1);
@@ -23,7 +23,26 @@ xi = xgrid(ind);
     
     h_rand = randi([0 1],n);
     
+%     for i = 1:n
+%         h_rand(i) = h_rand(i)/10;
+%     end
+    
     for i = 2:ind
+<<<<<<< HEAD
+        %%% linear guess
+%         h_guess(i) = h_guess(i-1) + slope*dx;% original
+%         h_guess(i)=sin(h_guess(i-1));
+        
+        %%% gap guess
+        h_asst(i)=h_asst(i-1)+slope*dx;
+        h_diff=abs(h_asst(i)-hgrid(i));
+        h_guess(i)=h_asst(i)+h_rand(i)*h_diff;
+         
+        %%% exp guess
+%         h_guess(i) = 0.1*(abs(xgrid(i)-1150))^(2/3);
+=======
+
+>>>>>>> ecdbe210b1392c12c36a81645a7205bbaff37b7e
         h_guess(i) = h_guess(i-1) + slope*dx;% original
         %h_guess(i)=sin(h_guess(i-1));
         
@@ -31,6 +50,10 @@ xi = xgrid(ind);
 %         h_diff=abs(h_asst(i)-hgrid(i));
 %         h_guess(i)=h_asst(i)+h_rand(i)*h_diff;
         
+<<<<<<< HEAD
+
+=======
+>>>>>>> ecdbe210b1392c12c36a81645a7205bbaff37b7e
     end 
     for i = ind+1:n
         h_guess(i) = 0;

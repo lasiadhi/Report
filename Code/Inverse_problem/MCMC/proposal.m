@@ -1,9 +1,11 @@
-function [hprop,kprop] = proposal(fudgestd,h)
+
+function [hprop,kprop] = proposal(fudgestd,h,bath)
 %{
 A proposed vector of h to compare
 %}
 
     % Propose h
+
     zerovec = zeros(length(h),1);
     h_inc = normrnd(zerovec,fudgestd);
 
@@ -14,6 +16,8 @@ A proposed vector of h to compare
 %     std_samp = normrnd(0,dstd);
 %     hprop = depthmean_prior + std_samp;
 % 
+
+
 %     %Quasi correlated: every pt much be within 1 m of the point next to it
 %     hprop = normrnd(depthmean_prior,depthstd_prior);
 %     for i = 1:length(hprop) - 1
