@@ -148,6 +148,16 @@ It's important for
 
 
 \end{frame}
+%========================================================
+%SLIDE      
+%========================================================
+\begin{frame}
+\frametitle{Work flow of the project }
+\begin{figure}[flowchart]
+\includegraphics[width=.75\linewidth]{img/flow_chart.jpg}\hfill
+\end{figure}
+
+\end{frame}
 %==========================================================================================================================================
 % SLIDE 4: Getting measurements of coastal bathymetry can be kind of lame
 %======================================================================================
@@ -236,11 +246,12 @@ $${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
 \column{0.5\textwidth}
 \begin{itemize}
 \item Boundary Conditions (T,H)
-\item Light Detection and Ranging (H)
+\item CRAB/LARC (h)
+
 \end{itemize}
 \column{0.5\textwidth}
 \begin{itemize}
-\item CRAB/LARC (h)
+\item Light Detection and Ranging (H)
 \item Argus Video Monitior (k,f)
 \end{itemize}
 \end{columns}
@@ -324,14 +335,14 @@ k)$ posterior distribution
 %======================================================================================
 \begin{frame}
  \frametitle{MCMC Method: Log-Likelihood Function}
-\begin{itemize}
-\item Loglikelihood function compares simulated and observed \textit{k} values
+ Loglikelihood function compares simulated and observed \textit{k} values
+
 \begin{equation} \label{likely}
 \log{L(h|%H,
 k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
 \end{equation} 
 
-\end{itemize}
+
 \end{frame}
 %==========================================================================================================================================
 % SLIDE 13: MCMC Method: Metropolis Algorithm
@@ -355,7 +366,31 @@ arrive at a posterior distribution of \textit{h} profiles %which are expected to
 %SLIDE 14: fmincon
 %==========================================================================================================================================
  \begin{frame}
+\frametitle{Additive Gaussian Noise Model}
+
+Gaussian noise $\boldsymbol{\epsilon}$ corrupted measurements $\mathbf{d}$ with variance $\nu$ is given by 
+$$
+\mathbf{d} = \mathbf{A} \mathbf{h}_t + \boldsymbol{\epsilon}.
+$$
+
+\begin{tabular}{l c l}
+$\mathbf{d}$ &=& a vector of measurements,\\
+$\mathbf{A}$ &=& a linear forward operator,\\
+$\mathbf{h}_t$ &=& the true bathymetry. 
+\end{tabular}
+
+\end{frame}
+
+
+%==========================================================================================================================================
+%SLIDE 15: fmincon
+%==========================================================================================================================================
+ \begin{frame}
 \frametitle{fmincon}
+$$
+\mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
+$$
+
 
 
 \end{frame}
@@ -363,7 +398,9 @@ arrive at a posterior distribution of \textit{h} profiles %which are expected to
 
 %==========================================================================================================================================
 
-%SLIDE 15: Results
+
+
+%SLIDE 1: Results
 %==========================================================================================================================================
  \begin{frame}
 \frametitle{Results}
