@@ -1,4 +1,4 @@
-function [h_guess] = initialize_h_guess_pointwise(hgrid, xgrid, dx)
+function [h_guess] = initialize_h_guess_pointwise_16(hgrid, xgrid, dx)
 % This function creats an initial guess for the depths over the discrete
 % grid. It currently just guesses a linear profile from the beach to
 % boundary condition.
@@ -9,12 +9,12 @@ ind = find(~hgrid, 1);
 
 xi = xgrid(ind);
 
-    slope = -hgrid(1)/xi;
+    slope = -16/xi;
     h_guess = zeros(n, 1);
-    h_guess(1) = hgrid(1);
+    h_guess(1) = 16;
      
     h_asst=zeros(n,1);
-    h_asst(1) = hgrid(1);% for test
+    h_asst(1)=hgrid(1);% for test
     
 %     h_or=randn(100);
 %     h_1=h_or(h_or<1);
@@ -23,24 +23,7 @@ xi = xgrid(ind);
     
     h_rand = randi([0 1],n);
     
-%     for i = 1:n
-%         h_rand(i) = h_rand(i)/10;
-%     end
-    
     for i = 2:ind
-<<<<<<< HEAD
-        %%% linear guess
-%         h_guess(i) = h_guess(i-1) + slope*dx;% original
-%         h_guess(i)=sin(h_guess(i-1));
-        
-        %%% gap guess
-        h_asst(i)=h_asst(i-1)+slope*dx;
-        h_diff=abs(h_asst(i)-hgrid(i));
-        h_guess(i)=h_asst(i)+h_rand(i)*h_diff;
-         
-        %%% exp guess
-%         h_guess(i) = 0.1*(abs(xgrid(i)-1150))^(2/3);
-=======
         h_guess(i) = h_guess(i-1) + slope*dx;% original
         %h_guess(i)=sin(h_guess(i-1));
         
@@ -48,7 +31,6 @@ xi = xgrid(ind);
 %         h_diff=abs(h_asst(i)-hgrid(i));
 %         h_guess(i)=h_asst(i)+h_rand(i)*h_diff;
         
->>>>>>> 7b1b5b3390ccbace8f7c81b39274bafeab588872
     end 
     for i = ind+1:n
         h_guess(i) = 0;

@@ -1,7 +1,7 @@
 clc
 clear 
 close all
-
+   
 N     = 47; %116;  %47
 dx    = 25; %10;  %25
 [h,x] = get_hOct1;
