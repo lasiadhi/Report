@@ -9,6 +9,14 @@ Knowledge of bathymetry is important for many applications
 	during landing conditions for troops
 
 Wave Properties
-	-Some if these wave properties we can calculate
+	-Some of these wave properties we can calculate.....
+
+Direction Measurements are expensive and challenging
+	-Unfortunately, these measurements are expensive and challenging, so why
+	cant we go backwards? Can we input wave surface conditions into the model
+	and get the bathymetry back? We could gather surface conditions before big storms! 
+	Or before we land at an unknown beach.
+
+
 
 
