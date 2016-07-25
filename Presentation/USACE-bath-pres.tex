@@ -115,53 +115,40 @@
 %==============================================================================================================================
 %SLIDE 3: Bathymetry is topography under the sea
 %======================================================================================
-
 \begin{frame}
-\frametitle{Bathymetry is topography under the sea}
-%It's important for things like
+\frametitle{Why Bathymetry?}
 \begin{columns}
 \column{0.5\textwidth}
-It's important for 
-\begin{itemize}
-\item Marine navigation
-\item Repairing of storm damage
-\item Military planning
-\end{itemize}
+
+\begin{figure}[h!]
+\includegraphics[width=.80\linewidth]{img/Rip_C.jpg}\hfill
+\end{figure}
+
 \column{0.5\textwidth}
 \begin{figure}[h]
-\includegraphics[width=.70\linewidth]{img/Top.jpg}\hfill
+\includegraphics[width=.90\linewidth]{img/C_Flood.jpg}\hfill
 \end{figure}
+\begin{figure}[h]
+\includegraphics[width=.90\linewidth]{img/Navy_S.jpg}
+\end{figure}
+
 
 \end{columns}
 
+\end{frame}
 
 %\begin{itemize}
 %\item Marine navigation
 %\item Repairing of storm damage
 %\item Military planning
 %\end{itemize}
-%\begin{figure}[h]
-%\includegraphics[width=.40\linewidth]{img/Flood_D.jpg}\hfill
-
-%\end{figure}
 
 
-\end{frame}
-%========================================================
-%SLIDE      
-%========================================================
-\begin{frame}
-\frametitle{Work flow of the project }
-\begin{figure}[flowchart]
-\includegraphics[width=.75\linewidth]{img/flow_chart.jpg}\hfill
-\end{figure}
-
-\end{frame}
 %==========================================================================================================================================
 % SLIDE 4: Getting measurements of coastal bathymetry can be kind of lame
 %======================================================================================
 \begin{frame}
-\frametitle{Getting measurements of coastal bathymetry can be kind of lame}
+\frametitle{The Difficulty of Collecting Data}
 \begin{columns}
 \column{0.5\textwidth}
 In situ bathymetry data is
@@ -171,7 +158,7 @@ In situ bathymetry data is
  \item Sparse in time and space
 \end{itemize}
 \begin{figure}[h!]
-\includegraphics[width=.60\linewidth]{img/LARC2.jpg}\hfill
+\includegraphics[width=.80\linewidth]{img/LARC2.jpg}\hfill
 \centering
 \captionsetup{labelformat=empty}
 \caption{LARC}
@@ -188,12 +175,67 @@ In situ bathymetry data is
 
 \end{frame}
 
+%=====================================================================================================================
+%SLIDE      
+%=====================================================================================================================
+\begin{frame}
+\frametitle{Wave Properties}
+\begin{figure}[flowchart]
+\includegraphics[width=1.0\linewidth]{img/Wave.jpg}\hfill
+\end{figure}
+
+\end{frame}
+%==========================================================================================================================================
+
+
+
+%=====================================================================================================================
+%SLIDE      
+%=====================================================================================================================
+\begin{frame}
+\frametitle{Work flow of the project: Data }
+\begin{figure}[flowchart]
+\includegraphics[width=1.0\linewidth]{img/Focus_D.png}\hfill
+\end{figure}
+
+\end{frame}
+%==========================================================================================================================================
+% SLIDE 7: We have plenty of wave data...and some bathymetry
+%==============================================================================================================
+
+\begin{frame}
+\frametitle{We have plenty of wave data...and some bathymetry}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{itemize}
+\item Boundary Conditions (T,H)
+\item CRAB/LARC (h)
+
+\end{itemize}
+\column{0.5\textwidth}
+\begin{itemize}
+\item Light Detection and Ranging (H)
+\item Argus Video Monitior (k,f)
+\end{itemize}
+\end{columns}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{img/k1Dmean_std.png}
+%\captionsetup{labelformat=empty}
+%\caption{Argus- photogrammetry used to derive wave frequency and wave number.}
+
+\end{figure}
+\end{frame}
+%==================================================================================================================
+
+
 %==========================================================================================================================================
 % SLIDE 5: But we can invert for bathymetry given surface measurements
 %======================================================================================
 
 \begin{frame}
- \frametitle{But we can invert for bathymetry given surface measurements}
+ \frametitle{We can invert for bathymetry given surface measurements}
 
 Our goal is to estimate bathymetry with surface wave data instead of direct measurements of the submarine environment
 
@@ -206,7 +248,28 @@ Our goal is to estimate bathymetry with surface wave data instead of direct meas
 
 \end{frame}
 %==========================================================================================================================================
+% SLIDE 5: Forward Model
+%======================================================================================
+
+\begin{frame}
+ \frametitle{Work flow of the Project: Forward Model}
+
+
+
+\begin{figure}[H]
+	 	\centering
+	 	\includegraphics[width=1.0\linewidth]{img/FWD.png}
+	 	\end{figure}
+
+\end{frame}
+%==========================================================================================================================================
+
+
+
 \section{Methods}
+%==========================================================================================================================================
+
+
 %==========================================================================================================================================
 % SLIDE 6: 1D wave physics is well known for near coastal regions
 %======================================================================================
@@ -236,56 +299,18 @@ $${\quad c: Wave \,celerity,\, \sigma: Angular \,frequency,}$$
 $${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
 \end{frame}
 %==========================================================================================================================================
-% SLIDE 7: We have plenty of wave data...and some bathymetry
-%======================================================================================
-
-\begin{frame}
-\frametitle{We have plenty of wave data...and some bathymetry}
-\begin{columns}
-\column{0.5\textwidth}
-\begin{itemize}
-\item Boundary Conditions (T,H)
-\item CRAB/LARC (h)
-
-\end{itemize}
-\column{0.5\textwidth}
-\begin{itemize}
-\item Light Detection and Ranging (H)
-\item Argus Video Monitior (k,f)
-\end{itemize}
-\end{columns}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{img/k1Dmean_std.png}
-\captionsetup{labelformat=empty}
-\caption{Argus- photogrammetry used to derive wave frequency and wave number.}
-
-\end{figure}
-\end{frame}
-
-%==========================================================================================================================================
 % SLIDE 8: We invert for bathymetry given the surface data and physics
 %======================================================================================
 
 \begin{frame}
  \frametitle{We invert for bathymetry given the surface data and physics}
-I was thinking this should go here. What do you guys think?
 
-\begin{columns}
-\column{0.4\textwidth}
-\begin{itemize}
-\item Least squares
-\item MCMC
-\item fmincon
-\end{itemize}
-\column{0.8\textwidth}
 \begin{figure}[flowchart]
-\includegraphics[width=.80\linewidth]{img/flow_chart.jpg}\hfill
-\captionsetup{labelformat=empty}
-\caption{Work flow of the project }
+\includegraphics[width=1.0\linewidth]{img/INV.png}\hfill
+%\captionsetup{labelformat=empty}
+%\caption{Work flow of the project }
 \end{figure}
-\end{columns}
+%\end{columns}
 
 
 
@@ -299,14 +324,14 @@ I was thinking this should go here. What do you guys think?
 % SLIDE 9: We tried several inverse methods
 %======================================================================================
 
-\begin{frame}
- \frametitle{We tried several inverse methods}
-\begin{itemize}
-\item Nonlinear least squares
-\item MCMC
-\item fmincon
-\end{itemize}
-\end{frame}
+%\begin{frame}
+% \frametitle{We tried several inverse methods}
+%\begin{itemize}
+%\item Nonlinear least squares
+%\item MCMC
+%\item fmincon
+%\end{itemize}
+%\end{frame}
 %==========================================================================================================================================
 
 %==========================================================================================================================================
@@ -426,11 +451,11 @@ $$
 
 
 %==========================================================================================================================================
-%SLIDE 16: Future directions
+%SLIDE 16: Future directions fr IMSM 2017
 \section{Discussion}
 %==========================================================================================================================================
 \begin{frame}
- \frametitle{Future directions}
+ \frametitle{Future Directions for IMSM 2017}
  \begin{itemize}
  \item 2D problem
  \item Regularization methods
