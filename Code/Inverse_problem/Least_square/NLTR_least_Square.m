@@ -3,7 +3,7 @@
 clc
 N = 116;
 dx = 10;
-[h,x] = get_hOct1;
+[h,x] = get_hOct9;
 [hgrid,xq] = interp_h(h,x,dx);
 %h_guess = initialize_h_guess(hgrid,dx);
 h_guess = initialize_h_guess_pointwise(hgrid, xq, dx);
@@ -22,7 +22,7 @@ resnorm2;
 figure(2)
 plot(xq,hgrid, '-*b');
 hold on
-plot(xq,h_hat, '-^r');
+plot(xq,h_hat, '-r');
 hold on
 plot(xq,h_guess+1e-5,'-og');
 title('lsqnonlin:trust-region-reflective method', 'fontSize',14)
