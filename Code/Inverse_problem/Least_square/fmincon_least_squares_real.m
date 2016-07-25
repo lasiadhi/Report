@@ -16,13 +16,9 @@ h_guess    	= initialize_h_guess_pointwise(hgrid, xq, dx);
 % fmincon: Find minimum of constrained nonlinear multivariable function
 %options = optimoptions('Display','off');
 options = optimset('Display','iter');
-%[h_hat2,exitflag,output] = lsqnonlin(f, zeros(N,1), zeros(N,1),inf(N,1),options)
-%h_hat3   = fmincon(@objective_2norm, abs(h_guess)', [],[],[],[], zeros(N,1), repmat(12,[N,1]),[], options);
-%h_hat3   = fmincon(@objective_2norm, abs(h_guess)', [],[],[],[], -inf(N,1), inf(N,1),[], options);
-%h_hat3   = fmincon(@objective_2norm, abs(h_guess)',[],[],[],[],[],[],[],options);
-%h_hat3   = fmincon(@objective_2norm, hgrid,[],[],[],[],[],[],[],options);
+
 h_hat3    = fmincon(@objective_2norm_real, h_guess, [],[],[],[], zeros(N,1), repmat(11,[N,1]),[], options);
-%h_hat3   = fmincon(@objective_2norm, h_guess, [],[],[],[], zeros(N,1), repmat(12,[N,1]),[], options);
+
 
 % Remove points where there are no measurements for K and replace
 % Linear interpolation
@@ -49,7 +45,7 @@ subplot(2,1,1)
 plot(xq,hgrid, '-b');
 hold on
 % plot(xq,h_hat3, '-^r');
-plot(xq,h_approx, '-k');
+plot(xq,h_approx, '-r');
 title('fmincon Method with Real Data', 'fontSize',14);
 xlim([0,1150])
 xlabel('x Position (m)','FontSize',14);
