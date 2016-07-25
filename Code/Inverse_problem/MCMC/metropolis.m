@@ -124,7 +124,7 @@ disp('Plotting')
     end
     figure(6)
     clf
-    plot(xdat,flip(maxh),'b'); hold on
+    plot(xdat,maxh,'b'); hold on
     plot(xdat,hinit,'r'); hold on
     plot(xq,hgrid,'k');
     
