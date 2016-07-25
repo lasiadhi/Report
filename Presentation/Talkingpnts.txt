@@ -1,0 +1,14 @@
+===================================Intro=========================================
+Bathymetry is submarine topography
+	-its just a complicated word for topography...but underwater
+
+Knowledge of bathymetry is important for many applications
+	-Navigation
+		-military and domestic! Landing troops or pleasure crafts
+	-Predict flooding and wave conditions during extreme weather events or 
+	during landing conditions for troops
+
+Wave Properties
+	-Some if these wave properties we can calculate
+
+

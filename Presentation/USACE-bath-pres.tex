@@ -86,293 +86,338 @@
   \setbeamertemplate{navigation symbols}{}
   \usecolortheme{sidebartab}
 }
-%======================================================================================
+%====================================================================================
 % SLIDE 1: TITLE
-%======================================================================================
+%====================================================================================
 
 \title[Bathymetry Inversion from Waves]{Inverting for Near Coastal Bathymetry from Surface Wave Properties}
-\author[USACE Bathymetry]{Presented \\ by\\Us\\Supervised by\\Ty  Hesser (USACE)\\Lea Jenkins (Clemson)}
-\institute[IMSM]{Industrial Mathematical and Statistical Modeling}
+\author[]{ 
+Lasith Adhikari, Charnelle Bland, \\
+Lopamudra (Monty) Chakravarty, Wenbin Dong, \\
+Olaniyi Samuel Iyiola, Gail Muldoon, Clint Seinen \\
+\vspace{5mm}
+Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
+}
+\institute[IMSM]{Industrial Mathematical and Statistical Modeling Workshop}
 \date{July 2016}
 %\logo{\includegraphics[height=1.4cm,width=1.5cm]{aust_logo}}
 \begin{document}
- \frame{\titlepage}
-\frame{
-\frametitle{Discovering Bathymetry}
-%\tableofcontents
-\begin{columns}
-\column{0.25\textwidth}
-\tableofcontents
-\column{0.7\textwidth}
-\begin{figure}[h]
-\includegraphics[width=.80\linewidth]{img/Bathy_B.png}\hfill
-\end{figure}
 
-\end{columns}
+%====================================================================================
+% SLIDE 2
+%====================================================================================
+\frame{\titlepage}
+	\frame{
+		\frametitle{Outline}
+			\begin{columns}
+				\column{0.33\textwidth}
+				\tableofcontents
+			\column{0.67\textwidth}
+				\begin{figure}[h]
+					\includegraphics[width=1.\linewidth]{img/surfer.jpg}\hfill
+				\end{figure}
 
-}
-\section{Introduction }
-%==============================================================================================================================
-%SLIDE 3: Bathymetry is topography under the sea
+			\end{columns}
+	}
+	
+%======================================================================================
+%======================================================================================
+\section{Introduction}
+%======================================================================================
 %======================================================================================
 
-\begin{frame}
-\frametitle{Bathymetry is topography under the sea}
-%It's important for things like
-\begin{columns}
-\column{0.5\textwidth}
-It's important for 
-\begin{itemize}
-\item Marine navigation
-\item Repairing of storm damage
-\item Military planning
-\end{itemize}
-\column{0.5\textwidth}
-\begin{figure}[h]
-\includegraphics[width=.70\linewidth]{img/Top.jpg}\hfill
-\end{figure}
-
-\end{columns}
-
-
-%\begin{itemize}
-%\item Marine navigation
-%\item Repairing of storm damage
-%\item Military planning
-%\end{itemize}
-%\begin{figure}[h]
-%\includegraphics[width=.40\linewidth]{img/Flood_D.jpg}\hfill
-
-%\end{figure}
-
-
-\end{frame}
-%========================================================
-%SLIDE      
-%========================================================
-\begin{frame}
-\frametitle{Work flow of the project }
-\begin{figure}[flowchart]
-\includegraphics[width=.75\linewidth]{img/flow_chart.jpg}\hfill
-\end{figure}
-
-\end{frame}
-%==========================================================================================================================================
-% SLIDE 4: Getting measurements of coastal bathymetry can be kind of lame
+%======================================================================================
+% SLIDE 3
 %======================================================================================
 \begin{frame}
-\frametitle{Getting measurements of coastal bathymetry can be kind of lame}
-\begin{columns}
-\column{0.5\textwidth}
-In situ bathymetry data is
-\begin{itemize}
- \item Expensive to collect
- \item Located in a hazardous environment (surf zone)
- \item Sparse in time and space
-\end{itemize}
-\begin{figure}[h!]
-\includegraphics[width=.60\linewidth]{img/LARC2.jpg}\hfill
-\centering
-\captionsetup{labelformat=empty}
-\caption{LARC}
-\end{figure}
-\column{0.5\textwidth}
-\begin{figure}[h]
-\includegraphics[width=.6\linewidth]{img/CRAB3.JPG}
-\captionsetup{labelformat=empty}
-\caption{CRAB}
-\end{figure}
-
-
-\end{columns}
-
+	\frametitle{Bathymetry is submarine topography}
+		\begin{figure}[h]
+			\includegraphics[width=1.\linewidth]{img/bath_topo_example.png}\hfill
+		\end{figure}
+\end{frame}
+%======================================================================================
+%SLIDE 4
+%======================================================================================
+\begin{frame}
+    \frametitle{Knowledge of bathymetry is used in many ways}
+        \begin{columns}
+            \column{0.5\textwidth}           
+                \begin{figure}[h!]
+                		\includegraphics[width=1\linewidth]{img/Rip_C.jpg}\hfill
+                \end{figure}              
+            \column{0.5\textwidth}
+                \begin{figure}
+                		\includegraphics[width=1\linewidth]{img/C_Flood.jpg}\vfill
+               		\includegraphics[width=1\linewidth]{img/Navy_S.jpg}
+                \end{figure}       
+        \end{columns}
 \end{frame}
 
-%==========================================================================================================================================
-% SLIDE 5: But we can invert for bathymetry given surface measurements
-%======================================================================================
 
+%=====================================================================================
+%SLIDE  5
+%=====================================================================================
 \begin{frame}
- \frametitle{But we can invert for bathymetry given surface measurements}
+    \frametitle{Surface waves can be used to invert for bathymetry}
+        \begin{figure}[flowchart]
+            \includegraphics[width=1.0\linewidth]{img/Wave.jpg}\hfill
+        \end{figure}
+\end{frame}
+%=====================================================================================
+% SLIDE 6
+%======================================================================================
+\begin{frame}
+    \frametitle{Direct measurements are expensive and challenging}
 
-Our goal is to estimate bathymetry with surface wave data instead of direct measurements of the submarine environment
+    \begin{columns}
+    
+        \column{0.5\textwidth}
+            \centering
+            \begin{figure}[h!]
+                \includegraphics[width=1\linewidth]{img/LARC2.jpg}\hfill
+                \centering
+                \captionsetup{labelformat=empty}
+                \caption{LARC}
+            \end{figure}
+        
+        \column{0.5\textwidth}
+            \begin{figure}[h]
+                \includegraphics[width=0.8\linewidth]{img/CRAB3.JPG}
+                \captionsetup{labelformat=empty}
+                \caption{CRAB}
+            \end{figure}
+    
+    \end{columns}
+\end{frame}
 
-\begin{figure}[H]
+%=====================================================================================
+% SLIDE 7
+%=====================================================================================
+\begin{frame}
+    \frametitle{Inverse methods combine data and forward model to estimate depth}
+    
+    	\begin{figure}[H]
 	 	\centering
-	 	\includegraphics[width=0.6\linewidth]{img/trueBath2D.png}
-	 	\caption{Measured and gridded 2D bathymetry from survey data. Red line is the transect for 1D problem.}
-	 	\label{2D Bath}
+	 	\includegraphics[width=1.0\linewidth]{img/Flow_C.png}
+	\end{figure}
+		
+\end{frame}
+
+
+%====================================================================================
+%====================================================================================
+\section{Data}
+%====================================================================================
+%====================================================================================
+
+%====================================================================================
+% SLIDE  8
+%====================================================================================
+\begin{frame}
+    \frametitle{Work flow of the project: Data }
+        \begin{figure}[flowchart]
+        \includegraphics[width=1.0\linewidth]{img/Focus_D.png}
+        \end{figure}
+\end{frame}
+
+%====================================================================================
+%SLIDE   9
+%====================================================================================
+\begin{frame}
+	\frametitle{Surface and bathymetry data collected by USACE in Duck, NC}
+		 \centering
+		 \begin{figure}
+       			 \includegraphics[width=1\linewidth]{img/map_ncsu_duck.png}
+       		 \end{figure}
+\end{frame}
+
+%====================================================================================
+% SLIDE 10
+%====================================================================================
+\begin{frame}
+	\frametitle{Data includes $T$, $H$ at offshore boundary, 1D $k$}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\linewidth]{img/k1Dmean_std.png}
+		\end{figure}
+\end{frame}
+
+
+%====================================================================================
+% SLIDE 11
+%====================================================================================
+\begin{frame}
+	\frametitle{Known bathymetry is used for testing our results}
+		\begin{columns}
+			\column{0.5\textwidth}
+				\begin{figure}[H]
+	 				\includegraphics[width=1.2\linewidth]{img/trueBath2D.png}
+	 			\end{figure}
+			\column{0.5\textwidth}
+				\begin{figure}[h]
+					\includegraphics[width=.70\linewidth]{img/DepthChart.png}
+				\end{figure}
+			\end{columns}
+\end{frame}
+
+%==================================================================================
+%==================================================================================
+\section{Forward Model}
+%==================================================================================
+%==================================================================================
+
+%==================================================================================
+% SLIDE 12
+%==================================================================================
+\begin{frame}
+ 	\frametitle{Work flow of the Project: Forward Model}
+		\begin{figure}[H]
+	 		\centering
+	 		\includegraphics[width=1.0\linewidth]{img/Focus_D.png}
 	 	\end{figure}
-
 \end{frame}
-%==========================================================================================================================================
-\section{Methods}
-%==========================================================================================================================================
-% SLIDE 6: 1D wave physics is well known for near coastal regions
-%======================================================================================
-\begin{frame}
- \frametitle{1D wave physics is well known for near coastal regions}
-\centering
-\begin{itemize}
-\item 1D Forward Model
-\end{itemize}
 
-\begin{eqnarray*}
-\label{fp1}
-\left \{
-\begin{array}{lll}
-\frac{d}{dx}\left(EC_g\right)=-\delta,\\
-\\
-\sigma^2=gk\tanh(kh),
-\label{ode}
-\end{array}
-\right.
-\end{eqnarray*}
-\begin{flushleft}
-where,
-\end{flushleft}
-$${E: Wave \,Energy,\, C_{g}: Group \,celerity,}$$
-$${\quad c: Wave \,celerity,\, \sigma: Angular \,frequency,}$$
-$${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
+%==================================================================================
+%==================================================================================
+\section{Inverse Methods}
+%==================================================================================
+%==================================================================================
+
+%==================================================================================
+% SLIDE 13
+%==================================================================================
+\begin{frame}
+	\frametitle{1D wave physics is well known for near coastal regions}
+		\centering
+		\begin{itemize}
+			\item 1D Forward Model
+		\end{itemize}
+		\begin{eqnarray*}
+			\label{fp1}
+			\left \{
+				\begin{array}{lll}
+					\frac{d}{dx}\left(EC_g\right)=-\delta,\\
+					\\
+					\sigma^2=gk\tanh(kh),
+					\label{ode}
+				\end{array}
+			\right.
+		\end{eqnarray*}
+		\begin{flushleft}
+			where,
+		\end{flushleft}
+		$${E: Wave \,Energy,\, C_{g}: Group \,celerity,}$$
+		$${\quad c: Wave \,celerity,\, \sigma: Angular \,frequency,}$$
+		$${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
 \end{frame}
-%==========================================================================================================================================
-% SLIDE 7: We have plenty of wave data...and some bathymetry
-%======================================================================================
 
+%==================================================================================
+% SLIDE 14
+%==================================================================================
 \begin{frame}
-\frametitle{We have plenty of wave data...and some bathymetry}
-\begin{columns}
-\column{0.5\textwidth}
-\begin{itemize}
-\item Boundary Conditions (T,H)
-\item CRAB/LARC (h)
+ \frametitle{We invert for bathymetry given the surface data and physics}
 
-\end{itemize}
-\column{0.5\textwidth}
-\begin{itemize}
-\item Light Detection and Ranging (H)
-\item Argus Video Monitior (k,f)
-\end{itemize}
-\end{columns}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{img/k1Dmean_std.png}
-\captionsetup{labelformat=empty}
-\caption{Argus- photogrammetry used to derive wave frequency and wave number.}
-
+\begin{figure}[flowchart]
+\includegraphics[width=1.0\linewidth]{img/INV.png}\hfill
+%\captionsetup{labelformat=empty}
+%\caption{Work flow of the project }
 \end{figure}
-\end{frame}
+%\end{columns}
 
+
+\end{frame}
 %==========================================================================================================================================
 % SLIDE 8: We invert for bathymetry given the surface data and physics
 %======================================================================================
 
 \begin{frame}
- \frametitle{We invert for bathymetry given the surface data and physics}
-I was thinking this should go here. What do you guys think?
+ \frametitle{Inversion Methods}
 
-\begin{columns}
-\column{0.4\textwidth}
 \begin{itemize}
-\item Least squares
+\item Nonlinear Least Squares
 \item MCMC
 \item fmincon
 \end{itemize}
-\column{0.8\textwidth}
-\begin{figure}[flowchart]
-\includegraphics[width=.80\linewidth]{img/flow_chart.jpg}\hfill
-\captionsetup{labelformat=empty}
-\caption{Work flow of the project }
-\end{figure}
-\end{columns}
-
-
-
-
-
 
 \end{frame}
+
+
 %==========================================================================================================================================
-\section{Results}
+% 
+%======================================================================================
+\subsection{Synthetic data}
+\begin{frame}
+ \frametitle{Synthetic Data}
+\end{frame}
+
+%==========================================================================================================================================
+% 
+%======================================================================================
+\begin{frame}
+ \frametitle{Synthetic Results plots for each}
+\end{frame}
+
+\subsection{Real data}
+%==========================================================================================================================================
+% 
+%======================================================================================
+\begin{frame}
+ \frametitle{Real data for runs}
+\end{frame}
+
+%==========================================================================================================================================
+% 
+%======================================================================================
+\begin{frame}
+ \frametitle{Real Results plots for each}
+\end{frame}
+
+%==========================================================================================================================================
+%SLIDE 16: Future directions fr IMSM 2017
+\section{Discussion}
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{Future Directions }
+ \begin{itemize}
+ \item Use of wave heights
+ \item Regularization methods
+ \item 2D problem
+ \end{itemize}
+
+\end{frame}
+%=====================================================================================================
+% Slide 17: THANK YOU
+%==========================================================================================================
+\begin{frame}
+\frametitle{}
+\hspace{2.5cm}
+\begin{minipage}{50mm}   
+                                                                                                                           
+      \begin{alertblock}{}    
+                                          
+            \begin{center}
+                                                                                                                                                                                  
+                  \textbf{THANK YOU!}
+                            
+                                                                       
+            \end{center}
+      \end{alertblock}
+\end{minipage}
+\end{frame}
+
+%==========================================================================================================================================
 %==========================================================================================================================================
 % SLIDE 9: We tried several inverse methods
 %======================================================================================
 
-\begin{frame}
- \frametitle{We tried several inverse methods}
-\begin{itemize}
-\item Nonlinear least squares
-\item MCMC
-\item fmincon
-\end{itemize}
-\end{frame}
-%==========================================================================================================================================
-
-%==========================================================================================================================================
-% SLIDE 10: Nonlinear least squares
-%======================================================================================
-
- \begin{frame}
-\frametitle{Nonlinear least squares}
-
-
-\end{frame}
-
-
-%==========================================================================================================================================
-% SLIDE 11: Bayesian Markov Chain Monte Carlo (MCMC) Method
-%======================================================================================
-
- \begin{frame}
-\frametitle{Bayesian Markov Chain Monte Carlo (MCMC) Method}
-The MCMC method creates a posterior distribution of depth profiles, given wave number by using the Bayes relationship
-
-\begin{equation}\label{bayes}
-P(h|%H,
-k) \propto \Pi(h)L(h|%H,
-k),
-\end{equation} 
-\begin{itemize}
-\item $\Pi(h)$  prior distribution
-\item $L(h|%H,
-k)$ likelihood function
-\item $P(h|%H,
-k)$ posterior distribution
-\end{itemize}
-\end{frame}
-
-%==========================================================================================================================================
-% SLIDE 12: MCMC Method: Log-Likelihood Function
-%======================================================================================
-\begin{frame}
- \frametitle{MCMC Method: Log-Likelihood Function}
- Loglikelihood function compares simulated and observed \textit{k} values
-
-\begin{equation} \label{likely}
-\log{L(h|%H,
-k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
-\end{equation} 
-
-
-\end{frame}
-%==========================================================================================================================================
-% SLIDE 13: MCMC Method: Metropolis Algorithm
-
-%==========================================================================================================================================
-\begin{frame}
- \frametitle{MCMC Method: Metropolis Algorithm}
-\begin{itemize}
-\item Prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}\\
-\begin{equation}\label{post}
-P(h|%H,
-k) = log(\Pi(h)) + log(L(h|%H,
-k))
-\end{equation}
-\item Uses a markov chain random walk to %propose and compare new \textit{h} profiles
-arrive at a posterior distribution of \textit{h} profiles %which are expected to describe true bathymetry
-\end{itemize}
-\end{frame}
+%\begin{frame}
+% \frametitle{We tried several inverse methods}
+%\begin{itemize}
+%\item Nonlinear least squares
+%\item MCMC
+%\item fmincon
+%\end{itemize}
+%\end{frame}
 %==========================================================================================================================================
 
 %SLIDE 14: fmincon
@@ -398,20 +443,71 @@ $\mathbf{h}_t$ &=& the true bathymetry.
 %SLIDE 15: fmincon
 %==========================================================================================================================================
  \begin{frame}
-\frametitle{fmincon}
+\frametitle{fmincon: Tikhonov Method}
+\centering
+Uses a regularized solution with prior information
 $$
 \mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
 $$
+\end{frame}
 
+%==========================================================================================================================================
+% SLIDE 11: Bayesian Markov Chain Monte Carlo (MCMC) Method
+%======================================================================================
 
+ \begin{frame}
+\frametitle{Bayesian Markov Chain Monte Carlo (MCMC) Method}
+The MCMC method creates a posterior distribution of depth profiles, given wave number by using the Bayes relationship
+
+\begin{equation}\label{bayes}
+P(h|%H,
+k) \propto \Pi(h)L(h|%H,
+k),
+\end{equation} 
+%\begin{itemize}
+%\item $\Pi(h)$  prior distribution
+%\item $L(h|%H,
+%k)$ likelihood function
+%\item $P(h|%H,
+%k)$ posterior distribution
+%\end{itemize}
+\end{frame}
+
+%==========================================================================================================================================
+% SLIDE 13: MCMC Method: Metropolis Algorithm
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{MCMC Method: Metropolis Algorithm}
+\begin{itemize}
+\item Prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}\\
+\begin{equation}\label{post}
+P(h|%H,
+k) = log(\Pi(h)) + log(L(h|%H,
+k))
+\end{equation}
+\item Uses a markov chain random walk to %propose and compare new \textit{h} profiles
+arrive at a posterior distribution of \textit{h} profiles %which are expected to describe true bathymetry
+\end{itemize}
+\end{frame}
+%==========================================================================================================================================
+% SLIDE 10: Nonlinear least squares
+%===================================================================================================================
+
+ \begin{frame}
+\frametitle{Nonlinear Least Squares: Trusted Region-Reflective Method}
+
+\begin{equation}\label{LS}
+\mathbf{\hat{h}}= \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \ \ f(\mathbf{h}) = \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2,
+\end{equation}
+
+\begin{figure}[H]
+	 	\centering
+	 	\includegraphics[width=.70\linewidth]{img/trust_region_linear.png}
+	 	\end{figure}
 
 \end{frame}
 
-
 %==========================================================================================================================================
-
-
-
 %SLIDE 1: Results
 %==========================================================================================================================================
  \begin{frame}
@@ -425,40 +521,22 @@ $$
 
 
 
-%==========================================================================================================================================
-%SLIDE 16: Future directions
-\section{Discussion}
-%==========================================================================================================================================
+
+%===========================================================================================================================================
+% SLIDE 12: MCMC Method: Log-Likelihood Function
+%======================================================================================
 \begin{frame}
- \frametitle{Future directions}
- \begin{itemize}
- \item 2D problem
- \item Regularization methods
- \item Use of wave heights
- \item Other dominant modes of k (and f)
- \end{itemize}
+ \frametitle{MCMC Method: Log-Likelihood Function}
+ Loglikelihood function compares simulated and observed \textit{k} values
+
+\begin{equation} \label{likely}
+\log{L(h|%H,
+k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
+\end{equation} 
+
 
 \end{frame}
-%========================================
-% Slide 17: THANK YOU
-%========================================
-\begin{frame}
-\frametitle{}
-\hspace{2.5cm}
-\begin{minipage}{50mm}   
-                                                                                                                           
-      \begin{alertblock}{}    
-                                          
-            \begin{center}
-                                                                                                                                                                                  
-                  \textbf{THANK YOU!}
-                            
-                                                                       
-            \end{center}
-      \end{alertblock}
-\end{minipage}
-\end{frame}
-%===========================================================================================================================================
+%==========================================================================================================================================
 
 
 \end{document}

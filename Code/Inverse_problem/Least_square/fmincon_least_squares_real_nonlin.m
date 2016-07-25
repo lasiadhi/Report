@@ -8,8 +8,6 @@ N  	= size(x_data,1);
 
 [h,x] 		= get_hOct9;
 [hgrid,xq] 	= interp_h(h,x,dx);
-%h_guess = initialize_h_guess(hgrid,dx);
-%h_guess    = initialize_h_guess_pointwise_16(hgrid, xq, dx);
 h_guess    	= initialize_h_guess_pointwise(hgrid, xq, dx);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,8 +15,7 @@ h_guess    	= initialize_h_guess_pointwise(hgrid, xq, dx);
 %options = optimoptions('Display','off');
 options = optimset('Display','iter', 'MaxFunEvals', 6000, 'TolFun', 1e-5);
 
-h_hat3    = fmincon(@objective_2norm_real, h_guess, [],[],[],[], zeros(N,1), repmat(11,[N,1]),[], options);
-
+h_hat3    = fmincon(@objective_2norm_real_nonlin, h_guess, [],[],[],[], zeros(N,1), repmat(11,[N,1]),[], options);
 
 % Remove points where there are no measurements for K and replace
 % Linear interpolation
@@ -44,8 +41,8 @@ figure(3)
 subplot(2,1,1)
 plot(xq,hgrid, '-b');
 hold on
-% plot(xq,h_hat3, '-^r');
-plot(xq,h_approx, '-r');
+plot(xq,h_approx, '-^r');
+% plot(xq,h_hat3, '-r');
 title('fmincon Method with Real Data', 'fontSize',14);
 xlim([0,1150])
 xlabel('x Position (m)','FontSize',14);
