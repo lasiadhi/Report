@@ -28,32 +28,13 @@ xi = xgrid(ind);
 %     end
     
     for i = 2:ind
-<<<<<<< HEAD
         %%% linear guess
-%         h_guess(i) = h_guess(i-1) + slope*dx;% original
-%         h_guess(i)=sin(h_guess(i-1));
-        
-        %%% gap guess
-        h_asst(i)=h_asst(i-1)+slope*dx;
-        h_diff=abs(h_asst(i)-hgrid(i));
-        h_guess(i)=h_asst(i)+h_rand(i)*h_diff;
-         
-        %%% exp guess
-%         h_guess(i) = 0.1*(abs(xgrid(i)-1150))^(2/3);
-=======
-
->>>>>>> ecdbe210b1392c12c36a81645a7205bbaff37b7e
         h_guess(i) = h_guess(i-1) + slope*dx;% original
         %h_guess(i)=sin(h_guess(i-1));
         
 %         h_asst(i)=h_asst(i-1)+slope*dx;
 %         h_diff=abs(h_asst(i)-hgrid(i));
 %         h_guess(i)=h_asst(i)+h_rand(i)*h_diff;
-        
-<<<<<<< HEAD
-
-=======
->>>>>>> ecdbe210b1392c12c36a81645a7205bbaff37b7e
     end 
     for i = ind+1:n
         h_guess(i) = 0;

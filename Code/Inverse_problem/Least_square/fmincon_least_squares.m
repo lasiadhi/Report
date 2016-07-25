@@ -13,6 +13,7 @@ h_guess    = initialize_h_guess_pointwise(hgrid, xq, dx);
 
 load('k_1percNoisedata_N47.mat','k'); 
 
+k
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fmincon: Find minimum of constrained nonlinear multivariable function
