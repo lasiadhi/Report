@@ -102,24 +102,8 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 \date{July 2016}
 %\logo{\includegraphics[height=1.4cm,width=1.5cm]{aust_logo}}
 \begin{document}
-
-%====================================================================================
-% SLIDE 2
-%====================================================================================
 \frame{\titlepage}
-	\frame{
-		\frametitle{Outline}
-			\begin{columns}
-				\column{0.33\textwidth}
-				\tableofcontents
-			\column{0.67\textwidth}
-				\begin{figure}[h]
-					\includegraphics[width=1.\linewidth]{img/surfer.jpg}\hfill
-				\end{figure}
 
-			\end{columns}
-	}
-	
 %======================================================================================
 %======================================================================================
 \section{Introduction}
@@ -127,19 +111,10 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 %======================================================================================
 
 %======================================================================================
-% SLIDE 3
+%SLIDE 2
 %======================================================================================
 \begin{frame}
-	\frametitle{Bathymetry is submarine topography}
-		\begin{figure}[h]
-			\includegraphics[width=1.\linewidth]{img/bath_topo_example.png}\hfill
-		\end{figure}
-\end{frame}
-%======================================================================================
-%SLIDE 4
-%======================================================================================
-\begin{frame}
-    \frametitle{Knowledge of bathymetry is used in many ways}
+    \frametitle{Many coastal processes are affected by bathymetry}
         \begin{columns}
             \column{0.5\textwidth}           
                 \begin{figure}[h!]
@@ -154,17 +129,18 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 \end{frame}
 
 
-%=====================================================================================
-%SLIDE  5
-%=====================================================================================
+%======================================================================================
+% SLIDE 3
+%======================================================================================
 \begin{frame}
-    \frametitle{Surface waves can be used to invert for bathymetry}
-        \begin{figure}[flowchart]
-            \includegraphics[width=1.0\linewidth]{img/Wave.jpg}\hfill
-        \end{figure}
+	\frametitle{Bathymetry is submarine topography}
+		\begin{figure}[h]
+			\includegraphics[width=1.\linewidth]{img/bath_topo_example.png}\hfill
+		\end{figure}
 \end{frame}
+
 %=====================================================================================
-% SLIDE 6
+% SLIDE 4
 %======================================================================================
 \begin{frame}
     \frametitle{Direct measurements are expensive and challenging}
@@ -191,17 +167,31 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 \end{frame}
 
 %=====================================================================================
-% SLIDE 7
+% SLIDE 5
 %=====================================================================================
 \begin{frame}
-    \frametitle{Inverse methods combine data and forward model to estimate depth}
+    \frametitle{Inverse models estimate depth using data \& physics}
     
     	\begin{figure}[H]
 	 	\centering
 	 	\includegraphics[width=1.0\linewidth]{img/Flow_C.png}
 	\end{figure}
-		
 \end{frame}
+
+%=====================================================================================
+%SLIDE  6
+%=====================================================================================
+\begin{frame}
+    \frametitle{Bathymetry is related to surface wave properties}
+        \begin{figure}[flowchart]
+            \includegraphics[width=1.0\linewidth]{img/Wave.jpg}
+        \end{figure}
+        \centering
+        \begin{equation}
+        		k = \frac{2\pi}{L}
+        \end{equation}
+\end{frame}
+
 
 
 %====================================================================================
@@ -211,20 +201,20 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 %====================================================================================
 
 %====================================================================================
-% SLIDE  8
+% SLIDE  7
 %====================================================================================
 \begin{frame}
-    \frametitle{Work flow of the project: Data }
+    \frametitle{Before we invert we need data}
         \begin{figure}[flowchart]
         \includegraphics[width=1.0\linewidth]{img/Focus_D.png}
         \end{figure}
 \end{frame}
 
 %====================================================================================
-%SLIDE   9
+%SLIDE   8
 %====================================================================================
 \begin{frame}
-	\frametitle{Surface and bathymetry data collected by USACE in Duck, NC}
+	\frametitle{Data was collected by the  USACE in Duck, NC}
 		 \centering
 		 \begin{figure}
        			 \includegraphics[width=1\linewidth]{img/map_ncsu_duck.png}
@@ -232,7 +222,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 \end{frame}
 
 %====================================================================================
-% SLIDE 10
+% SLIDE 9
 %====================================================================================
 \begin{frame}
 	\frametitle{Data includes $T$, $H$ at offshore boundary, 1D $k$}
@@ -244,7 +234,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 
 
 %====================================================================================
-% SLIDE 11
+% SLIDE 10
 %====================================================================================
 \begin{frame}
 	\frametitle{Known bathymetry is used for testing our results}
@@ -267,13 +257,13 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 %==================================================================================
 
 %==================================================================================
-% SLIDE 12
+% SLIDE 11
 %==================================================================================
 \begin{frame}
- 	\frametitle{Work flow of the Project: Forward Model}
+ 	\frametitle{Forward model computes $k$ assuming $h_{guess}$ \& BC}
 		\begin{figure}[H]
 	 		\centering
-	 		\includegraphics[width=1.0\linewidth]{img/Focus_D.png}
+	 		\includegraphics[width=1.0\linewidth]{img/FWD.png}
 	 	\end{figure}
 \end{frame}
 
@@ -287,11 +277,8 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 % SLIDE 13
 %==================================================================================
 \begin{frame}
-	\frametitle{1D wave physics is well known for near coastal regions}
-		\centering
-		\begin{itemize}
-			\item 1D Forward Model
-		\end{itemize}
+	\frametitle{1D wave physics is known for near-coastal regions}
+		Assume linear wave theory:
 		\begin{eqnarray*}
 			\label{fp1}
 			\left \{
@@ -303,6 +290,9 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 				\end{array}
 			\right.
 		\end{eqnarray*}
+		\begin{equation*}
+			\frac{d}{dx}\left( \frac{\lambda}{k}\left(1+\frac{2kh}{\sinh(2kh)}\right)H^2 \right)=-\delta
+		\end{equation*}  
 		\begin{flushleft}
 			where,
 		\end{flushleft}
