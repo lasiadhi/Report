@@ -2,6 +2,9 @@
 % lsqnonlin: trust-region-reflective method for synthetic data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clc
+clear 
+close all
+
 N = 116;
 dx = 10;
 [h,x] = get_hOct1;
