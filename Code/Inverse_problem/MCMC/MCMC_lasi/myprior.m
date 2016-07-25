@@ -4,11 +4,11 @@ function p2 = myprior(x)
 
 % known values
 mu    = 0;
-sigma = 1;
+sigma = 0.5;
 
 %% bounded h
-x(x<0) = 1e+7;
-x(x>11) = 1e+7;
+x(x<0) = 1e+10;
+x(x>11) = 1e+10;
 %%
 
 % Gaussian prior
