@@ -90,7 +90,7 @@ figure(1)
 plot(xq,hgrid, '-*b');
 hold on
 plot(xq,h_final, '-^r');
-title('MCMC', 'fontSize',14)
+title('MCMC - Metropolis?Hastings Algorithm', 'fontSize',14)
 xlabel('x Position (m)','FontSize',14);
 ylabel('Depth (m)','FontSize',14);
 set(gca,'ydir','reverse')
