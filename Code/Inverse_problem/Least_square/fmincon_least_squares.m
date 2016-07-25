@@ -2,8 +2,8 @@ clc
 clear 
 close all
 
-N     = 47; %116;  %47
-dx    = 25; %10;  %25
+N     = 47; %116;  %47;  %24
+dx    = 25; %10;   %25;  %50
 [h,x] = get_hOct1;
 [hgrid,xq] = interp_h(h,x,dx);
 %h_guess = initialize_h_guess(hgrid,dx);
@@ -13,7 +13,11 @@ h_guess    = initialize_h_guess_pointwise(hgrid, xq, dx);
 
 load('k_1percNoisedata_N47.mat','k'); 
 
-k
+% kk = zeros(24, 1);
+% 
+% for i = 1: 24
+%     kk(i) = k(2*i-1);
+% end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fmincon: Find minimum of constrained nonlinear multivariable function
