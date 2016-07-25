@@ -2,84 +2,82 @@
  Bayesian MCMC method to calculate posterior probability of depth profile,
  h, given data for k along a 1D profile. 
 %}
-%clc
-%clear
+clc
+clear
 %% Initialize
 disp('Initializing')
-%Get k data 
-addpath('../../../Data/')
-[k,x_k]=get1Dk();
+% %Get k data 
+% addpath('../../../Data/')
+% [k,x_k]=get1Dk();
 
-%Data for prior
-bath=load('../../../Data/transect_depth_ensembles_500_dx_10.mat');
-%x = [0:10:1140]'; %bath.x doesn't have the correct dims, so fixing that
+% %Data for prior
+% bath=load('../../../Data/transect_depth_ensembles_500_dx_10.mat');
+% %x = [0:10:1140]'; %bath.x doesn't have the correct dims, so fixing that
 
-[k1Dmean_dat,k1Dstd_dat]=get1DkStats();
-kdat_std = mean(k1Dstd_dat);
-%use mean std of k as variance in likelihood
-vark = kdat_std^2;
+% [k1Dmean_dat,k1Dstd_dat]=get1DkStats();
+% kdat_std = mean(k1Dstd_dat);
+% %use mean std of k as variance in likelihood
+% vark = kdat_std^2;
+
 
 %use mean k vector as truth
-
-kdat = k1Dmean_dat;
+% kdat = k1Dmean_dat;
 
 %impute values of k
 %linear regression to extrapolate k
-nh=length(bath.depth(:,1));
-kImputed = kImpute(x_k,kdat,nh);
+% nh=length(bath.depth(:,1));
+% kImputed = kImpute(x_k,kdat,nh);
 
-% Metropolis things
-burnin   = 500;   % markov chain need to converge 
-numsteps = 5000;
-totsteps = numsteps + burnin;
 
 % Initial guess for h (from previous data)
 % For the moment this is the true bathymetry
 % will eventually be like proposal
 
+dx=25;
 [hOrig,x] = get_hOct9();
-dx=10;
 [hgrid,xq] = interp_h(hOrig,x,dx);
 %make initial guess the true bath
 %hinit = hdat;
 
 %Initial h and k is same as Lasith's
 addpath('../Least_square');
-hinit = initialize_h_guess_pointwise(hgrid,dx);
+hinit = initialize_h_guess_pointwise(hgrid,xq,dx);
 
-hinit=hinit(1:end-1);
-hdat = hinit;
+% hinit=hinit(1:end-1);
+% hdat = hinit;
 
 %[ksim]=load('../k_1percNoisedata_N47.mat');
 %kImputed =ksim.k;
 
-xdat=xq(1:end-1);
-
-%Initial guess for forward model
+%use a simulated k
+addpath('../')
+load('k_1percNoisedata_N47.mat','k_noisy'); 
+vark = 1e-3;
+%Initial guess for k
 addpath('../../forward/')
 [kinit, ~] = forward(hinit(:,1));
 
+% Metropolis things
+burnin   = 500;   % markov chain need to converge 
+numsteps = 5000;
+totsteps = numsteps + burnin;
+
 % Initialize vector for quantity of interest we're estimating
 h = nan(length(hinit),totsteps);
-h(:,1) = hinit(:,1);
-
+h(:,1) = hinit;
 %% Initialize posterior
-%Initial posterior
-[ lprior, fudgestd] = logprior(hinit,bath);
-llikelihood = loglikelihood(kImputed, kinit, vark);
-oldpost =  llikelihood + lprior;
+oldpost =  loglikelihood(k_noisy, kinit, vark) + logprior(h(:,1));
 
 
 %% Metropolis loop
 disp('Performing Metropolis')
-%for i = 1 : (totsteps-1)
 cnt=0 ; %acceptance rate count
 for i = 1:totsteps-1
     %calculate proposal
     [hprop,kprop] = proposal(fudgestd,h(:,i),bath);
 
     % calculate proposed posterior density
-    proppost = loglikelihood(kImputed, kprop, vark) +  logprior(hprop,bath);
+    proppost = loglikelihood(k_noisy, kprop, vark) +  logprior(hprop);
 
     %compare posteriors
     rho = exp(proppost - oldpost);
