@@ -68,13 +68,12 @@ h(:,1) = hinit;
 %% Initialize posterior
 oldpost =  loglikelihood(k_noisy, kinit, vark) + logprior(h(:,1));
 
-
 %% Metropolis loop
 disp('Performing Metropolis')
 cnt=0 ; %acceptance rate count
 for i = 1:totsteps-1
     %calculate proposal
-    [hprop,kprop] = proposal(fudgestd,h(:,i),bath);
+    [hprop,kprop] = proposal(h(:,i));
 
     % calculate proposed posterior density
     proppost = loglikelihood(k_noisy, kprop, vark) +  logprior(hprop);
@@ -93,10 +92,10 @@ for i = 1:totsteps-1
         h(:,i+1) = h(:,i);
     end
 end
-%% Clean up and plot
+
 disp('Acceptance rate:')
 disp(cnt/totsteps)
-
+%% Clean up and plot
 disp('Plotting')
 % throw away the burnin steps
     h_final = h(:,(burnin+1):totsteps);

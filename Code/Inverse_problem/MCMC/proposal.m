@@ -1,17 +1,15 @@
 
-function [hprop,kprop] = proposal(fudgestd,h,bath)
+function [hprop,kprop] = proposal(h)
 %{
 A proposed vector of h to compare
 %}
 
     % Propose h
 
-    zerovec = zeros(length(h),1);
-    h_inc = normrnd(zerovec,fudgestd);
-
+    h_inc = 0.5+randn(length(h),1); %tune 0.5 here
     hprop = h+h_inc;
 
-    %Propose a spatially correlated h
+    %Propose a spatially correlated h 
 %     dstd=depthstd_prior(1);
 %     std_samp = normrnd(0,dstd);
 %     hprop = depthmean_prior + std_samp;
