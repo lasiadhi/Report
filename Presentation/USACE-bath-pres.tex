@@ -86,9 +86,9 @@
   \setbeamertemplate{navigation symbols}{}
   \usecolortheme{sidebartab}
 }
-%======================================================================================
+%====================================================================================
 % SLIDE 1: TITLE
-%======================================================================================
+%====================================================================================
 
 \title[Bathymetry Inversion from Waves]{Inverting for Near Coastal Bathymetry from Surface Wave Properties}
 \author[]{ 
@@ -102,226 +102,179 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 \date{July 2016}
 %\logo{\includegraphics[height=1.4cm,width=1.5cm]{aust_logo}}
 \begin{document}
- \frame{\titlepage}
-\frame{
-\frametitle{Outline}
-%\tableofcontents
-\begin{columns}
-\column{0.33\textwidth}
-\tableofcontents
-\column{0.67\textwidth}
-\begin{figure}[h]
-\includegraphics[width=1.\linewidth]{img/surfer.jpg}\hfill
-\end{figure}
 
-\end{columns}
+%====================================================================================
+% SLIDE 2
+%====================================================================================
+\frame{\titlepage}
+	\frame{
+		\frametitle{Outline}
+			\begin{columns}
+				\column{0.33\textwidth}
+				\tableofcontents
+			\column{0.67\textwidth}
+				\begin{figure}[h]
+					\includegraphics[width=1.\linewidth]{img/surfer.jpg}\hfill
+				\end{figure}
 
-}
-\section{Introduction }
+			\end{columns}
+	}
+	
+%======================================================================================
+%======================================================================================
+\section{Introduction}
+%======================================================================================
+%======================================================================================
 
-%==============================================================================================================================
+%======================================================================================
 % SLIDE 3
 %======================================================================================
 \begin{frame}
-\frametitle{Bathymetry is submarine topography}
-
-
-\begin{figure}[h]
-\includegraphics[width=1.\linewidth]{img/bath_topo_example.png}\hfill
-\end{figure}
-
-
+	\frametitle{Bathymetry is submarine topography}
+		\begin{figure}[h]
+			\includegraphics[width=1.\linewidth]{img/bath_topo_example.png}\hfill
+		\end{figure}
 \end{frame}
-%==============================================================================================================================
-%SLIDE 3: Bathymetry is topography under the sea
+%======================================================================================
+%SLIDE 4
 %======================================================================================
 \begin{frame}
-\frametitle{Knowledge of bathymetry is important for many applications}
-\begin{columns}
-\column{0.5\textwidth}
-
-\begin{figure}[h!]
-\includegraphics[width=1\linewidth]{img/Rip_C.jpg}\hfill
-\end{figure}
-
-\column{0.5\textwidth}
-\begin{figure}[h]
-\includegraphics[width=1\linewidth]{img/C_Flood.jpg}\hfill
-\end{figure}
-\begin{figure}[h]
-\includegraphics[width=1\linewidth]{img/Navy_S.jpg}
-\end{figure}
-
-
-\end{columns}
-
+    \frametitle{Knowledge of bathymetry is used in many ways}
+        \begin{columns}
+            \column{0.5\textwidth}           
+                \begin{figure}[h!]
+                		\includegraphics[width=1\linewidth]{img/Rip_C.jpg}\hfill
+                \end{figure}              
+            \column{0.5\textwidth}
+                \begin{figure}
+                		\includegraphics[width=1\linewidth]{img/C_Flood.jpg}\vfill
+               		\includegraphics[width=1\linewidth]{img/Navy_S.jpg}
+                \end{figure}       
+        \end{columns}
 \end{frame}
 
-%\begin{itemize}
-%\item Marine navigation
-%\item Repairing of storm damage
-%\item Military planning
-%\end{itemize}
 
-
-%=====================================================================================================================
-%SLIDE      
-%=====================================================================================================================
+%=====================================================================================
+%SLIDE  5
+%=====================================================================================
 \begin{frame}
-\frametitle{Wave Properties}
-\begin{figure}[flowchart]
-\includegraphics[width=1.0\linewidth]{img/Wave.jpg}\hfill
-\end{figure}
-
+    \frametitle{Surface waves can be used to invert for bathymetry}
+        \begin{figure}[flowchart]
+            \includegraphics[width=1.0\linewidth]{img/Wave.jpg}\hfill
+        \end{figure}
 \end{frame}
-%==========================================================================================================================================
-
-%==========================================================================================================================================
-% SLIDE 4: Getting measurements of coastal bathymetry can be kind of lame
+%=====================================================================================
+% SLIDE 6
 %======================================================================================
 \begin{frame}
-\frametitle{The Difficulty of Collecting Data}
-\begin{columns}
-\column{0.5\textwidth}
-In situ bathymetry data is
-\begin{itemize}
- \item Expensive to collect
- \item Located in a hazardous environment (surf zone)
- \item Sparse in time and space
-\end{itemize}
-\begin{figure}[h!]
-\includegraphics[width=.80\linewidth]{img/LARC2.jpg}\hfill
-\centering
-\captionsetup{labelformat=empty}
-\caption{LARC}
-\end{figure}
-\column{0.5\textwidth}
-\begin{figure}[h]
-\includegraphics[width=.6\linewidth]{img/CRAB3.JPG}
-\captionsetup{labelformat=empty}
-\caption{CRAB}
-\end{figure}
+    \frametitle{Direct measurements are expensive and challenging}
 
-
-\end{columns}
-
+    \begin{columns}
+    
+        \column{0.5\textwidth}
+            \centering
+            \begin{figure}[h!]
+                \includegraphics[width=1\linewidth]{img/LARC2.jpg}\hfill
+                \centering
+                \captionsetup{labelformat=empty}
+                \caption{LARC}
+            \end{figure}
+        
+        \column{0.5\textwidth}
+            \begin{figure}[h]
+                \includegraphics[width=0.8\linewidth]{img/CRAB3.JPG}
+                \captionsetup{labelformat=empty}
+                \caption{CRAB}
+            \end{figure}
+    
+    \end{columns}
 \end{frame}
 
-
-
-
-%==========================================================================================================================================
-% SLIDE 5: Forward Model
-%======================================================================================
-
+%=====================================================================================
+% SLIDE 7
+%=====================================================================================
 \begin{frame}
- \frametitle{Work flow of the Project}
-
-
-
-
-\begin{figure}[H]
+    \frametitle{Inverse methods combine data and forward model to estimate depth}
+    
+    	\begin{figure}[H]
 	 	\centering
 	 	\includegraphics[width=1.0\linewidth]{img/Flow_C.png}
-	 	\end{figure}
-
+	\end{figure}
+		
 \end{frame}
 
 
-
-
-
-
+%====================================================================================
+%====================================================================================
 \section{Data}
-%=====================================================================================================================
-%SLIDE      
-%=====================================================================================================================
-\begin{frame}
-\frametitle{Work flow of the project: Data }
-\begin{figure}[flowchart]
-\includegraphics[width=1.0\linewidth]{img/Focus_D.png}\hfill
-\end{figure}
+%====================================================================================
+%====================================================================================
 
+%====================================================================================
+% SLIDE  8
+%====================================================================================
+\begin{frame}
+    \frametitle{Work flow of the project: Data }
+        \begin{figure}[flowchart]
+        \includegraphics[width=1.0\linewidth]{img/Focus_D.png}
+        \end{figure}
 \end{frame}
 
-%=====================================================================================================================
-%SLIDE      
-%=====================================================================================================================
+%====================================================================================
+%SLIDE   9
+%====================================================================================
 \begin{frame}
-\frametitle{Data collected by USACE  }
-
-picture of a duck
-map
-
-
-
+	\frametitle{Surface and bathymetry data collected by USACE in Duck, NC}
+		 \centering
+		 \begin{figure}
+       			 \includegraphics[width=1\linewidth]{img/map_ncsu_duck.png}
+       		 \end{figure}
 \end{frame}
-%==========================================================================================================================================
-% SLIDE 7: We have plenty of wave data...and some bathymetry
 
-
+%====================================================================================
+% SLIDE 10
+%====================================================================================
 \begin{frame}
-\frametitle{We can invert for bathymetry given surface measurements}
-\begin{columns}
-\column{0.5\textwidth}
-\begin{itemize}
-\item Boundary Conditions (T,H) -- how collected?
-
-\end{itemize}
-\column{0.5\textwidth}
-\begin{itemize}
-\item Argus Video Monitor (k)
-\end{itemize}
-\end{columns}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.7\linewidth]{img/k1Dmean_std.png}
-%\captionsetup{labelformat=empty}
-%\caption{Argus- photogrammetry used to derive wave frequency and wave number.}
-
-\end{figure}
+	\frametitle{Data includes $T$, $H$ at offshore boundary, 1D $k$}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\linewidth]{img/k1Dmean_std.png}
+		\end{figure}
 \end{frame}
 
 
-%==========================================================================================================================================
-% SLIDE 5: But we can invert for bathymetry given surface measurements
-%======================================================================================
-
+%====================================================================================
+% SLIDE 11
+%====================================================================================
 \begin{frame}
- \frametitle{We have plenty of wave data...and some bathymetry}
-Our goal is to estimate bathymetry with surface wave data instead of direct measurements of the submarine environment
-\begin{columns}
-\column{0.5\textwidth}
-\begin{figure}[H]
-	 	\includegraphics[width=1.2\linewidth]{img/trueBath2D.png}
-	 	%\caption{Measured and gridded 2D bathymetry from survey data. Red line is the transect for 1D problem.}
-	 	%\label{2D Bath}
-	 	\end{figure}
-\column{0.5\textwidth}
-\begin{figure}[h]
-\includegraphics[width=.70\linewidth]{img/DepthChart.png}
-\end{figure}
-\end{columns}
-CRAB/LARC (h)
+	\frametitle{Known bathymetry is used for testing our results}
+		\begin{columns}
+			\column{0.5\textwidth}
+				\begin{figure}[H]
+	 				\includegraphics[width=1.2\linewidth]{img/trueBath2D.png}
+	 			\end{figure}
+			\column{0.5\textwidth}
+				\begin{figure}[h]
+					\includegraphics[width=.70\linewidth]{img/DepthChart.png}
+				\end{figure}
+			\end{columns}
 \end{frame}
 
-%==========================================================================================================================================
-%==============================================================================================================
-%==================================================================================================================
-% SLIDE 5: Forward Model
-%======================================================================================
+%==================================================================================
+%==================================================================================
 \section{Forward Model}
+%==================================================================================
+%==================================================================================
+
+%==================================================================================
+% SLIDE 12
+%======================================================================================
 \begin{frame}
- \frametitle{Work flow of the Project: Forward Model}
-
-
-
-\begin{figure}[H]
-	 	\centering
-	 	\includegraphics[width=1.0\linewidth]{img/Focus_D.png}
+ 	\frametitle{Work flow of the Project: Forward Model}
+		\begin{figure}[H]
+	 		\centering
+	 		\includegraphics[width=1.0\linewidth]{img/Focus_D.png}
 	 	\end{figure}
-
 \end{frame}
 %==========================================================================================================================================
 
