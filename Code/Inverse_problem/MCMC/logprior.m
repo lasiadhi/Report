@@ -13,11 +13,12 @@ depthstd = std(depth,0,2);
 
 xvec=(1:10:1150);
 depthmeanInterp = interp1(depthmean,xvec);
-fudgestd = 0.5;
+fudgestd = 0.25;
 
 
 
 prior = log(normpdf(h,flip(depthmean),depthstd));
+prior = log(normpdf(h,flip(depthmean),fudgestd));
 %prior = log(normpdf(h,depthmeanInterp',depthstd));
 %prior = log(normpdf(h,0,fudgestd));
 

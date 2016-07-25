@@ -8,7 +8,6 @@
 disp('Initializing')
 %Get k data 
 addpath('../../../Data/')
-
 [k,x_k]=get1Dk();
 
 %Data for prior
@@ -31,7 +30,7 @@ kImputed = kImpute(x_k,kdat,nh);
 
 % Metropolis things
 burnin   = 500;   % markov chain need to converge 
-numsteps = 2000;
+numsteps = 5000;
 totsteps = numsteps + burnin;
 
 % Initial guess for h (from previous data)
@@ -40,15 +39,16 @@ totsteps = numsteps + burnin;
 
 [hOrig,x] = get_hOct9();
 dx=10;
-[hinit,xq] = interp_h(hOrig,x,dx);
-hdat=hinit;
-
+[hgrid,xq] = interp_h(hOrig,x,dx);
+%make initial guess the true bath
+%hinit = hdat;
 
 %Initial h and k is same as Lasith's
 addpath('../Least_square');
-%hinit = initialize_h_guess(hgrid,dx);
+hinit = initialize_h_guess_pointwise(hgrid,dx);
 
 hinit=hinit(1:end-1);
+hdat = hinit;
 
 %[ksim]=load('../k_1percNoisedata_N47.mat');
 %kImputed =ksim.k;
@@ -124,7 +124,7 @@ disp('Plotting')
     end
     figure(6)
     clf
-    plot(xdat,flip(maxh),'b'); hold on
+    plot(xdat,maxh,'b'); hold on
     plot(xdat,hinit,'r'); hold on
     plot(xq,hgrid,'k');
     
