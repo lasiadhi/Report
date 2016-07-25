@@ -201,10 +201,33 @@ In situ bathymetry data is
 \end{frame}
 %==========================================================================================================================================
 % SLIDE 7: We have plenty of wave data...and some bathymetry
+%==========================================================================================================================================
+% SLIDE 5: But we can invert for bathymetry given surface measurements
+%======================================================================================
+
+\begin{frame}
+ \frametitle{We have plenty of wave data...and some bathymetry}
+Our goal is to estimate bathymetry with surface wave data instead of direct measurements of the submarine environment
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}[H]
+	 	\includegraphics[width=1.2\linewidth]{img/trueBath2D.png}
+	 	%\caption{Measured and gridded 2D bathymetry from survey data. Red line is the transect for 1D problem.}
+	 	%\label{2D Bath}
+	 	\end{figure}
+\column{0.5\textwidth}
+\begin{figure}[h]
+\includegraphics[width=.70\linewidth]{img/DepthChart.png}
+\end{figure}
+\end{columns}
+
+\end{frame}
+
+%==========================================================================================================================================
 %==============================================================================================================
 
 \begin{frame}
-\frametitle{We have plenty of wave data...and some bathymetry}
+\frametitle{We can invert for bathymetry given surface measurements}
 \begin{columns}
 \column{0.5\textwidth}
 \begin{itemize}
@@ -228,26 +251,6 @@ In situ bathymetry data is
 \end{figure}
 \end{frame}
 %==================================================================================================================
-
-
-%==========================================================================================================================================
-% SLIDE 5: But we can invert for bathymetry given surface measurements
-%======================================================================================
-
-\begin{frame}
- \frametitle{We can invert for bathymetry given surface measurements}
-
-Our goal is to estimate bathymetry with surface wave data instead of direct measurements of the submarine environment
-
-\begin{figure}[H]
-	 	\centering
-	 	\includegraphics[width=0.6\linewidth]{img/trueBath2D.png}
-	 	\caption{Measured and gridded 2D bathymetry from survey data. Red line is the transect for 1D problem.}
-	 	\label{2D Bath}
-	 	\end{figure}
-
-\end{frame}
-%==========================================================================================================================================
 % SLIDE 5: Forward Model
 %======================================================================================
 
@@ -334,72 +337,6 @@ $${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
 %\end{frame}
 %==========================================================================================================================================
 
-%==========================================================================================================================================
-% SLIDE 10: Nonlinear least squares
-%======================================================================================
-
- \begin{frame}
-\frametitle{Nonlinear least squares}
-
-
-\end{frame}
-
-
-%==========================================================================================================================================
-% SLIDE 11: Bayesian Markov Chain Monte Carlo (MCMC) Method
-%======================================================================================
-
- \begin{frame}
-\frametitle{Bayesian Markov Chain Monte Carlo (MCMC) Method}
-The MCMC method creates a posterior distribution of depth profiles, given wave number by using the Bayes relationship
-
-\begin{equation}\label{bayes}
-P(h|%H,
-k) \propto \Pi(h)L(h|%H,
-k),
-\end{equation} 
-\begin{itemize}
-\item $\Pi(h)$  prior distribution
-\item $L(h|%H,
-k)$ likelihood function
-\item $P(h|%H,
-k)$ posterior distribution
-\end{itemize}
-\end{frame}
-
-%==========================================================================================================================================
-% SLIDE 12: MCMC Method: Log-Likelihood Function
-%======================================================================================
-\begin{frame}
- \frametitle{MCMC Method: Log-Likelihood Function}
- Loglikelihood function compares simulated and observed \textit{k} values
-
-\begin{equation} \label{likely}
-\log{L(h|%H,
-k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
-\end{equation} 
-
-
-\end{frame}
-%==========================================================================================================================================
-% SLIDE 13: MCMC Method: Metropolis Algorithm
-
-%==========================================================================================================================================
-\begin{frame}
- \frametitle{MCMC Method: Metropolis Algorithm}
-\begin{itemize}
-\item Prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}\\
-\begin{equation}\label{post}
-P(h|%H,
-k) = log(\Pi(h)) + log(L(h|%H,
-k))
-\end{equation}
-\item Uses a markov chain random walk to %propose and compare new \textit{h} profiles
-arrive at a posterior distribution of \textit{h} profiles %which are expected to describe true bathymetry
-\end{itemize}
-\end{frame}
-%==========================================================================================================================================
-
 %SLIDE 14: fmincon
 %==========================================================================================================================================
  \begin{frame}
@@ -423,20 +360,71 @@ $\mathbf{h}_t$ &=& the true bathymetry.
 %SLIDE 15: fmincon
 %==========================================================================================================================================
  \begin{frame}
-\frametitle{fmincon}
+\frametitle{fmincon: Tikhonov Method}
+\centering
+Uses a regularized solution with prior information
 $$
 \mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
 $$
+\end{frame}
 
+%==========================================================================================================================================
+% SLIDE 11: Bayesian Markov Chain Monte Carlo (MCMC) Method
+%======================================================================================
 
+ \begin{frame}
+\frametitle{Bayesian Markov Chain Monte Carlo (MCMC) Method}
+The MCMC method creates a posterior distribution of depth profiles, given wave number by using the Bayes relationship
+
+\begin{equation}\label{bayes}
+P(h|%H,
+k) \propto \Pi(h)L(h|%H,
+k),
+\end{equation} 
+%\begin{itemize}
+%\item $\Pi(h)$  prior distribution
+%\item $L(h|%H,
+%k)$ likelihood function
+%\item $P(h|%H,
+%k)$ posterior distribution
+%\end{itemize}
+\end{frame}
+
+%==========================================================================================================================================
+% SLIDE 13: MCMC Method: Metropolis Algorithm
+%==========================================================================================================================================
+\begin{frame}
+ \frametitle{MCMC Method: Metropolis Algorithm}
+\begin{itemize}
+\item Prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}\\
+\begin{equation}\label{post}
+P(h|%H,
+k) = log(\Pi(h)) + log(L(h|%H,
+k))
+\end{equation}
+\item Uses a markov chain random walk to %propose and compare new \textit{h} profiles
+arrive at a posterior distribution of \textit{h} profiles %which are expected to describe true bathymetry
+\end{itemize}
+\end{frame}
+%==========================================================================================================================================
+% SLIDE 10: Nonlinear least squares
+%===================================================================================================================
+
+ \begin{frame}
+\frametitle{Nonlinear Least Squares: Trusted Region-Reflective Method}
+
+\begin{equation}\label{LS}
+\mathbf{\hat{h}}= \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \ \ f(\mathbf{h}) = \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2,
+\end{equation}
+
+\begin{figure}[H]
+	 	\centering
+	 	\includegraphics[width=.70\linewidth]{img/trust_region_linear.png}
+	 	\end{figure}
 
 \end{frame}
 
-
 %==========================================================================================================================================
-
-
-
 %SLIDE 1: Results
 %==========================================================================================================================================
  \begin{frame}
@@ -464,9 +452,9 @@ $$
  \end{itemize}
 
 \end{frame}
-%========================================
+%=====================================================================================================
 % Slide 17: THANK YOU
-%========================================
+%==========================================================================================================
 \begin{frame}
 \frametitle{}
 \hspace{2.5cm}
@@ -484,6 +472,20 @@ $$
 \end{minipage}
 \end{frame}
 %===========================================================================================================================================
+% SLIDE 12: MCMC Method: Log-Likelihood Function
+%======================================================================================
+\begin{frame}
+ \frametitle{MCMC Method: Log-Likelihood Function}
+ Loglikelihood function compares simulated and observed \textit{k} values
+
+\begin{equation} \label{likely}
+\log{L(h|%H,
+k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
+\end{equation} 
+
+
+\end{frame}
+%==========================================================================================================================================
 
 
 \end{document}
