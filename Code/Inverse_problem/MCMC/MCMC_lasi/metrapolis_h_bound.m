@@ -7,7 +7,7 @@ tic
 
 N     = 47; %116;  %47
 dx    = 25; %10;  %25
-[h,x] = get_hOct1;
+[h,x] = get_hOct9;
 [hgrid,xq] = interp_h(h,x,dx);
 %h_guess = initialize_h_guess(hgrid,dx);
 %h_guess    = initialize_h_guess_pointwise_16(hgrid, xq, dx);
@@ -30,8 +30,8 @@ k_sd = 1e-3;
 
 
 % algorithm parameters
-burnin   = 500;   % markov chain need to converge 
-numsteps = 3000;
+burnin   = 1000;   % markov chain need to converge 
+numsteps = 1000;
 totsteps = numsteps + burnin;
 
 x0(:,1) = h_guess;  % initial guess for the alpha
@@ -90,14 +90,17 @@ figure(1)
 plot(xq,hgrid, '-*b');
 hold on
 plot(xq,h_final, '-^r');
-title('MCMC - Metropolis?Hastings Algorithm', 'fontSize',14)
-xlabel('x Position (m)','FontSize',14);
-ylabel('Depth (m)','FontSize',14);
+t=title('MCMC - Metropolis Hastings Algorithm', 'fontSize',14);
+x=xlabel('x Position (m)','FontSize',14);
+y=ylabel('Depth (m)','FontSize',14);
 set(gca,'ydir','reverse')
 set(gca,'xdir','reverse')
 hold on
 plot(xq,h_guess,'g')
-legend({'True h', 'Recovered h','Initial guess'},'FontSize',14);
-
+l=legend({'True h', 'Recovered h','Initial guess'},'FontSize',14);
+set(x,'Interpreter','Latex');
+set(y,'Interpreter','Latex');
+set(t,'Interpreter','Latex');
+set(l,'Interpreter','Latex');
 
 
