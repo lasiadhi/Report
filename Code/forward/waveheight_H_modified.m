@@ -76,7 +76,7 @@ end
 % end
 
 % Wave Height Limit (H<Hmax)
-for i = 2: N1
+for i = 2: N1-10
     if abs(hgrid(i))<=10^(-3)
         H(i) = 0;
     else

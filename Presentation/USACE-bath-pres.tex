@@ -388,7 +388,7 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
           	\column{0.5\textwidth} 
 			\begin{figure}[H]
 	 			\centering
-				\includegraphics[width=1\linewidth]{img/nllsq_synthetic_1.eps}
+				\includegraphics[width=1\linewidth]{img/lsqnonlin_simulated_10m_new.eps}
 			\end{figure}
 		\column{0.5\textwidth} 
 			\begin{figure}[H]
@@ -422,7 +422,7 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
           		\column{0.5\textwidth} 
 				\begin{figure}[H]
 	 				\centering
-					\includegraphics[width=1\linewidth]{img/nllsq_real_1.eps}
+					\includegraphics[width=1\linewidth]{img/lsqnonlin_real_data_oct09}
 				\end{figure}
 			\column{0.5\textwidth} 
 				\begin{figure}[H]
@@ -465,15 +465,21 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
 \begin{frame}
 	\frametitle{Future Directions}
 		\begin{itemize}
-			 \item Inclusion of observed wave height, $H$, along the profile
-		\end{itemize}
-		$\,$\\
-		\begin{itemize}
+			 \item Non-linear wave theory
+			 	\begin{itemize}
+				 	\item Linear wave theory is just a starting point!
+			 	\end{itemize}
+			 \item Inclusion of observed wave height, $H$, or other measured variables, along the profile
+			 	\begin{itemize}
+				 	\item this method will allow for assimilation of other measured variables
+			 	\end{itemize}
 			 \item Application of further regularization methods
-		\end{itemize}
-		$\,$\\
-		\begin{itemize}
-			 \item Expansion to 2D wave physics and higher fidelity models
+			 	\begin{itemize}
+				 	\item we heuristically ``tuned'' our regulariztion
+				 	\item mayhaps incorporate prior knowledge?
+			 	\end{itemize}
+			 \item Incorporate uncertainty in measurements
+			 \item Expansion to 2D wave physics
 		\end{itemize}
 \end{frame}
 
