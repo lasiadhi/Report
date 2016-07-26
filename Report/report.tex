@@ -1,7 +1,6 @@
 \documentclass[10pt]{article}
 \usepackage[final]{graphicx}
 \usepackage{amsfonts}
-\usepackage{epstopdf}
 
 \usepackage{float}
 \usepackage{subfig}
@@ -10,6 +9,7 @@
 
 % lasith added 
 \usepackage{amsmath, amsthm}
+\usepackage{url}
 
 \topmargin-.5in
 \textwidth6.6in
@@ -32,26 +32,24 @@
 
 \begin{document}
 
-\centerline{\large \bf Inverting for Near Coastal Bathymetry from Surface Wave Properties}
+\centerline{\large \bf Title of Report}
 
 \vspace{.1truein}
 
 \def\thefootnote{\arabic{footnote}}
 \begin{center}
-  Lasith Adhikari\footnote{Applied Math, University of California Merced},
-  Charnelle Bland\footnote{Mathematics and Statistics, West Florida University},
-  Lopamudra Chakravarty\footnote{Mathematics, Kent State University},
-  Wenbin Dong\footnote{Civil Engineering, City College of New York},\\
-  Olaniyi Samuel Iyiola\footnote{Mathematical Science, University of Wisconsin Milwaukee},
-  Gail Muldoon\footnote{Geosciences, University of Texas at Austin},
-  Clint Seinen\footnote{Mathematics and Statistics, University of Victoria}
+  Author 1\footnote{Department, University},
+  Author 2\footnote{Department, University},
+  Author 3\footnote{Department, University},
+  Author 4\footnote{Department, University},
+  Author 5\footnote{Department, University}
 \end{center}
 
 %\vspace{.1truein}
 
 \begin{center}
-Faculty Mentors: Ty Hesser\footnote{U.S. Army Corps of Engineers},
-Lea Jenkins\footnote{Clemson University}
+Faculty Mentors: Mentor 1\footnote{Company},
+Mentor 2\footnote{University}
 \end{center}
 
 
@@ -74,6 +72,9 @@ Lea Jenkins\footnote{Clemson University}
 
 \section{The Approach}
 \input{Sections/approach.tex}
+\input{Sections/Approach_MCMC.tex}
+\input{Sections/recon_simulated.tex}
+\input{Sections/recon_real.tex}
 
 \section{Computational Experiments}
 \input{Sections/experiments.tex}
