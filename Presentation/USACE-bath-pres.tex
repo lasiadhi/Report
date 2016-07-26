@@ -292,7 +292,7 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
 %==================================================================================
 \begin{frame}
 	\frametitle{Wave dispersion relationship relates $k$ to $h$}
-		Dispersion Relation:
+		Dispersion Relation [1]:
 		$$ \sigma^2=gk\tanh(kh) \Longleftrightarrow \left(\frac{2\pi}{T}\right)^2 = g\left(\frac{2\pi}{L}\right) tanh \left(\frac{2\pi h}{L}\right)
 		$$
 		\begin{itemize}
@@ -308,20 +308,34 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
 %==================================================================================
 \begin{frame}
 	\frametitle{1D forward model relates $H$ and $h$}
-	Energy Flux Method:
+	Energy Flux Method [2]:
 	$$\frac{d}{dx}\left(EC_g\right)=-\delta $$
-	%\begin{itemize}
-	\centering
-		 $\delta = \frac{1}{4h}B\rho g f H^3_{rms}\left[(R^3+\frac{3}{2}R)e^{-R^2}+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right]$
-		 (Janssen and Battjes, 2007) \\
-	%\end{itemize} \\
-	$\,$\\
-	where $R=\frac{H_b}{H_{rms}}$, $H_b=0.78h$, $H_{rms}=0.7H$. \\
-	$\,$\\
 	\begin{itemize}
-		\item $E$: Wave Energy $(\rho,g,H)$
-		\item  $C_{g}$: Group celerity $(\sigma,k,h)$
+	    \item Relates wave height $(H)$ and wave number $(k)$
+		\item $E(\rho,g,{\bf H})$: Wave Energy
+		\item  $C_{g}(\rho,{\bf k},h)$: Group celerity
+		\item $\delta(\rho,g,T,{\bf H}):$ $^3$Wave energy dissipation function
 	\end{itemize}
+	$\quad$\\
+	\begin{flushright}
+	{\tiny $^1$Dean et al, 2000 (pg 64), $^2$Edward et al, 1983 (pg 2) and $^3$Alex et al, 2008 (pg 2)}.
+	\end{flushright}
+\end{frame}
+%==================================================================================
+%  SLIDE 16
+%==================================================================================
+\begin{frame}
+	\frametitle{1D forward model Results}
+	   \begin{columns}[t]
+        \column{.5\textwidth}
+        \centering
+        \includegraphics[width=5.5cm,height=3.5cm]{img/Wave_height_Depth.png}\\
+        \includegraphics[width=5.5cm,height=3.5cm]{img/Wave_energy_WaveHeight.png}
+        \column{.5\textwidth}
+        \centering
+       \includegraphics[width=5.5cm,height=3.5cm]{img/Wave_number_Depth.png}\\
+       \includegraphics[width=5.5cm,height=3.5cm]{img/Energy_Dissipation_x.png}
+      \end{columns}
 \end{frame}
 
 %==================================================================================
@@ -384,18 +398,16 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
 %==================================================================================
 \begin{frame}
 	\frametitle{All methods capture the sandbar well}
-	 \begin{columns}
-%          	\column{0.5\textwidth} 
-%			\begin{figure}[H]
-%	 			\centering
-%				\includegraphics[width=0.5\linewidth]{img/lsqnonlin_simulated_10m_new.eps}
-%			\end{figure}
-%		\column{0.5\textwidth} 
-%			\begin{figure}[H]
-%	 			\includegraphics[width=1\linewidth]{img/MCMC-manufactured.eps}\vfill
-%				\includegraphics[width=1\linewidth]{img/fmincon_simulated_25m.png}
-%	 		\end{figure}
-	\end{columns}
+	   \begin{columns}[t]
+        \column{.5\textwidth}
+        \centering
+        \includegraphics[width=5.5cm,height=3.5cm]{img/lsqnonlin_simulated_10m_new.eps}\\
+        \includegraphics[width=4.0cm,height=1.5cm]{img/legend_simulated.png}
+        \column{.5\textwidth}
+        \centering
+       \includegraphics[width=5.5cm,height=3.5cm]{img/MCMC-manufactured_new.png}\\
+       \includegraphics[width=4.8cm,height=3.5cm]{img/fmincon_simulated_25m.png}
+      \end{columns}
 \end{frame}
 
 %==================================================================================
@@ -413,24 +425,23 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
 \end{frame}
 
 
-%===================================================================================
-% SLIDE 21
-%===================================================================================
+%==================================================================================
+%  SLIDE 21
+%==================================================================================
 \begin{frame}
 	\frametitle{Bathymetry estimates perform well in shallow water}
-%		\begin{columns}
-%          		\column{0.5\textwidth} 
-%				\begin{figure}[H]
-%	 				\centering
-%					\includegraphics[width=1\linewidth]{img/lsqnonlin_real_data_oct09}
-%				\end{figure}
-%			\column{0.5\textwidth} 
-%				\begin{figure}[H]
-%	 				\includegraphics[width=1\linewidth]{img/MCMC-manufactured.eps}\vfill
-%					\includegraphics[width=1\linewidth]{img/fmincon_real_Oct09_nok.png}
-%	 			\end{figure}
-%		\end{columns}
+	   \begin{columns}[t]
+        \column{.5\textwidth}
+        \centering
+        \includegraphics[width=5.2cm,height=3.5cm]{img/lsqnonlin_real_data_oct09}\\
+        \includegraphics[width=4.0cm,height=1.5cm]{img/legend_simulated.png}
+        \column{.5\textwidth}
+        \centering
+       \includegraphics[width=5.5cm,height=3.8cm]{img/MCMC-manufactured_new.png}\\
+       \includegraphics[width=4.8cm,height=3.5cm]{img/fmincon_real_data_oct09.png}
+      \end{columns}
 \end{frame}
+
 
 %===================================================================================
 % SLIDE 22
