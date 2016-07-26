@@ -1,0 +1,59 @@
+===================================Intro=========================================
+-Many coastal processes of interested are affected by this thing called bathymetry.
+-We care about these processes because a large amount of the global population
+ lives by the sea
+	-navigation
+	-extreme weather events
+-If we HAVE the data we can predict behaviour in coastal areas through mathematical
+ models
+-Unfortunately, these measurements are difficult to get.
+-Why not invert? It is easy to measure surface water conditions!
+	-cameras, UAV's, satellites.
+=================================Flow Chart======================================
+-Here is how we invert
+	-mention the use of k
+=================================Surface Wave Properties ========================
+-introduce variables and discuss relationship between length and wave number
+- wave number = spatial frequency of waves; number of waves per unit distance (radians per unit distance)
+
+===============================Data==============================================
+-show flow chart
+-data collected in Duck, NC...by the USACE
+	-our location and Duck
+-boundary conditions collected through a AWAC
+	- AWAC derives height and period from pressure (piezo resistive), orbital 		velocity (doppler thingy), surface position (reverse echo sounder)
+-Argus video data was used to measure wave number (photogrammetry)
+-luckily, we have known bathymetry to test our results
+	-based on our boundary conditions, we chose the 1d transect
+		-unfortunately, we don't data everywhere 
+			-interpolation scheme - pchip - shape preserving
+			-extrapolation to BC - linear
+
+=============================Forward model=======================================
+-Assume linear wave theory
+-explain physical interpretation (SAM)
+
+============================Inversion Methods====================================
+-For mathematicians, least squares was an obvious place to start
+	-normal least squares (2-norm)
+	-minimize the residual
+-Baysian MCMC
+	-statistical approach
+	-gives a distribution of estimates
+-Tikonov Regularization (fmincon)
+	-our objective function may be shallow
+
+============================Manufactured Data====================================
+-ran through our forward model to get k's and made noisy
+	-this was done so we have "test data" for us to test the algorithms
+	-real bathymetry -> run into the forward problem -> get ks -> make noisy
+	 -> run through inversion algs. -> compare result to the original input
+
+	
+
+
+
+
+
+
+
