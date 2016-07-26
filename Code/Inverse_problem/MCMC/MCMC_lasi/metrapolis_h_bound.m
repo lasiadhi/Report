@@ -5,17 +5,27 @@ clear
 close all
 tic
 
-N     = 47; %116;  %47
-dx    = 25; %10;  %25
-[h,x] = get_hOct9;
-[hgrid,xq] = interp_h(h,x,dx);
+load('Real_data_2015-10-09_T215900_10m.mat','k_data','x_data');
+dx	= x_data(2) - x_data(1);
+N  	= size(x_data,1);
+
+[h,x] 		= get_hOct9;
+[hgrid,xq] 	= interp_h(h,x,dx);
+
+
+% N     = 47; %116;  %47
+% dx    = 25; %10;  %25
+% [h,x] = get_hOct9;
+% [hgrid,xq] = interp_h(h,x,dx);
 %h_guess = initialize_h_guess(hgrid,dx);
 %h_guess    = initialize_h_guess_pointwise_16(hgrid, xq, dx);
 h_guess    = initialize_h_guess_pointwise(hgrid, xq, dx);
 
 
-load('k_1percNoisedata_N47.mat','k_noisy'); 
-k_sd = 1e-3;
+%load('k_1percNoisedata_N47.mat','k_noisy'); 
+%k_sd = 1e-3;
+
+k_sd = 9e-2;
 
 % generate synthatic Gaussian noisy data
 % L    = 1;
@@ -30,13 +40,13 @@ k_sd = 1e-3;
 
 
 % algorithm parameters
-burnin   = 1000;   % markov chain need to converge 
+burnin   = 500;   % markov chain need to converge 
 numsteps = 1000;
 totsteps = numsteps + burnin;
 
 x0(:,1) = h_guess;  % initial guess for the alpha
 
-oldpost = likelihood(k_noisy, x0(:,1), k_sd)  + myprior(x0(:,1));
+oldpost = likelihood(k_data, x0(:,1), k_sd)  + myprior(x0(:,1));
 
 
 for i = 1 : (totsteps-1)
@@ -46,7 +56,7 @@ for i = 1 : (totsteps-1)
     prop = x0(:,i) + z;
     
     % calculate posterior density
-    proppost = likelihood(k_noisy, prop, k_sd) +  myprior(prop);
+    proppost = likelihood(k_data, prop, k_sd) +  myprior(prop);
     rho = exp(proppost - oldpost);
     
     % accept/reject step
