@@ -76,10 +76,10 @@ end
 % end
 
 % Wave Height Limit (H<Hmax)
-for i = 2: N1-10
-%     if abs(h(i))<=10^(-3)
-%         H(i) = 0;
-%     else
+for i = 2: N1
+    if abs(hgrid(i))<=10^(-3)
+        H(i) = 0;
+    else
       beta = 1;
          f = 1/Tb;
 H_rms(i-1) = 0.707*H(i-1);  % I am sorry this is messed up.  H_rms = 2sqrt(2)*mo H = 4sqrt(mo)  tjh
@@ -93,6 +93,7 @@ delta(i-1) = -1/(4*hgrid(i-1))*beta*rho*g*f*H_rms(i-1)^3*((R(i-1)^3+(3/2)*R(i-1)
       H(i) = H_rms(i)/0.707;
       %H(i) = (delta(i-1)*dx + coe(i-1)*(H(i-1))^2)/coe(i);
       %H(i) = sqrt(H(i));
+    end
 end
     
 %     Hmax  = 0.78*h(i);
