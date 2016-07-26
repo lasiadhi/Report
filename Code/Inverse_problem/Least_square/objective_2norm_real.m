@@ -18,8 +18,8 @@ function f = objective_2norm_real(h)
     
     len = length(h_subset);
     lambda = zeros(1,len);
-    lambda(1:ceil(len/2))     = 3e-7;
-    lambda(ceil(len/2)+1:end) = 3e-5;
+    lambda(1:ceil(len/2))     = 1e-7;
+    lambda(ceil(len/2)+1:end) = 1e-7;
 
 	f =  norm(k_appro_subset - k_data_subset)^2 +  norm(sqrt(lambda) .* h_subset)^2;
 
