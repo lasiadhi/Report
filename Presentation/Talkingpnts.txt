@@ -1,20 +1,38 @@
 ===================================Intro=========================================
--Many coastal processes of interested are affected by this thing called bathymetry.
--We care about these processes because a large amount of the global population
- lives by the sea
-	-navigation
-	-extreme weather events
+-A large portion of the global population lives near the sea.
+	-what happens at the ocean matters!
+		-rip tides might pull your loved one out to sea
+		-coastal flooding might damage your property
+		-you or your surfer buddy might want to know the best place to get 
+		 barreled 
+		-maybe your friend's yacht might run aground during a pleasure
+		 cruise!
+
+-What do all these things depend on? Bathymetry!
+
 -If we HAVE the data we can predict behaviour in coastal areas through mathematical
- models
+ models....we're good at it!
+
 -Unfortunately, these measurements are difficult to get.
--Why not invert? It is easy to measure surface water conditions!
-	-cameras, UAV's, satellites.
+	-we may have to drive this silly boat/truck into the surf! Or this scary
+	 looking tower!
+	-or, as discussed last week, a poor grad student may have to go out with a
+	 pole and hope they don't get washed away!	
+
+-Buuuut due to new technology, it has become easier to get surface measurements! 
+	-cameras, UAV's, satellites - WHY NOT INVERT OUR PHYSICS MODELS!?
+
 =================================Flow Chart======================================
 -Here is how we invert
 	-mention the use of k
 =================================Surface Wave Properties ========================
--introduce variables and discuss relationship between length and wave number
-- wave number = spatial frequency of waves; number of waves per unit distance (radians per unit distance)
+- For this project, the wave properties we are interested in are
+	-Wave period (the time between wave peaks)
+	-Wave height (the difference between peaks and troughts)
+	-Wave length (the length between peaks)
+	-Wave Number, or k, essentially the inverse of the wave number or
+	 the spatial frequency of waves (number of waves per unit distance - or radians per unit distance)
+
 
 ===============================Data==============================================
 -show flow chart
@@ -34,6 +52,9 @@
 -explain physical interpretation (SAM)
 
 ============================Inversion Methods====================================
+-Now that we have data and a forward model, we can use them to create an inversion
+ scheme for the bathymetry.
+
 -For mathematicians, least squares was an obvious place to start
 	-normal least squares (2-norm)
 	-minimize the residual
@@ -41,13 +62,59 @@
 	-statistical approach
 	-gives a distribution of estimates
 -Tikonov Regularization (fmincon)
+	-for this and most physical problems, we could come up with constraints
+ 	 on our values for depth.
+	-multivariate
 	-our objective function may be shallow
 
 ============================Manufactured Data====================================
--ran through our forward model to get k's and made noisy
-	-this was done so we have "test data" for us to test the algorithms
-	-real bathymetry -> run into the forward problem -> get ks -> make noisy
-	 -> run through inversion algs. -> compare result to the original input
+-To test these methods, before using real wave number data, we created some
+ manufactured data.
+	- took real bathymetry -> ran through forward model to get a calculated k
+     	 -> added some noise.
+	- we then used this data in our three methods to estimate the bathymetry
+	  and compare to the input into the forward model.
+
+============================Manufactured Data Results============================
+
+
+============================Real Data============================================
+-As mentioned before, we have measured wave number data for the month of October (2015)
+	-to run our inversion schemes, we wanted to use "nice" wave number data
+		-characterised by calm conditions; in choppy conditions the linear
+		 wave theory breaks down
+	-we also wanted to choose a time around available survey data
+	-October 9th fit both of these requirements so we plotted k profiles over a ten
+	 hour period and identified 22:00:00
+		-As can be seen, other profiles around this time still contain considerable
+	 	 noise
+
+-With the chosen k data, we implement our inversion scheme!
+
+===========================Results Using Real Data==============================
+
+
+
+
+-Our estimates are limited by noise in the k data and assuming the waves interact 
+ the ocean bed. 
+	-Although our measured k is close to what we calculated with our forward
+	 model, there still appears to be noise
+	-As the depth increases, the less influence of the bed rears its ugly head
+	-IT IS UNREALISTIC TO EXPECT THIS METHOD TO CAPTURE THE WHOLE BED PROFILE
+		-we know the depth at the boundary condition is 11m
+
+===========================Future Work==========================================
+-we've only used k data to assimilate our models; what would happen if we use 
+ wave height data captured through Lidar measurements? This improve our estimates
+ in deeper water as it incorporates the propogation of energy from the BC
+
+-we explored the Tikonhov Regularization but unfortunately we didn't have time to 
+ find the optimum regularization method...this is a promising direction of further
+ work.
+
+-explore these methods using 2D wave physics and high fidelity models
+
 
 	
 
