@@ -88,12 +88,12 @@ end
 
 
 %% PLOT-1
-%% (x & H) & (x & h) & (x & k)
+%% (x & H) & (x & h/10) & (x & 10k)
 figure;
-plot(xq, H, '-*', xq, -hgrid, '-o', xq, k, '-^')
+plot(xq, H, '-*', xq, -hgrid/10, '-o', xq, 10*k, '-^')
 xlabel('x', 'interpreter', 'latex', 'FontSize', 20)
 ylabel('H, h, k', 'interpreter', 'latex', 'FontSize', 20)
-legend('Wave Height', 'Depth', 'Wave Number')
+legend('Wave Height', 'Depth/10', '10*Wave Number')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'interpreter', 'latex', 'FontSize', 20)
 hold on 
@@ -101,7 +101,7 @@ hold on
 %% PLOT-2
 %% x & hgrid
 figure;
-plot(xq, H, 'linewidth', 3)
+plot(xq, H, '-*', 'linewidth', 3)
 xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave height', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);

@@ -18,7 +18,7 @@ k)$ is the likelihood function.
 
 We create a random walk Metropolis algorithm \citep{Metropolis1953} which samples proposed depth profiles and updates the posterior probability distribution of \textit{h} according to the likelihood that the proposed depth profiles describe the true bathymetry. 
 
-To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry [which come from somewhere we should probably mention].  We assume a normal prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}. 
+To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry [which come from somewhere we should probably mention].  We assume a normal conjugate prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}, this ensures our posterior distribution is normal as well. 
 
 \begin{equation}\label{prior}
 \Pi(h) \sim N(\bar{h}_{sim},\sigma_{sim}^2)
