@@ -214,7 +214,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 % SLIDE 9
 %====================================================================================
 \begin{frame}
-	\frametitle{Data includes $T$, $H$ at offshore boundary, 1D $k$}
+	\frametitle{Data includes $T$, $H$ at offshore boundary; 1D $k$}
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=1\linewidth]{img/k1Dmean_std.png}
@@ -259,28 +259,37 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 % SLIDE 12
 %==================================================================================
 \begin{frame}
-	\frametitle{1D wave physics is known for near-coastal regions}
-		Assume linear wave theory:
-		\begin{eqnarray*}
-			\label{fp1}
-			\left \{
-				\begin{array}{lll}
-					\frac{d}{dx}\left(EC_g\right)=-\delta,\\
-					\\
-					\sigma^2=gk\tanh(kh),
-					\label{ode}
-				\end{array}
-			\right.
-		\end{eqnarray*}
-		\begin{equation*}
-			\delta = \frac{1}{4h}B\rho g f H_{rms}\left[(R^3+\frac{3}{2}R)e^{-R^2}+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right]
-		\end{equation*}  
-		\begin{flushleft}
-			where
-		\end{flushleft}
-		$${E: Wave \,Energy,\, C_{g}: Group \,celerity,}$$
-		$${\quad c: Wave \,celerity,\, \sigma: Angular \,frequency,}$$
-		$${\quad\quad\quad\quad g: Gravitational\,\, acceleration,k: Wave \,number}$$
+	\frametitle{Wave dispersion relationship relates $k$ to $h$}
+		Dispersion Relationship:
+		$$ \sigma^2=gk\tanh(kh) \Longleftrightarrow \left(\frac{2\pi}{T}\right)^2 = g\left(\frac{2\pi}{L}\right) tanh \left(\frac{2\pi h}{L}\right)
+		$$
+		\begin{itemize}
+			\item Relates wave number $(k)$ and Period $(T)$
+			\item Wave length $(L)$ varies with depth $(h)$
+			\item Period $(T)$ remains constant
+		\end{itemize}
+\end{frame}
+
+
+%==================================================================================
+% SLIDE 13
+%==================================================================================
+\begin{frame}
+	\frametitle{1D forward model relates $H$ and $h$}
+	Energy Flux Method:
+	$$\frac{d}{dx}\left(EC_g\right)=-\delta $$
+	%\begin{itemize}
+	\centering
+		 $\delta = \frac{1}{4h}B\rho g f H^3_{rms}\left[(R^3+\frac{3}{2}R)e^{-R^2}+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right]$
+		 (Janssen and Battjes, 2007) \\
+	%\end{itemize} \\
+	$\,$\\
+	where $R=\frac{H_b}{H_{rms}}$, $H_b=0.78h$, $H_{rms}=2\sqrt{2}H$. \\
+	$\,$\\
+	\begin{itemize}
+		\item $E$: Wave Energy
+		\item  $C_{g}$: Group celerity
+	\end{itemize}
 \end{frame}
 
 %==================================================================================
@@ -290,7 +299,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 %==================================================================================
 
 %==================================================================================
-% SLIDE 13
+% SLIDE 14
 %==================================================================================
 \begin{frame}
  	\frametitle{Invert for bathymetry given surface data \& physics}
@@ -300,7 +309,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 \end{frame}
 
 %==================================================================================
-% SLIDE 14
+% SLIDE 15
 %==================================================================================
 \begin{frame}
 	\frametitle{Solutions are computed using 3 inversion methods}
@@ -310,10 +319,12 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 			\begin{itemize}
 				\item Logical place to start
 			\end{itemize}
+			$\,$\\
 			\item Bayesian MCMC
 			\begin{itemize}
 				\item Gives a distribution of depth estimates
 			\end{itemize}
+			$\,$\\
 			\item Tikhonov Regularization
 			\begin{itemize}
 				\item Bounded-constraint multivariate problem
@@ -326,7 +337,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 %==================================================================================
 
 %==================================================================================
-%  SLIDE 15
+%  SLIDE 16
 %==================================================================================
 \begin{frame}
  	\frametitle{Manufactured ``data" is used to test our algorithms}
@@ -335,26 +346,24 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 		\end{figure}
 \end{frame}
 
-%==================================================================================
-% SLIDE 16
-%==================================================================================
-\begin{frame}
- 	\frametitle{Manufactured $k$ comes from forward model using real $h$}
-		\begin{figure}[H]
-	 		\centering
-	 		\includegraphics[width=1.0\linewidth]{img/Flow_New.png}
-	 	\end{figure}
-\end{frame}
 
 %==================================================================================
 %  SLIDE 17
 %==================================================================================
 \begin{frame}
-	\frametitle{Results from manufactured test}
-		\begin{figure}[H]
-	 		\centering
-	 		\includegraphics[width=1.0\linewidth]{img/MCMC-manufactured.eps}
-	 	\end{figure}
+	\frametitle{All methods capture the sandbar well}
+	 \begin{columns}
+          	\column{0.5\textwidth} 
+			\begin{figure}[H]
+	 			\centering
+				\includegraphics[width=1\linewidth]{img/nllsq_synthetic_1.eps}
+			\end{figure}
+		\column{0.5\textwidth} 
+			\begin{figure}[H]
+	 			\includegraphics[width=1\linewidth]{img/MCMC-manufactured.eps}\vfill
+				\includegraphics[width=1\linewidth]{img/fmincon_simulated_25m.png}
+	 		\end{figure}
+	\end{columns}
 \end{frame}
 
 %==================================================================================
@@ -376,18 +385,23 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 % SLIDE 19
 %===================================================================================
 \begin{frame}
-	\frametitle{All bathymetry estimates reasonably locate sandbar}
+	\frametitle{Bathymetry estimates perform well in shallow water}
+		\begin{columns}
+          		\column{0.5\textwidth} 
+				\begin{figure}[H]
+	 				\centering
+					\includegraphics[width=1\linewidth]{img/nllsq_real_1.eps}
+				\end{figure}
+			\column{0.5\textwidth} 
+				\begin{figure}[H]
+	 				\includegraphics[width=1\linewidth]{img/MCMC-manufactured.eps}\vfill
+					\includegraphics[width=1\linewidth]{img/fmincon_real_Oct09_nok.png}
+	 			\end{figure}
+		\end{columns}
 \end{frame}
 
 %===================================================================================
 % SLIDE 20
-%===================================================================================
-\begin{frame}
-	\frametitle{[This one] gave the best bathymetry estimate}
-\end{frame}
-
-%===================================================================================
-% SLIDE 21
 %===================================================================================
 \begin{frame}
 	\frametitle{Bathymetry estimates are limited by noisy $k$ data}
@@ -395,6 +409,16 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 			\includegraphics[width=1\linewidth]{img/Real_vs_Calcd_wavenum.jpg}
 		\end{figure}
 	
+\end{frame}
+
+%===================================================================================
+% SLIDE 21
+%===================================================================================
+\begin{frame}
+	\frametitle{Missing data \& deep water cause poor $h$ offshore}
+		\begin{figure}[H]
+			\includegraphics[width=0.9\linewidth]{img/fmincon_real_Oct09.png}
+	 	\end{figure}
 \end{frame}
 
 %===================================================================================
@@ -410,8 +434,14 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 	\frametitle{Future Directions}
 		\begin{itemize}
 			 \item Inclusion of observed wave height, $H$, along the profile
-			 \item Further regularization methods
-			 \item Expand to using 2D wave physics
+		\end{itemize}
+		$\,$\\
+		\begin{itemize}
+			 \item Application of further regularization methods
+		\end{itemize}
+		$\,$\\
+		\begin{itemize}
+			 \item Expansion to 2D wave physics and higher fidelity models
  		\end{itemize}
 \end{frame}
 
