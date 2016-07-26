@@ -31,7 +31,8 @@
 	-Wave height (the difference between peaks and troughts)
 	-Wave length (the length between peaks)
 	-Wave Number, or k, essentially the inverse of the wave number or
-	 the spatial frequency of waves (number of waves per unit distance - or radians per unit distance)
+	 the spatial frequency of waves (number of waves per unit distance - 
+	 or radians per unit distance)
 
 
 ===============================Data==============================================
@@ -64,8 +65,10 @@
 -Tikonov Regularization (fmincon)
 	-for this and most physical problems, we could come up with constraints
  	 on our values for depth.
+		-depths greater than zero
+		-depths not too large (we are in near shore and know the depth
+		 at the BC)
 	-multivariate
-	-our objective function may be shallow
 
 ============================Manufactured Data====================================
 -To test these methods, before using real wave number data, we created some
@@ -112,6 +115,8 @@
 -we explored the Tikonhov Regularization but unfortunately we didn't have time to 
  find the optimum regularization method...this is a promising direction of further
  work.
+
+-stepping through time?
 
 -explore these methods using 2D wave physics and high fidelity models
 

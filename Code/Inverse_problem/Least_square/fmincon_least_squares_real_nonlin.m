@@ -13,7 +13,7 @@ h_guess    	= initialize_h_guess_pointwise(hgrid, xq, dx);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fmincon: Find minimum of constrained nonlinear multivariable function
 %options = optimoptions('Display','off');
-options = optimset('Display','iter', 'MaxFunEvals', 6000, 'TolFun', 1e-5);
+options = optimset('Display','iter', 'MaxFunEvals', 15000, 'TolFun', 1e-5);
 
 h_hat3    = fmincon(@objective_2norm_real_nonlin, h_guess, [],[],[],[], zeros(N,1), repmat(11,[N,1]),[], options);
 
