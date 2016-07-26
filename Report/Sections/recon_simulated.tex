@@ -9,12 +9,30 @@ In this study, Gaussian noise corrupted simulated data (see Section \ref{Gaussia
 \mathbf{d}_s = A(\mathbf{h}_t) + \mathcal{N}(0, \nu^2),
 \end{equation}
 where $A(\cdot)$ represents the nonlinear forward operator defines in Section \ref{forwardproblem}, $\mathbf{h}_t \in \mathbb{R}_+^n$ is the true Bathymetry vector, and $\mathcal{N}(0, \nu^2)$ is a additive Gaussian noise vector with standard deviation $\nu$, generated in the Matlab\textsuperscript{\textregistered} by $\nu \cdot $\verb| randn(n,1)|.
+
+
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.6]{img/simulated_data_k25m.png} 
+\caption{Simulated data with 25m resseolution grid}
+\label{Simulated25m}
+\end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.6]{img/simulated_data_k10m.png} 
+\caption{2.5\% noisy Simulated data with 10m resolution}
+\label{Simulated10m}
+\end{figure}
+
+
 \subsubsection{Real Data}
 \begin{figure}[H]
 \center
-\includegraphics[scale=0.6]{img/real_data_k_Oct09.png} 
+\includegraphics[scale=0.5]{img/real_data_k_Oct09.png} 
 \caption{Real data - 09 October 2015}
-\label{LM_fig}
+\label{RealData_oct09}
 \end{figure}
 
 
@@ -26,8 +44,19 @@ where $A(\cdot)$ represents the nonlinear forward operator defines in Section \r
 \mathbf{\hat{h}}= \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11} }{\arg \min} \ \  \|  \mathbf{A}(\mathbf{h}) -  \mathbf{d} \|_2^2,
 \end{equation}
 
-[put MCMC results from simulated data and real data sing the Matlab's lsqnonlin function]\\
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.6]{img/lsqnonlin_simulated_10m.png} %plot20 
+\caption{lsqnonlin method reconstruction of depth $\mathbf{h}$ using the simulated data.}
+\label{fmincon_simulated}
+\end{figure}
 
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.6]{img/lsqnonlin_real_data_oct09.png} %plot20 
+\caption{lsqnonlin method reconstruction of depth $\mathbf{h}$ using the simulated data.}
+\label{fmincon_simulated}
+\end{figure}
 
 \subsubsection{Tikhonov Regularization}
 
@@ -40,10 +69,18 @@ where $A(\cdot)$ represents the nonlinear forward operator defines in Section \r
 
 \begin{figure}[H]
 \center
-\includegraphics[scale=0.6]{img/fmincon_simulated_25m.png} %plot20 
+\includegraphics[scale=0.46]{img/fmincon_simulated_25m.png} %plot20 
 \caption{fmincon method reconstruction of depth $\mathbf{h}$ using the simulated data.}
 \label{fmincon_simulated}
 \end{figure}
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.46]{img/fmincon_real_data_oct09.png} %plot20 
+\caption{fmincon method reconstruction of depth $\mathbf{h}$ using the simulated data.}
+\label{fmincon_simulated}
+\end{figure}
+
 
 
 
