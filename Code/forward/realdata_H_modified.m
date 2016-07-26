@@ -1,5 +1,5 @@
 %% Load real data for calculation 
-for j = 1;   %0.1 for 1 % 0.13 for 2 % 0.16 for 16
+for j = 4;   %0.1 for 1 % 0.13 for 2 % 0.16 for 16
 % xmax
 % H_0
 % T_b
@@ -8,12 +8,12 @@ for j = 1;   %0.1 for 1 % 0.13 for 2 % 0.16 for 16
 %% CALL-1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get Boundary Conditions (vector for a fixed time period, record hourly)
-H_0_vec = getBC('waveHs', '2015-10-09 22:00:00', '2015-10-09 23:00:00');
-  T_b_vec = getBC('wavePeakFrequency', '2015-10-09 22:00:00', '2015-10-09 23:00:00');
+H_0_vec = getBC('waveHs', '2015-10-09 00:00:00', '2015-10-10 00:00:00');
+  T_b_vec = getBC('wavePeakFrequency', '2015-10-09 00:00:00', '2015-10-10 00:00:00');
   
 % Choose one set of H_0_vec & T_b_max (index must match)
-H_0 = H_0_vec(j);
-  T_b = (T_b_vec(j))^(-1);
+H_0 = H_0_vec(j);        %H_0_vec(j);
+  T_b = (T_b_vec(j))^(-1);      %(T_b_vec(j))^(-1);
 
   
 %% CALL-2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,14 +68,14 @@ delta = rhs_delta(hgrid, T_b, H_0);
 %% CALL-6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get wave height from energy flux eqn by FDM
-[H, n, cc, c_g] = waveheight_H_modified(H_0, hgrid, T_b, k, dx);
+[H, n, cc1, c_g, E] = waveheight_H_modified(H_0, hgrid, T_b, k, dx);
 
 
 %% Energy
-E = zeros(N1, 1);
-for i = 1: N1
-    E(i) = 1/8*1000*9.8*H(i)^2;
-end
+% E = zeros(N1, 1);
+% for i = 1: N1
+%     E(i) = 1/8*1000*9.8*H(i)^2;
+% end
 
 
 %% OUTPUT data to EXCEL
@@ -90,12 +90,13 @@ end
 %% PLOT-1
 %% (x & H) & (x & h/10) & (x & 10k)
 figure;
-plot(xq, H, '-*', xq, -hgrid/10, '-o', xq, 10*k, '-^')
+plot(xq, 2*H, '-*', xq, -hgrid/10, '-o', xq, 10*k, '-^')
 xlabel('x', 'interpreter', 'latex', 'FontSize', 20)
 ylabel('H, h, k', 'interpreter', 'latex', 'FontSize', 20)
-legend('Wave Height', 'Depth/10', '10*Wave Number')
+legend('Wave Height(scale by 2)', 'Depth(scale by 0.1)', 'Wave Number(scale by 10)')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'interpreter', 'latex', 'FontSize', 20)
+grid on
 hold on 
 
 %% PLOT-2
@@ -106,6 +107,7 @@ xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave height', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
+grid on
 hold on 
 % 
 %% PLOT-3
@@ -118,6 +120,7 @@ y1 = graph2d.constantline(1, 'Color',[1 0 0]);
 changedependvar(y1,'y');
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
+grid on
 hold on 
 % 
 % %% PLOT-4
@@ -148,6 +151,7 @@ xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('Energy', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
+grid on
 hold on 
 % 
 % %% PLOT-7
@@ -163,11 +167,12 @@ hold on
 %% PLOT-8
 %% x & c
 figure;
-plot(xq, cc,'-^g')
+plot(xq, cc1,'-^g')
 xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave phase speed (c)', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
+grid on
 hold on 
 % 
 % %% PLOT-9
@@ -193,11 +198,12 @@ hold on
 %% PLOT-11
 %% h & H
 figure;
-plot(hgrid,H)
+plot(hgrid,H, '-*')
 xlabel('wave depth (h)', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave height (H)', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
+grid on
 hold on 
 % 
 % %% PLOT-12
@@ -213,11 +219,12 @@ hold on
 %% PLOT-13
 %% H & E
 figure;
-plot(H,E)
+plot(H,E, '-*')
 xlabel('wave height (H)', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave energy (E)', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
+grid on
 hold on 
 % 
 % %% PLOT-Last

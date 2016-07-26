@@ -6,7 +6,7 @@
 
 % original version by dwb
 
-function[H, n, cc, c_g] = waveheight_H_modified(Hmax, h, Tb, k, dx)
+function[H, n, cc1, c_g, E] = waveheight_H_modified(Hmax, h, Tb, k, dx)
 
 %% INPUT:
 % xmax(the maximum length in x-direction)
