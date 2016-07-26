@@ -31,7 +31,8 @@
 	-Wave height (the difference between peaks and troughts)
 	-Wave length (the length between peaks)
 	-Wave Number, or k, essentially the inverse of the wave number or
-	 the spatial frequency of waves (number of waves per unit distance - or radians per unit distance)
+	 the spatial frequency of waves (number of waves per unit distance - 
+	 or radians per unit distance)
 
 
 ===============================Data==============================================
@@ -114,6 +115,8 @@
 -we explored the Tikonhov Regularization but unfortunately we didn't have time to 
  find the optimum regularization method...this is a promising direction of further
  work.
+
+-stepping through time?
 
 -explore these methods using 2D wave physics and high fidelity models
 
