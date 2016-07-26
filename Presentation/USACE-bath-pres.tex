@@ -17,7 +17,7 @@
 \usepackage{beamerthemesplit}
 \usepackage{hyperref}
 \usepackage{caption}
-\definecolor{red}{RGB}{0,0,200}
+\definecolor{}{rgb}{0,0,200}
 \mode<presentation>
 {
 \newtheorem{dfn}{Definition}[section]
@@ -75,7 +75,7 @@
 
   \useoutertheme{infolines}
   \usetheme[hideothersubsections]{Berkeley}
-  \usecolortheme[named=red]{structure}
+  %\usecolortheme[named=red]{structure}
   \usecolortheme{whale}
   \useinnertheme{rounded}
   \usefonttheme[onlymath]{serif}
@@ -273,7 +273,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 			\right.
 		\end{eqnarray*}
 		\begin{equation*}
-			\delta = \frac{1}{4h}B\rho g f H_{rms}\left[(R^3+\frac{3}{2}R)e^{-R^2}+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right],
+			\delta = \frac{1}{4h}B\rho g f H_{rms}\left[(R^3+\frac{3}{2}R)e^{-R^2}+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right]
 		\end{equation*}  
 		\begin{flushleft}
 			where
@@ -350,12 +350,13 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 % SLIDE 17
 %===================================================================================
 \begin{frame}
-	\frametitle{Real data is used in final solutions}
+	\frametitle{Real $k$ data is selected for a period with low noise}
 		\begin{figure}
 			\includegraphics[width=1.0\linewidth]{img/Real_k_data.jpg}
 		\end{figure}
 	
 \end{frame}
+
 
 %===================================================================================
 % SLIDE 18
@@ -372,13 +373,24 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 \end{frame}
 
 %===================================================================================
+% SLIDE 20
+%===================================================================================
+\begin{frame}
+	\frametitle{Bathymetry estimates are limited by noisy $k$ data}
+		\begin{figure}
+			\includegraphics[width=1\linewidth]{img/Real_vs_Calcd_wavenum.jpg}
+		\end{figure}
+	
+\end{frame}
+
+%===================================================================================
 %===================================================================================
 \section{Discussion}
 %===================================================================================
 %===================================================================================
 
 %===================================================================================
-% SLIDE 20
+% SLIDE 21
 %===================================================================================
 \begin{frame}
 	\frametitle{Future Directions}
@@ -390,7 +402,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 \end{frame}
 
 %===================================================================================
-% Slide 20
+% Slide 22
 %===================================================================================
 \begin{frame}
 	\frametitle{}
@@ -398,8 +410,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 		\begin{minipage}{50mm}   
                  	\begin{alertblock}{}    
                         		 \begin{center}
-                                   	\textbf{THANK YOU}\\
-                  			\textbf{Questions?}
+                  			\textbf{Thank you! \\Questions?}
                             	 \end{center}
       			\end{alertblock}
 		\end{minipage}
