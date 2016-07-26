@@ -6,7 +6,7 @@
 
 % original version by dwb
 
-function[H, n, cc1, c_g, E] = waveheight_H_modified(Hmax, h, Tb, k, dx)
+function[H, n, cc1, c_g, E, delta] = waveheight_H_modified(Hmax, hgrid, Tb, k, dx)
 
 %% INPUT:
 % xmax(the maximum length in x-direction)
@@ -28,7 +28,7 @@ g = 9.8;        % m/s2
 rho = 1000;     % kg/m3
 
 % Number of grid point
-N1 = length(h);
+N1 = length(hgrid);
 
 % Number of grid
 %N = N1-1;
@@ -36,7 +36,7 @@ N1 = length(h);
 % Boundary Condition
     H = zeros(N1, 1);
     E = zeros(N1, 1);
-   cc = zeros(N1, 1);                     %%%%%%%% celerity
+%   cc = zeros(N1, 1);                     %%%%%%%% celerity
   cc1 = zeros(N1, 1);                     %%%%%%%% celerity
     n = zeros(N1, 1);
   c_g = zeros(N1, 1);                     %%%%%%%% group celerity
@@ -62,7 +62,7 @@ E(1) = 1.0/8.0*rho*g*(H_rms(1))^2.0;
 
 % Coefficient
 for i = 1: N1
-    n(i)  = (1+(2*k(i)*h(i))/sinh(2*k(i)*h(i)))/2;
+    n(i)  = (1+(2*k(i)*hgrid(i))/sinh(2*k(i)*hgrid(i)))/2;
     cc1(i) = 2*pi/(Tb*k(i));
     %cc(i) = sqrt(g*h(i));       %%%%% shallow water approx
     % calculate c_g using dispersion and not shallow water theory tjh
@@ -82,11 +82,11 @@ for i = 2: N1-10
 %     else
       beta = 1;
          f = 1/Tb;
-H_rms(i-1) = 0.707*H(i-1);  % I am sorry this is messed up.  H_rms = 2sqrt(2)*mo H = 0.4sqrt(mo)  tjh
-  H_b(i-1) = 0.78*h(i-1);        % This 0.78 is from breaking condition
-    R(i-1) = abs(H_b(i-1))/H_rms(i-1);
+H_rms(i-1) = 0.707*H(i-1);  % I am sorry this is messed up.  H_rms = 2sqrt(2)*mo H = 4sqrt(mo)  tjh
+  H_b(i-1) = 0.78*hgrid(i-1);        % This 0.78 is from breaking condition
+    R(i-1) = H_b(i-1)/H_rms(i-1);
     
-delta(i-1) = -1/(4*h(i-1))*beta*rho*g*f*H_rms(i-1)^3*((R(i-1)^3+(3/2)*R(i-1))*exp(-R(i-1)^2)+(3/4)*sqrt(pi)*(1-erf(R(i-1))));  % negative for dissipation
+delta(i-1) = -1/(4*hgrid(i-1))*beta*rho*g*f*H_rms(i-1)^3*((R(i-1)^3+(3/2)*R(i-1))*exp(-R(i-1)^2)+(3/4)*sqrt(pi)*(1-erf(R(i-1))));  % negative for dissipation
       % calculate next spatial step using E and not H for simplicity tjh
       E(i) = delta(i-1)*dx/c_g(i) + E(i-1)*c_g(i-1)/c_g(i);
   H_rms(i) = sqrt(8.0*E(i)/(rho*g));

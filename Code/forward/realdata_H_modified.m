@@ -1,5 +1,5 @@
 %% Load real data for calculation 
-for j = 4;   %0.1 for 1 % 0.13 for 2 % 0.16 for 16
+for j = 1;   %0.1 for 1 % 0.13 for 2 % 0.16 for 16
 % xmax
 % H_0
 % T_b
@@ -8,8 +8,8 @@ for j = 4;   %0.1 for 1 % 0.13 for 2 % 0.16 for 16
 %% CALL-1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get Boundary Conditions (vector for a fixed time period, record hourly)
-H_0_vec = getBC('waveHs', '2015-10-09 00:00:00', '2015-10-10 00:00:00');
-  T_b_vec = getBC('wavePeakFrequency', '2015-10-09 00:00:00', '2015-10-10 00:00:00');
+H_0_vec = getBC('waveHs', '2015-10-09 22:00:00', '2015-10-09 23:00:00');
+  T_b_vec = getBC('wavePeakFrequency', '2015-10-09 22:00:00', '2015-10-09 23:00:00');
   
 % Choose one set of H_0_vec & T_b_max (index must match)
 H_0 = H_0_vec(j);        %H_0_vec(j);
@@ -62,13 +62,13 @@ end
 %% CALL-5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get delta (rhs of the ODE)
-delta = rhs_delta(hgrid, T_b, H_0);
+%delta = rhs_delta(hgrid, T_b, H_0);
 
 
 %% CALL-6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get wave height from energy flux eqn by FDM
-[H, n, cc1, c_g, E] = waveheight_H_modified(H_0, hgrid, T_b, k, dx);
+[H, n, cc1, c_g, E, delta] = waveheight_H_modified(H_0, hgrid, T_b, k, dx);
 
 
 %% Energy
@@ -222,6 +222,17 @@ figure;
 plot(H,E, '-*')
 xlabel('wave height (H)', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave energy (E)', 'FontSize', 20, 'interpreter', 'latex')
+str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
+title(str, 'FontSize', 20, 'interpreter', 'latex')
+grid on
+hold on 
+%
+%% PLOT-14
+%% x & delta
+figure;
+plot(xq, delta, '-*r')
+xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
+ylabel('Energy Dissipation', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
 grid on
