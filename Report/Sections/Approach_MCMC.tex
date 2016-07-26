@@ -1,5 +1,5 @@
 \subsection{Bayesian MCMC Inverse Method}
-We implement a Bayesian approach because this method uses past information about the parameter, $h$, to form a prior distribution for analysis and it will sample the posterior probability distribution of "true" $h$. The recovered distribution of $h$ profiles allows for an intuitive understanding of uncertainty in estimated $h$.
+We implement a Bayesian approach because this method uses past information about the parameter, $h$, to form a prior distribution for analysis and it will sample the posterior probability distribution of ``true" $h$. The recovered distribution of $h$ profiles allows for an intuitive understanding of uncertainty in estimated $h$.
 
 \subsubsection{Bayesian Formulation}
 
@@ -21,9 +21,9 @@ We create a random walk Metropolis algorithm \citep{Metropolis1953} which sample
 To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry [which come from somewhere we should probably mention].  We assume a normal conjugate prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}, this ensures our posterior distribution is normal as well. 
 
 \begin{equation}\label{prior}
-\Pi(h) \sim N(\bar{h}_{sim},\sigma_{sim}^2)
+\Pi(h) \sim N(0,\sigma_{sim}^2)
 \end{equation}
-where $\bar{h}_{sim}$ is the mean and $\sigma_{sim}^2$ is the variance of the simulated \textit{h} profiles. 
+where $\sigma_{sim}^2~=~1.01~m$ is the variance of the simulated \textit{h} profiles. 
 
 Given the sample bathymetry, we evaluated the forward model to compute wave numbers along the 1D profile%and wave heights
 . A likelihood function (Equation~\ref{likely}) compares the computed \textit{k} profile to \textit{k} values observed along the 1D profile. 
