@@ -232,6 +232,7 @@ hold on
 figure;
 plot(xq, delta, '-*r')
 xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
+set(gca,'xdir','reverse')
 ylabel('Energy Dissipation', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
