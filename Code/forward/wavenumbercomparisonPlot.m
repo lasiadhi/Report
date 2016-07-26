@@ -12,11 +12,8 @@ function wavenumbercomparisonPlot
 	% Get linear wave number
 	k = wavenumber(Tb,hgrid);
 
-	% Get delta
-	delta = rhs_delta(hgrid, Tb, Hmax);
-
 	for i = 1:3
-		H = waveheight(Hmax,hgrid,Tb,k,delta,dx);
+		H = waveheight_H_modified(Hmax,hgrid,Tb,k,dx);
 
 		figure (1)
 		subplot(2,1,1)

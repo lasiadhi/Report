@@ -1,5 +1,5 @@
 \subsection{Bayesian MCMC Inverse Method}
-We implement a Bayesian approach to sample the posterior probability distribution of "true" $h$. The recovered distribution of $h$ profiles allows for an intuitive understanding of uncertainty in estimated $h$.
+We implement a Bayesian approach because this method uses past information about the parameter, $h$, to form a prior distribution for analysis and it will sample the posterior probability distribution of "true" $h$. The recovered distribution of $h$ profiles allows for an intuitive understanding of uncertainty in estimated $h$.
 
 \subsubsection{Bayesian Formulation}
 
@@ -16,9 +16,9 @@ where $P(h|%H,
 k)$ represents the posterior probability function, $\Pi(h)$ is the prior distribution function and $L(h|%H,
 k)$ is the likelihood function.
 
-We use a random walk Metropolis algorithm \citep{Metropolis1953} which samples proposed depth profiles and updates the posterior probability distribution of \textit{h} according to the likelihood that the proposed depth profiles describe the true bathymetry. 
+We create a random walk Metropolis algorithm \citep{Metropolis1953} which samples proposed depth profiles and updates the posterior probability distribution of \textit{h} according to the likelihood that the proposed depth profiles describe the true bathymetry. 
 
-To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry [which come from somewhere we should probably mention].  We assume a normal prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}. 
+To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry [which come from somewhere we should probably mention].  We assume a normal conjugate prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}, this ensures our posterior distribution is normal as well. 
 
 \begin{equation}\label{prior}
 \Pi(h) \sim N(\bar{h}_{sim},\sigma_{sim}^2)
@@ -29,8 +29,8 @@ Given the sample bathymetry, we evaluated the forward model to compute wave numb
 . A likelihood function (Equation~\ref{likely}) compares the computed \textit{k} profile to \textit{k} values observed along the 1D profile. 
 
 \begin{equation} \label{likely}
-L(h|%H,
-k)=exp(- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2})
+L\left(h|%H,
+k\right)=\exp\left(- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}\right)
 \end{equation} 
 Modeled and observed \textit{k} are ${k}_{m,i}$ and $k_{d,i}$, respectively, where \textit{i} corresponds to the points along the 1D profile for which we have inferred \textit{k} measurements and $\sigma_{d}^2$ is the variance of \textit{k} values observed along the 1D profile during October 2015. (See section~\ref{datak} for more information about the observations.) 
 
