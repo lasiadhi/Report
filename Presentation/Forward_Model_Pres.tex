@@ -1,0 +1,51 @@
+\documentclass{amsart}
+
+\usepackage{latexsym}
+\usepackage{amssymb,amsmath,amsfonts}
+
+\newtheorem*{result1}{{\bf Theorem S}}
+\newtheorem*{result2}{{\bf Theorem I}}
+\newtheorem*{result3}{{\bf Lemma MJ}}
+\newtheorem*{result5}{{\bf Theorem B}}
+
+
+
+\numberwithin{equation}{section}
+ \global\parskip 6pt \oddsidemargin
+0.1cm \evensidemargin 0.4cm \headheight 0.1cm \topmargin -2.0cm
+\textwidth 17.10cm \textheight 24.0cm \voffset 1.50cm \topskip 1.0cm
+
+\begin{document}
+
+ \section{Forward Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1 slide
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Dispersion Relationship:
+$$ \sigma^2=gk\tanh(kh) \Longleftrightarrow \left(\frac{2\pi}{T}\right)^2 = g\left(\frac{2\pi}{L}\right) tanh \left(\frac{2\pi h}{L}\right)
+$$
+\begin{itemize}
+\item Relates wave number $(k)$ and Period $(T)$
+\item Wave length $(L)$ varies with depth $(h)$
+\item Period $(T)$ remains constant
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2 Slide
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Energy Flux Method:
+$$\frac{d}{dx}\left(EC_g\right)=-\delta $$
+\begin{itemize}
+\item Relates wave height $(H)$ and wave number $(k)$
+\item (Janssen and Battjes, 2007): $\delta = \frac{1}{4h}B\rho g f H^3_{rms}\left[(R^3+\frac{3}{2}R)e^{-R^2}+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right]$
+\end{itemize}
+where $R=\frac{H_b}{H_{rms}}$, $H_b=0.78h$, $H_{rms}=2\sqrt{2}H$, $f= \frac{1}{T}$ and $B=1$.
+\begin{itemize}
+\item $E$: Wave Energy,  $C_{g}$: Group celerity,
+\item $c$: Wave celerity, $\sigma$: Angular frequency,
+\item $g$: Gravitational acceleration, $k$: Wave number.
+\end{itemize}
+
+\end{document}
+
+
