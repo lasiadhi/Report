@@ -997,7 +997,7 @@ relative max(constraint violation) =   0.00e+00    TolCon =   1e-06 (default)
 >> 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Modified h_guess %%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% real_plot19_modified.fig
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% real_plot19_modified.fig  — BEST
 
    lambda(1:ceil(len/2))     = 3e-7;
     lambda(ceil(len/2)+1:end) = 3e-5;
