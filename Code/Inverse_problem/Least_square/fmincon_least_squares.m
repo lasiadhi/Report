@@ -22,7 +22,7 @@ load('k_1percNoisedata_N47.mat','k');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fmincon: Find minimum of constrained nonlinear multivariable function
 %options = optimoptions('Display','off');
-options = optimset('Display','iter');
+options = optimset('Display','iter', 'MaxFunEvals', 20000);
 %[h_hat2,exitflag,output] = lsqnonlin(f, zeros(N,1), zeros(N,1),inf(N,1),options)
 %h_hat3   = fmincon(@objective_2norm, abs(h_guess)', [],[],[],[], zeros(N,1), repmat(12,[N,1]),[], options);
 %h_hat3   = fmincon(@objective_2norm, abs(h_guess)', [],[],[],[], -inf(N,1), inf(N,1),[], options);
@@ -35,12 +35,12 @@ figure(3)
 plot(xq,hgrid, '-*b');
 hold on
 plot(xq,h_hat3, '-^r');
-title('fmincon: Interior-point method', 'fontSize',14)
-xlabel('Distance from the coastline (m)','FontSize',14);
+title('Tikhonov Regularization (fmincon) for Synthetic Data', 'fontSize',14)
+xlabel('x Position (m)','FontSize',14);
 ylabel('Depth (m)','FontSize',14);
 set(gca,'ydir','reverse')
 set(gca,'xdir','reverse')
 hold on
 plot(xq,h_guess,'g')
-legend({'True h', 'Recovered h','Initial guess'},'FontSize',14);
+legend({'True Bathymetry (h)', 'Recovered Bathymetry','Initial guess'},'FontSize',14);
 

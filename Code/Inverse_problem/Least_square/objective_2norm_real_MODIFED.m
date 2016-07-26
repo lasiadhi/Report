@@ -20,8 +20,8 @@ function f = objective_2norm_real_MODIFED(h)
     k_data_subset = k_data(~isnan(k_data));
     len    = length(h);
     lambda = zeros(len,1);
-    lambda(1:ceil(len/2))     = 1e-8;
-    lambda(ceil(len/2)+1:end) = 1e-8;
+    lambda(1:ceil(len/2))     = 1e-9;
+    lambda(ceil(len/2)+1:end) = 3e-5;
 
 	f =  norm(k_appro_subset - k_data_subset)^2 +  norm(sqrt(lambda) .* h)^2;
 
