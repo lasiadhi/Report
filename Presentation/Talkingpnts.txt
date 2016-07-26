@@ -1,21 +1,55 @@
 ===================================Intro=========================================
-Bathymetry is submarine topography
-	-its just a complicated word for topography...but underwater
+-Many coastal processes of interested are affected by this thing called bathymetry.
+-We care about these processes because a large amount of the global population
+ lives by the sea
+	-navigation
+	-extreme weather events
+-If we HAVE the data we can predict behaviour in coastal areas through mathematical
+ models
+-Unfortunately, these measurements are difficult to get.
+-Why not invert? It is easy to measure surface water conditions!
+	-cameras, UAV's, satellites.
+=================================Flow Chart======================================
+-Here is how we invert
+	-mention the use of k
+=================================Surface Wave Properties ========================
+-introduce variables and discuss relationship between length and wave number
 
-Knowledge of bathymetry is important for many applications
-	-Navigation
-		-military and domestic! Landing troops or pleasure crafts
-	-Predict flooding and wave conditions during extreme weather events or 
-	during landing conditions for troops
+===============================Data==============================================
+-show flow chart
+-data collected in Duck, NC...by the USACE
+	-our location and Duck
+-boundary conditions collected through a AWAC
+-Argus video data was used to measure wave number
+-luckily, we have known bathymetry to test our results
+	-based on our boundary conditions, we chose the 1d transect
+		-unfortunately, we don't data everywhere 
+			-interpolation scheme - pchip - shape preserving
+			-extrapolation to BC - linear
 
-Wave Properties
-	-Some of these wave properties we can calculate.....
+=============================Forward model=======================================
+-Assume linear wave theory
+-explain physical interpretation (SAM)
 
-Direction Measurements are expensive and challenging
-	-Unfortunately, these measurements are expensive and challenging, so why
-	cant we go backwards? Can we input wave surface conditions into the model
-	and get the bathymetry back? We could gather surface conditions before big storms! 
-	Or before we land at an unknown beach.
+============================Inversion Methods====================================
+-For mathematicians, least squares was an obvious place to start
+	-normal least squares (2-norm)
+	-minimize the residual
+-Baysian MCMC
+	-statistical approach
+	-gives a distribution of estimates
+-Tikonov Regularization (fmincon)
+
+============================Manufactured Data====================================
+-ran through our forward model to get k's and made noisy
+	-this was done so we have "test data" for us to test the algorithms
+	-real bathymetry -> run into the forward problem -> get ks -> make noisy
+	 -> run through inversion algs. -> compare result to the original input
+
+	
+
+
+
 
 
 
