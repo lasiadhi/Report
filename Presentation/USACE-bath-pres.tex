@@ -344,19 +344,9 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 		\end{figure}
 \end{frame}
 
-%==================================================================================
-% SLIDE 17
-%==================================================================================
-\begin{frame}
- 	\frametitle{Manufactured $k$ comes from forward model using real $h$}
-		\begin{figure}[H]
-	 		\centering
-	 		\includegraphics[width=1.0\linewidth]{img/Flow_New.png}
-	 	\end{figure}
-\end{frame}
 
 %==================================================================================
-%  SLIDE 18
+%  SLIDE 17
 %==================================================================================
 \begin{frame}
 	\frametitle{Results from manufactured test}
@@ -379,7 +369,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 %==================================================================================
 
 %===================================================================================
-% SLIDE 19
+% SLIDE 18
 %===================================================================================
 \begin{frame}
 	\frametitle{Real $k$ data is selected for a period with low noise}
@@ -390,19 +380,26 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 
 
 %===================================================================================
-% SLIDE 20
+% SLIDE 19
 %===================================================================================
 \begin{frame}
 	\frametitle{Bathymetry estimates perform well near sandbar}
-		\begin{figure}[H]
-	 		\centering
-	 		\includegraphics[width=0.5\linewidth]{img/nllsq_real_1.eps}\\
-			\includegraphics[width=0.5\linewidth]{img/nllsq_synthetic_1.eps}
-	 	\end{figure}
+		\begin{columns}
+          		\column{0.5\textwidth} 
+				\begin{figure}[H]
+	 				\centering
+					\includegraphics[width=1\linewidth]{img/nllsq_real_1.eps}
+				\end{figure}
+			\column{0.5\textwidth} 
+				\begin{figure}[H]
+	 				\includegraphics[width=1\linewidth]{img/MCMC-manufactured.eps}\vfill
+					\includegraphics[width=1\linewidth]{img/fmincon_real_Oct09_nok.png}
+	 			\end{figure}
+		\end{columns}
 \end{frame}
 
 %===================================================================================
-% SLIDE 21
+% SLIDE 20
 %===================================================================================
 \begin{frame}
 	\frametitle{Bathymetry estimates are limited by noisy $k$ data}
@@ -413,10 +410,13 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 \end{frame}
 
 %===================================================================================
-% SLIDE 22
+% SLIDE 21
 %===================================================================================
 \begin{frame}
 	\frametitle{Missing data \& deep water cause poor $h$ offshore}
+		\begin{figure}[H]
+			\includegraphics[width=0.9\linewidth]{img/fmincon_real_Oct09.png}
+	 	\end{figure}
 \end{frame}
 
 %===================================================================================
@@ -426,7 +426,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 %===================================================================================
 
 %===================================================================================
-% SLIDE 23
+% SLIDE 22
 %===================================================================================
 \begin{frame}
 	\frametitle{Future Directions}
@@ -438,7 +438,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 \end{frame}
 
 %===================================================================================
-% Slide 24
+% Slide 23
 %===================================================================================
 \begin{frame}
 	\frametitle{}
