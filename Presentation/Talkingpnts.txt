@@ -103,6 +103,8 @@
  the ocean bed. 
 	-Although our measured k is close to what we calculated with our forward
 	 model, there still appears to be noise
+		-if we calculate noise according to the k calculated by our forward
+		 there is 40% noise
 	-As the depth increases, the less influence of the bed rears its ugly head
 	-IT IS UNREALISTIC TO EXPECT THIS METHOD TO CAPTURE THE WHOLE BED PROFILE
 		-we know the depth at the boundary condition is 11m
@@ -119,6 +121,8 @@
 -stepping through time?
 
 -explore these methods using 2D wave physics and high fidelity models
+
+=========================Misc Notes=============================================
 
 
 	
