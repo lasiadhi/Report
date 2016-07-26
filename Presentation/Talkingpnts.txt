@@ -14,13 +14,15 @@
 	-mention the use of k
 =================================Surface Wave Properties ========================
 -introduce variables and discuss relationship between length and wave number
+- wave number = spatial frequency of waves; number of waves per unit distance (radians per unit distance)
 
 ===============================Data==============================================
 -show flow chart
 -data collected in Duck, NC...by the USACE
 	-our location and Duck
 -boundary conditions collected through a AWAC
--Argus video data was used to measure wave number
+	- AWAC derives height and period from pressure (piezo resistive), orbital 		velocity (doppler thingy), surface position (reverse echo sounder)
+-Argus video data was used to measure wave number (photogrammetry)
 -luckily, we have known bathymetry to test our results
 	-based on our boundary conditions, we chose the 1d transect
 		-unfortunately, we don't data everywhere 
