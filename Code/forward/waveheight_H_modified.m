@@ -75,22 +75,23 @@ H_rms = zeros(N1, 1);
 H_b   = zeros(N1, 1);
 R     = zeros(N1, 1);
 for i = 2: N1-10
-    if abs(h(i))<=10^(-3)
-        H(i) = 0;
-    else
+%     if abs(h(i))<=10^(-3)
+%         H(i) = 0;
+%     else
       beta = 1;
          f = 1/Tb;
-H_rms(i-1) = H(i-1);  % I am sorry this is messed up.  H = 2sqrt(2)*mo tjh
+H_rms(i-1) = 2*sqrt(2)*H(i-1);  % I am sorry this is messed up.  H = 2sqrt(2)*mo tjh
   H_b(i-1) = 0.78*h(i-1);        % This 0.78 is from breaking condition
     R(i-1) = abs(H_b(i-1))/H_rms(i-1);
     
 delta(i-1) = -1/(4*h(i-1))*beta*rho*g*f*H_rms(i-1)^3*((R(i-1)^3+(3/2)*R(i-1))*exp(-R(i-1)^2)+(3/4)*sqrt(pi)*(1-erf(R(i-1))));  % negative for dissipation
       % calculate next spatial step using E and not H for simplicity tjh
       E(i) = delta(i-1)*dx/c_g(i) + E(i-1)*c_g(i-1)/c_g(i);
-      H(i) = sqrt(8.0*E(i)/(rho*g));
+  H_rms(i) = sqrt(8.0*E(i)/(rho*g));
+      H(i) = H_rms(i)/(2*sqrt(2));
       %H(i) = (delta(i-1)*dx + coe(i-1)*(H(i-1))^2)/coe(i);
       %H(i) = sqrt(H(i));
-    end
+end
     
 %     Hmax  = 0.78*h(i);
 %     if H1(i)<=Hmax
@@ -100,7 +101,7 @@ delta(i-1) = -1/(4*h(i-1))*beta*rho*g*f*H_rms(i-1)^3*((R(i-1)^3+(3/2)*R(i-1))*ex
 %     end
 %     H(i)  = min(H1(i),Hmax);
 end
-H = H/0.707;
+%H = H/0.707;
 %H_rms
 %H_b
 %R
