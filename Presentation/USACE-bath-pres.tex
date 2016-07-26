@@ -87,7 +87,7 @@
 % SLIDE 1: TITLE
 %====================================================================================
 
-\title[Bathymetry Inversion from Waves]{Inverting for Near Coastal Bathymetry from Surface Wave Properties}
+\title[Bathymetry Inversion from Waves]{Inverting for Near Shore Bathymetry from Surface Wave Properties}
 \author[]{ 
 Lasith Adhikari, Charnelle Bland, \\
 Lopamudra Chakravarty, Wenbin Dong, \\
@@ -95,7 +95,7 @@ Olaniyi Samuel Iyiola, Gail Muldoon, Clint Seinen \\
 \vspace{5mm}
 Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (Clemson)}
 \institute[IMSM]{Industrial Mathematical and Statistical Modeling Workshop}
-\date{July 2016}
+\date{}
 \begin{document}
 \frame{\titlepage}
 
@@ -214,22 +214,21 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
 % SLIDE 9
 %====================================================================================
 \begin{frame}
-	\frametitle{Data includes $T$, $H$ at offshore boundary; 1D $k$}
+	\frametitle{Model coordinate system has $x = 0~m$ offshore}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=1\linewidth]{img/k1Dmean_std.png}
+			\includegraphics[width=1\linewidth]{img/Transect.png}
 		\end{figure}
 \end{frame}
-
 
 %====================================================================================
 % SLIDE 10
 %====================================================================================
 \begin{frame}
-	\frametitle{Model coordinate system has $x = 0~m$ offshore}
+	\frametitle{Data includes $T$, $H$ at offshore boundary; 1D $k$}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=1\linewidth]{img/Transect.png}
+			\includegraphics[width=1\linewidth]{img/k1Dmean_std.png}
 		\end{figure}
 \end{frame}
 
@@ -327,17 +326,17 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
 	\frametitle{Solutions are computed using 3 inversion methods}
 		\centering
 		\begin{enumerate}
-			\item Nonlinear Least Squares
+			\item Nonlinear Least Squares (lsqnonlin)
 			\begin{itemize}
 				\item Logical place to start
 			\end{itemize}
 			$\,$\\
-			\item Bayesian MCMC
+			\item Bayesian MCMC (Metropolis)
 			\begin{itemize}
 				\item Gives a distribution of depth estimates
 			\end{itemize}
 			$\,$\\
-			\item Tikhonov Regularization
+			\item Tikhonov Regularization (fmincon)
 			\begin{itemize}
 				\item Bounded-constraint multivariate problem
 			\end{itemize}
@@ -470,6 +469,7 @@ Supervised by\\ Ty  Hesser (USACE), Matthew Farthing (USACE) \\ \& Lea Jenkins (
 					$\,$\\
 					$\,$\\
 				\textbf{Acknowledgements:}\\
+					SAMSI
 					Anusha Madushani\\
 					Kimberly Kaufeld
 				\end{center}
