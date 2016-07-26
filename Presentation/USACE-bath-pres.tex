@@ -275,7 +275,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 % SLIDE 13
 %==================================================================================
 \begin{frame}
-	\frametitle{1D forward model relates $H$ and $k$}
+	\frametitle{1D forward model relates $H$ and $h$}
 	Energy Flux Method:
 	$$\frac{d}{dx}\left(EC_g\right)=-\delta $$
 	%\begin{itemize}
@@ -360,12 +360,34 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 %==================================================================================
 \begin{frame}
 	\frametitle{Results from manufactured test}
-		\begin{figure}[H]
-	 		\centering
-	 		\includegraphics[width=0.2\linewidth]{img/MCMC-manufactured.eps}\\
-			\includegraphics[width=0.5\linewidth]{img/nllsq_synthetic_1.eps}\\
-			\includegraphics[width=0.5\linewidth]{img/fmincon_simulated_25m.png}
-	 	\end{figure}
+	 \begin{columns}
+          	\column{0.5\textwidth} 
+			\begin{figure}[H]
+	 			\centering
+				\includegraphics[width=1\linewidth]{img/nllsq_synthetic_1.eps}
+			\end{figure}
+		\column{0.5\textwidth} 
+			\begin{figure}[H]
+	 			\includegraphics[width=1\linewidth]{img/MCMC-manufactured.eps}\vfill
+				\includegraphics[width=1\linewidth]{img/fmincon_simulated_25m.png}
+	 		\end{figure}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Many coastal processes are affected by bathymetry}
+        \begin{columns}
+            \column{0.5\textwidth}           
+                \begin{figure}[h!]
+                		\includegraphics[width=1\linewidth]{img/Rip_C.jpg}\hfill
+                \end{figure}              
+            \column{0.5\textwidth}
+                \begin{figure}
+                		\includegraphics[width=1\linewidth]{img/C_Flood.jpg}\vfill
+               		\includegraphics[width=1\linewidth]{img/Navy_S.jpg}
+                \end{figure}       
+        \end{columns}
 \end{frame}
 
 %==================================================================================
@@ -387,7 +409,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 % SLIDE 20
 %===================================================================================
 \begin{frame}
-	\frametitle{All bathymetry estimates reasonably locate sandbar}
+	\frametitle{Bathymetry estimates perform well near sandbar}
 		\begin{figure}[H]
 	 		\centering
 	 		\includegraphics[width=0.5\linewidth]{img/nllsq_real_1.eps}\\
