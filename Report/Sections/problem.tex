@@ -2,7 +2,15 @@
 
 Although there have been uncertainties in capturing the topography of the ocean near shore, mathematical methods can estimate bathymetry using the dispersion relationship between wavelength and the period. Stockdon et al. used video imagery, which compared true wave signal and remotely sensed video signal to create a linear representation between wave amplitudes and phases \citep{stockdon2000}.  Holman et al. used a 2-dimensional method with Kalman filtering to estimate the depth, $h$ \citep{holman2013}.
 
-We invert for depth, \textit{h}, using wave length and wave number with a 1D model derived using the energy flux method to create a correlation between wave length and depth from the water surface.
+We invert for depth, \textit{h}, using wave length and wave number with a 1D model derived using the energy flux method to create a correlation between wave length and depth from the water surface as shown in Figure~\ref{flowchart}.
+
+\begin{figure}[h]
+		\centering
+		\includegraphics[width=.40\linewidth]{img/Flow_Chart.jpg}
+		\caption{Acoustic Wave and Current Profiler. Image source: http://www.nortek-as.com/en/products/wave-systems/awac}
+		\label{AWAC}
+\end{figure}
+
 \subsection{Forward Problem}\label{forwardproblem}
 The forward problem is described by 1D linear wave theory:
 \begin{eqnarray}
