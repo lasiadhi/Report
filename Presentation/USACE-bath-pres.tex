@@ -90,7 +90,7 @@
 \title[Bathymetry Inversion from Waves]{Inverting for Near Coastal Bathymetry from Surface Wave Properties}
 \author[]{ 
 Lasith Adhikari, Charnelle Bland, \\
-Lopamudra (Monty) Chakravarty, Wenbin Dong, \\
+Lopamudra Chakravarty, Wenbin Dong, \\
 Olaniyi Samuel Iyiola, Gail Muldoon, Clint Seinen \\
 \vspace{5mm}
 Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
@@ -178,9 +178,9 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
             \includegraphics[width=1.0\linewidth]{img/Wave.jpg}
         \end{figure}
         \centering
-        \begin{equation}
-        		k = \frac{2\pi}{L}
-        \end{equation}
+        \begin{equation*}
+        		\textrm{wave number: } k = \frac{2\pi}{L}
+        \end{equation*}
 \end{frame}
 
 %====================================================================================
@@ -336,10 +336,25 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 \end{frame}
 
 %==================================================================================
-%  SLIDE 16
+% SLIDE 16
+%==================================================================================
+\begin{frame}
+ 	\frametitle{Manufactured $k$ comes from forward model using real $h$}
+		\begin{figure}[H]
+	 		\centering
+	 		\includegraphics[width=1.0\linewidth]{img/Flow_New.png}
+	 	\end{figure}
+\end{frame}
+
+%==================================================================================
+%  SLIDE 17
 %==================================================================================
 \begin{frame}
 	\frametitle{Results from manufactured test}
+		\begin{figure}[H]
+	 		\centering
+	 		\includegraphics[width=1.0\linewidth]{img/MCMC-manufactured.eps}
+	 	\end{figure}
 \end{frame}
 
 %==================================================================================
@@ -347,33 +362,32 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 %==================================================================================
 
 %===================================================================================
-% SLIDE 17
+% SLIDE 18
 %===================================================================================
 \begin{frame}
 	\frametitle{Real $k$ data is selected for a period with low noise}
 		\begin{figure}
 			\includegraphics[width=1.0\linewidth]{img/Real_k_data.jpg}
 		\end{figure}
-	
 \end{frame}
 
 
 %===================================================================================
-% SLIDE 18
+% SLIDE 19
 %===================================================================================
 \begin{frame}
 	\frametitle{All bathymetry estimates reasonably locate sandbar}
 \end{frame}
 
 %===================================================================================
-% SLIDE 19
+% SLIDE 20
 %===================================================================================
 \begin{frame}
 	\frametitle{[This one] gave the best bathymetry estimate}
 \end{frame}
 
 %===================================================================================
-% SLIDE 20
+% SLIDE 21
 %===================================================================================
 \begin{frame}
 	\frametitle{Bathymetry estimates are limited by noisy $k$ data}
@@ -390,7 +404,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 %===================================================================================
 
 %===================================================================================
-% SLIDE 21
+% SLIDE 22
 %===================================================================================
 \begin{frame}
 	\frametitle{Future Directions}
@@ -402,7 +416,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 \end{frame}
 
 %===================================================================================
-% Slide 22
+% Slide 23
 %===================================================================================
 \begin{frame}
 	\frametitle{}
