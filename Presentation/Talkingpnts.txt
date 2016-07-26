@@ -79,7 +79,12 @@
 	  and compare to the input into the forward model.
 
 ============================Manufactured Data Results============================
+-so I'll address the elephant in the room - in the deeper parts things looks a bit odd.
+-but in fact, we are interested in the dynamic portions of the bathymetry and this
+ happens to be in the near shore! The sand bar! This is the are that changes the most
+ and as you can see, we captured these well with all three of our methods! 
 
+-so with this success, we decided to move on the real data
 
 ============================Real Data============================================
 -As mentioned before, we have measured wave number data for the month of October (2015)
@@ -99,6 +104,9 @@
 
 
 
+
+==========================Limitations==========================================
+
 -Our estimates are limited by noise in the k data and assuming the waves interact 
  the ocean bed. 
 	-Although our measured k is close to what we calculated with our forward
@@ -109,18 +117,33 @@
 	-IT IS UNREALISTIC TO EXPECT THIS METHOD TO CAPTURE THE WHOLE BED PROFILE
 		-we know the depth at the boundary condition is 11m
 
+-look at our calculated k...as the depth gets larger, k begins to level off,
+ it becomes nearly constant. There is less influence from the depth.
+
 ===========================Future Work==========================================
--we've only used k data to assimilate our models; what would happen if we use 
- wave height data captured through Lidar measurements? This improve our estimates
- in deeper water as it incorporates the propogation of energy from the BC
+-Non-linear wave theory
+	-linear wave theory is only a starting point; the point of this work is
+	 to act as a building block for future work
+	-there are other formulations of the wave theory that links wave height
+	 to the dispersion relation
 
--we explored the Tikonhov Regularization but unfortunately we didn't have time to 
- find the optimum regularization method...this is a promising direction of further
- work.
+-we've only used k data to assimilate our models; we could improve estimates using
+ additional observations!
+	-this method will allow for incorporation of wave heights and known
+	 bathy.
 
--stepping through time?
+-due to time constraints, we heurisitcally tuned our regularization
+	-a logical next step would be to incorporate prior knowledge of 
+	 stable beach profiles or chart data in stable regions
 
--explore these methods using 2D wave physics and high fidelity models
+-as discussed, our results were limited by noise in the data, maybe another k
+ profile near the same time stamp doesn't have noise there (but it other places)
+	-we could incorporate a quantification of "noise" and snap through time
+
+
+-explore these methods using 2D wave physics
+	-this would allow us to create a 2-dimensional representation of the
+	 bathy.
 
 =========================Misc Notes=============================================
 
