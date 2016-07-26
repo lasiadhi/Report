@@ -192,10 +192,18 @@ We present some of the numerical results in the following Figures.
 \end{figure}
 %
 Figure 2 shows that the wave height is positively correlated to the depth. We can see the similar characteristics between depth and wave number. This is the reason for why we can perform the simulation by providing ${H}$ or ${k}$ to obtain the depth ${h}$. The wave height curve and wave number curve will rapidly increase to a significant level around where depth is very close to zero, and the data there is not reliable because of the poor behavior of equations around $h=0 m$ (We need to force wave height to zero when depth is close to zero, or the wave height given by those equations will turn to infinity). However, the shape of wave height curve or wave number curve around the peak of depth curve shows our model has a reasonable good response to the changing depth.
+
 Figure 3 shows the shallow water assumption which is $h*k<<1$ (The red horizontal line is $h*k=1$). We can see that our model is well fit the criteria at most data points except some where their depths are close to zero.
+
 Figure 4 is the variation of wave energy along x-axis. The energy will accumulate unless the wave height meets the break condition.
+
 Figure 5 is the variation of wave phase speed (celerity) along x-axis. As celerity is a function of wave number and wave period (wave period is assumed to be fixed in our case). 
-Figure 6 shows the variation of wave height along with wave 
+
+Figure 6 shows the variation of wave height along with depth. The data at zeros should not be taken into consideration.
+
+Figure 7 shows the variation of wave energy along with wave height. The data at zeros should not be taken into consideration. As the energy is calculated by $E=\frac{1}{8}\rho g H^2$, the curve is a part of $y=x^2$.
+
+Figure 8 is the variation of wave energy dissipation along x-axis. Just as the basic assumption of our model, the energy does not dissipate significantly until the depth becomes relatively small.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
