@@ -18,7 +18,7 @@ function f = objective_2norm_real_nonlin(h)
     
     len = length(h);
     lambda = zeros(1,len);
-    lambda(1:ceil(len/2)) = 3e-9;
+    lambda(1:ceil(len/2)) = 3e-7;
     lambda(ceil(len/2)+1:end) = 3e-5;
 
 	%f =  norm(k_appro_subset - k_data_subset)^2 +  (3e-7)*norm(h_subset)^2;
