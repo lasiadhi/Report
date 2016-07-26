@@ -19,7 +19,7 @@ N_chopped = length(h_guess_thresh);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fmincon: Find minimum of constrained nonlinear multivariable function
 %options = optimoptions('Display','off');
-options = optimset('Display','iter', 'MaxFunEvals', 15000);
+options = optimset('Display','iter', 'MaxFunEvals', 20000);
 
 h_hat3    = fmincon(@objective_2norm_real_MODIFED, h_guess_thresh, [],[],[],[], zeros(N_chopped,1), repmat(11,[N_chopped,1]),[], options);
 
@@ -60,7 +60,7 @@ plot(xq,hgrid, '-b');
 hold on
 % plot(xq,h_hat3, '-^r');
 plot(xq,h_intep, '-r');
-title('fmincon Method with Real Data - Modified', 'fontSize',14);
+title('Tikhonov Regularization (fmincon) for Real Data - Modified', 'fontSize',14);
 xlim([0,1150])
 xlabel('x Position (m)','FontSize',14);
 ylabel('Depth (m)','FontSize',14);
@@ -69,7 +69,7 @@ set(gca,'xdir','reverse')
 hold on
 %xq_thres = xq(logical(nanlocations(2:end)));
 plot(xq,h_guess,'g')
-legend({'True h','Processed Recovered h','Initial guess'},'FontSize',14);
+legend({'True Bathymetry (h)','Processed Recovered h','Initial guess'},'FontSize',14);
 
 subplot(2,1,2)
 scatter(x_data,k_data,'*k')
