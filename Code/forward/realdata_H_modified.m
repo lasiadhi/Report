@@ -103,8 +103,8 @@ hold on
 %% k & hgrid
 figure;
 plot(hgrid, k, '-*')
-xlabel('depth', 'FontSize', 20, 'interpreter', 'latex')
-ylabel('wave number', 'FontSize', 20, 'interpreter', 'latex')
+xlabel('depth(h)', 'FontSize', 20, 'interpreter', 'latex')
+ylabel('wave number(k)', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')
 grid on
