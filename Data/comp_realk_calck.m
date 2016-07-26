@@ -20,7 +20,7 @@ function comp_realk_calck
 	set(y,'Interpreter','Latex');
 	set(gca,'xdir','reverse');
 	yyaxis('right')
-	plot(x_grid,h_grid);
+	plot(x_grid,h_grid,'k');
 	y2 = ylabel('Depth (m)');
 	set(y2,'Interpreter','Latex');
 	leg = legend('Calculated Wave Number','Measured Wave Number','October 9th Bathymetry');
