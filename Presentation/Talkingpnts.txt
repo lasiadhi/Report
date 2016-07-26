@@ -39,6 +39,7 @@
 	-statistical approach
 	-gives a distribution of estimates
 -Tikonov Regularization (fmincon)
+	-our objective function may be shallow
 
 ============================Manufactured Data====================================
 -ran through our forward model to get k's and made noisy
