@@ -263,18 +263,11 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
  	\frametitle{Forward model computes $k$ assuming $h_{guess}$ \& BC}
 		\begin{figure}[H]
 	 		\centering
-	 		\includegraphics[width=1.0\linewidth]{img/FWD.png}
+	 		\includegraphics[width=1.0\linewidth]{img/Flow_New.png}
 	 	\end{figure}
 \end{frame}
-
 %==================================================================================
-%==================================================================================
-\section{Inverse Methods}
-%==================================================================================
-%==================================================================================
-
-%==================================================================================
-% SLIDE 13
+% SLIDE 12
 %==================================================================================
 \begin{frame}
 	\frametitle{1D wave physics is known for near-coastal regions}
@@ -294,7 +287,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 			\frac{d}{dx}\left( \frac{\lambda}{k}\left(1+\frac{2kh}{\sinh(2kh)}\right)H^2 \right)=-\delta
 		\end{equation*}  
 		\begin{flushleft}
-			where,
+			where
 		\end{flushleft}
 		$${E: Wave \,Energy,\, C_{g}: Group \,celerity,}$$
 		$${\quad c: Wave \,celerity,\, \sigma: Angular \,frequency,}$$
@@ -302,97 +295,118 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 \end{frame}
 
 %==================================================================================
+%==================================================================================
+\section{Inverse Methods}
+%==================================================================================
+%==================================================================================
+
+%==================================================================================
+% SLIDE 13
+%==================================================================================
+\begin{frame}
+ 	\frametitle{Invert for bathymetry given surface data \& physics}
+		\begin{figure}[flowchart]
+			\includegraphics[width=1.0\linewidth]{img/INV.png}
+		\end{figure}
+\end{frame}
+
+%==================================================================================
 % SLIDE 14
 %==================================================================================
 \begin{frame}
- \frametitle{We invert for bathymetry given the surface data and physics}
-
-\begin{figure}[flowchart]
-\includegraphics[width=1.0\linewidth]{img/INV.png}\hfill
-%\captionsetup{labelformat=empty}
-%\caption{Work flow of the project }
-\end{figure}
-%\end{columns}
-
-
+	\frametitle{Solutions are computed using 3 inversion methods}
+		\centering
+		\begin{enumerate}
+			\item Nonlinear Least Squares
+			\begin{itemize}
+				\item Logical place to start
+			\end{itemize}
+			\item Bayesian MCMC
+			\begin{itemize}
+				\item Gives a distribution of depth estimates
+			\end{itemize}
+			\item Tikhonov Regularization
+			\begin{itemize}
+				\item Ill-posed problem
+			\end{itemize}
+		\end{enumerate}
 \end{frame}
-%==========================================================================================================================================
-% SLIDE 8: We invert for bathymetry given the surface data and physics
-%======================================================================================
 
+%==================================================================================
+\subsection{Manufactured}
+%==================================================================================
+
+%==================================================================================
+%  SLIDE 15
+%==================================================================================
 \begin{frame}
- \frametitle{Inversion Methods}
-
-\begin{itemize}
-\item Nonlinear Least Squares
-\item MCMC
-\item fmincon
-\end{itemize}
-
+ 	\frametitle{Manufactured ``data" is used to test our algorithms}
 \end{frame}
 
-
-%==========================================================================================================================================
-% 
-%======================================================================================
-\subsection{Synthetic data}
+%==================================================================================
+%  SLIDE 16
+%==================================================================================
 \begin{frame}
- \frametitle{Synthetic Data}
+	\frametitle{Results from manufactured test}
 \end{frame}
 
-%==========================================================================================================================================
-% 
-%======================================================================================
+%==================================================================================
+\subsection{Real}
+%==================================================================================
+
+%===================================================================================
+% SLIDE 17
+%===================================================================================
 \begin{frame}
- \frametitle{Synthetic Results plots for each}
+	\frametitle{Real data is used in final solutions}
 \end{frame}
 
-\subsection{Real data}
-%==========================================================================================================================================
-% 
-%======================================================================================
+%===================================================================================
+% SLIDE 18
+%===================================================================================
 \begin{frame}
- \frametitle{Real data for runs}
+	\frametitle{All bathymetry estimates reasonably locate sandbar}
 \end{frame}
 
-%==========================================================================================================================================
-% 
-%======================================================================================
+%===================================================================================
+% SLIDE 19
+%===================================================================================
 \begin{frame}
- \frametitle{Real Results plots for each}
+	\frametitle{[This one] gave the best bathymetry estimate}
 \end{frame}
 
-%==========================================================================================================================================
-%SLIDE 16: Future directions fr IMSM 2017
+%===================================================================================
+%===================================================================================
 \section{Discussion}
-%==========================================================================================================================================
-\begin{frame}
- \frametitle{Future Directions }
- \begin{itemize}
- \item Use of wave heights
- \item Regularization methods
- \item 2D problem
- \end{itemize}
+%===================================================================================
+%===================================================================================
 
+%===================================================================================
+% SLIDE 20
+%===================================================================================
+\begin{frame}
+	\frametitle{Future Directions}
+		\begin{itemize}
+			 \item Inclusion of observed wave height, $H$, along the profile
+			 \item Further regularization methods
+			 \item Expand to using 2D wave physics
+ 		\end{itemize}
 \end{frame}
+
 %=====================================================================================================
-% Slide 17: THANK YOU
+% Slide 20
 %==========================================================================================================
 \begin{frame}
-\frametitle{}
-\hspace{2.5cm}
-\begin{minipage}{50mm}   
-                                                                                                                           
-      \begin{alertblock}{}    
-                                          
-            \begin{center}
-                                                                                                                                                                                  
-                  \textbf{THANK YOU!}
-                            
-                                                                       
-            \end{center}
-      \end{alertblock}
-\end{minipage}
+	\frametitle{}
+		\hspace{2.5cm}
+		\begin{minipage}{50mm}   
+                 	\begin{alertblock}{}    
+                        		 \begin{center}
+                                   	\textbf{THANK YOU}\\
+                  			\textbf{Questions?}
+                            	 \end{center}
+      			\end{alertblock}
+		\end{minipage}
 \end{frame}
 
 %==========================================================================================================================================
@@ -497,31 +511,17 @@ arrive at a posterior distribution of \textit{h} profiles %which are expected to
 
 \end{frame}
 
-%==========================================================================================================================================
-%SLIDE 1: Results
-%==========================================================================================================================================
- \begin{frame}
-\frametitle{Results}
-
-
-\end{frame}
-
-
-%==========================================================================================================================================
-
-
-
 
 %===========================================================================================================================================
 % SLIDE 12: MCMC Method: Log-Likelihood Function
 %======================================================================================
 \begin{frame}
  \frametitle{MCMC Method: Log-Likelihood Function}
- Loglikelihood function compares simulated and observed \textit{k} values
+ Loglikelihood function compares simulated and observed \textit{k}
 
 \begin{equation} \label{likely}
 \log{L(h|%H,
-k)}=log{e^{- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{d}^2}}}
+k)}=log[{exp(- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{k}^2})]}
 \end{equation} 
 
 
