@@ -31,11 +31,8 @@ Tb = 11.7647;
 %% Get linear wave number
 k_lin = wavenumber(Tb, hgrid);
 
-%% Get delta (rhs of the ODE)
-delta = rhs_delta(hgrid, Tb, Hmax);
-
 %% Get wave height from energy flux eqn by FDM
-H = waveheight(Hmax, hgrid, Tb, k_lin, delta, dx);
+H = waveheight_H_modified(Hmax, hgrid, Tb, k_lin, dx);
 
 %% Get non linear wave number
 k = nonlin_wavenumber(Tb, hgrid, H, k_lin);
