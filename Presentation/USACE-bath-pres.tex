@@ -71,9 +71,6 @@
 \newcommand{\ep}{\varepsilon}
 \newcommand{\id}{\,\mathrm{d}}
 
-
-
-
 %\setbeamertemplate{itemize item}[ball]
 
   \useoutertheme{infolines}
@@ -96,11 +93,9 @@ Lasith Adhikari, Charnelle Bland, \\
 Lopamudra (Monty) Chakravarty, Wenbin Dong, \\
 Olaniyi Samuel Iyiola, Gail Muldoon, Clint Seinen \\
 \vspace{5mm}
-Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
-}
+Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)}
 \institute[IMSM]{Industrial Mathematical and Statistical Modeling Workshop}
 \date{July 2016}
-%\logo{\includegraphics[height=1.4cm,width=1.5cm]{aust_logo}}
 \begin{document}
 \frame{\titlepage}
 
@@ -144,9 +139,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 %======================================================================================
 \begin{frame}
     \frametitle{Direct measurements are expensive and challenging}
-
-    \begin{columns}
-    
+    \begin{columns}  
         \column{0.5\textwidth}
             \centering
             \begin{figure}[h!]
@@ -154,15 +147,13 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
                 \centering
                 \captionsetup{labelformat=empty}
                 \caption{LARC}
-            \end{figure}
-        
+            \end{figure}        
         \column{0.5\textwidth}
             \begin{figure}[h]
                 \includegraphics[width=0.8\linewidth]{img/CRAB3.JPG}
                 \captionsetup{labelformat=empty}
                 \caption{CRAB}
-            \end{figure}
-    
+            \end{figure}  
     \end{columns}
 \end{frame}
 
@@ -191,8 +182,6 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
         		k = \frac{2\pi}{L}
         \end{equation}
 \end{frame}
-
-
 
 %====================================================================================
 %====================================================================================
@@ -232,22 +221,21 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 		\end{figure}
 \end{frame}
 
-
 %====================================================================================
 % SLIDE 10
 %====================================================================================
 \begin{frame}
 	\frametitle{Known bathymetry is used for testing our results}
-		\begin{columns}
-			\column{0.5\textwidth}
-				\begin{figure}[H]
-	 				\includegraphics[width=1.2\linewidth]{img/trueBath2D.png}
-	 			\end{figure}
-			\column{0.5\textwidth}
-				\begin{figure}[h]
-					\includegraphics[width=.70\linewidth]{img/DepthChart.png}
-				\end{figure}
-			\end{columns}
+%		\begin{columns}
+%			\column{0.5\textwidth}
+			\begin{figure}[H]
+	 			\includegraphics[width=1\linewidth]{img/trueBath2D.png}
+	 		\end{figure}
+%			\column{0.5\textwidth}
+%				\begin{figure}[h]
+%					\includegraphics[width=.70\linewidth]{img/DepthChart.png}
+%				\end{figure}
+%			\end{columns}
 \end{frame}
 
 %==================================================================================
@@ -266,6 +254,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 	 		\includegraphics[width=1.0\linewidth]{img/Flow_New.png}
 	 	\end{figure}
 \end{frame}
+
 %==================================================================================
 % SLIDE 12
 %==================================================================================
@@ -284,7 +273,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 			\right.
 		\end{eqnarray*}
 		\begin{equation*}
-			\frac{d}{dx}\left( \frac{\lambda}{k}\left(1+\frac{2kh}{\sinh(2kh)}\right)H^2 \right)=-\delta
+			\delta = \frac{1}{4h}B\rho g f H_{rms}\left[(R^3+\frac{3}{2}R)e^{-R^2}+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right],
 		\end{equation*}  
 		\begin{flushleft}
 			where
@@ -305,7 +294,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 %==================================================================================
 \begin{frame}
  	\frametitle{Invert for bathymetry given surface data \& physics}
-		\begin{figure}[flowchart]
+		\begin{figure}
 			\includegraphics[width=1.0\linewidth]{img/INV.png}
 		\end{figure}
 \end{frame}
@@ -327,7 +316,7 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 			\end{itemize}
 			\item Tikhonov Regularization
 			\begin{itemize}
-				\item Ill-posed problem
+				\item Bounded-constraint multivariate problem
 			\end{itemize}
 		\end{enumerate}
 \end{frame}
@@ -341,6 +330,9 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 %==================================================================================
 \begin{frame}
  	\frametitle{Manufactured ``data" is used to test our algorithms}
+		\begin{figure}
+			\includegraphics[width=1.0\linewidth]{img/Manufactured_data.jpg}
+		\end{figure}
 \end{frame}
 
 %==================================================================================
@@ -359,6 +351,10 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 %===================================================================================
 \begin{frame}
 	\frametitle{Real data is used in final solutions}
+		\begin{figure}
+			\includegraphics[width=1.0\linewidth]{img/Real_k_data.jpg}
+		\end{figure}
+	
 \end{frame}
 
 %===================================================================================
@@ -393,9 +389,9 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
  		\end{itemize}
 \end{frame}
 
-%=====================================================================================================
+%===================================================================================
 % Slide 20
-%==========================================================================================================
+%===================================================================================
 \begin{frame}
 	\frametitle{}
 		\hspace{2.5cm}
@@ -409,10 +405,9 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 		\end{minipage}
 \end{frame}
 
-%==========================================================================================================================================
-%==========================================================================================================================================
+%===================================================================================
 % SLIDE 9: We tried several inverse methods
-%======================================================================================
+%===================================================================================
 
 %\begin{frame}
 % \frametitle{We tried several inverse methods}
@@ -422,112 +417,112 @@ Supervised by\\ Ty  Hesser (USACE) \& Lea Jenkins (Clemson)
 %\item fmincon
 %\end{itemize}
 %\end{frame}
-%==========================================================================================================================================
-
-%SLIDE 14: fmincon
-%==========================================================================================================================================
- \begin{frame}
-\frametitle{Additive Gaussian Noise Model}
-
-Gaussian noise $\boldsymbol{\epsilon}$ corrupted measurements $\mathbf{d}$ with variance $\nu$ is given by 
-$$
-\mathbf{d} = \mathbf{A} \mathbf{h}_t + \boldsymbol{\epsilon}.
-$$
-
-\begin{tabular}{l c l}
-$\mathbf{d}$ &=& a vector of measurements,\\
-$\mathbf{A}$ &=& a linear forward operator,\\
-$\mathbf{h}_t$ &=& the true bathymetry. 
-\end{tabular}
-
-\end{frame}
-
-
-%==========================================================================================================================================
-%SLIDE 15: fmincon
-%==========================================================================================================================================
- \begin{frame}
-\frametitle{fmincon: Tikhonov Method}
-\centering
-Uses a regularized solution with prior information
-$$
-\mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
-$$
-\end{frame}
-
-%==========================================================================================================================================
-% SLIDE 11: Bayesian Markov Chain Monte Carlo (MCMC) Method
-%======================================================================================
-
- \begin{frame}
-\frametitle{Bayesian Markov Chain Monte Carlo (MCMC) Method}
-The MCMC method creates a posterior distribution of depth profiles, given wave number by using the Bayes relationship
-
-\begin{equation}\label{bayes}
-P(h|%H,
-k) \propto \Pi(h)L(h|%H,
-k),
-\end{equation} 
+%%==========================================================================================================================================
+%
+%%SLIDE 14: fmincon
+%%==========================================================================================================================================
+% \begin{frame}
+%\frametitle{Additive Gaussian Noise Model}
+%
+%Gaussian noise $\boldsymbol{\epsilon}$ corrupted measurements $\mathbf{d}$ with variance $\nu$ is given by 
+%$$
+%\mathbf{d} = \mathbf{A} \mathbf{h}_t + \boldsymbol{\epsilon}.
+%$$
+%
+%\begin{tabular}{l c l}
+%$\mathbf{d}$ &=& a vector of measurements,\\
+%$\mathbf{A}$ &=& a linear forward operator,\\
+%$\mathbf{h}_t$ &=& the true bathymetry. 
+%\end{tabular}
+%
+%\end{frame}
+%
+%
+%%==========================================================================================================================================
+%%SLIDE 15: fmincon
+%%==========================================================================================================================================
+% \begin{frame}
+%\frametitle{fmincon: Tikhonov Method}
+%\centering
+%Uses a regularized solution with prior information
+%$$
+%\mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
+%$$
+%\end{frame}
+%
+%%==========================================================================================================================================
+%% SLIDE 11: Bayesian Markov Chain Monte Carlo (MCMC) Method
+%%======================================================================================
+%
+% \begin{frame}
+%\frametitle{Bayesian Markov Chain Monte Carlo (MCMC) Method}
+%The MCMC method creates a posterior distribution of depth profiles, given wave number by using the Bayes relationship
+%
+%\begin{equation}\label{bayes}
+%P(h|%H,
+%k) \propto \Pi(h)L(h|%H,
+%k),
+%\end{equation} 
+%%\begin{itemize}
+%%\item $\Pi(h)$  prior distribution
+%%\item $L(h|%H,
+%%k)$ likelihood function
+%%\item $P(h|%H,
+%%k)$ posterior distribution
+%%\end{itemize}
+%\end{frame}
+%
+%%==========================================================================================================================================
+%% SLIDE 13: MCMC Method: Metropolis Algorithm
+%%==========================================================================================================================================
+%\begin{frame}
+% \frametitle{MCMC Method: Metropolis Algorithm}
 %\begin{itemize}
-%\item $\Pi(h)$  prior distribution
-%\item $L(h|%H,
-%k)$ likelihood function
-%\item $P(h|%H,
-%k)$ posterior distribution
+%\item Prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}\\
+%\begin{equation}\label{post}
+%P(h|%H,
+%k) = log(\Pi(h)) + log(L(h|%H,
+%k))
+%\end{equation}
+%\item Uses a markov chain random walk to %propose and compare new \textit{h} profiles
+%arrive at a posterior distribution of \textit{h} profiles %which are expected to describe true bathymetry
 %\end{itemize}
-\end{frame}
-
-%==========================================================================================================================================
-% SLIDE 13: MCMC Method: Metropolis Algorithm
-%==========================================================================================================================================
-\begin{frame}
- \frametitle{MCMC Method: Metropolis Algorithm}
-\begin{itemize}
-\item Prior and likelihood are combined to compute an initial posterior probability distribution of \textit{h}\\
-\begin{equation}\label{post}
-P(h|%H,
-k) = log(\Pi(h)) + log(L(h|%H,
-k))
-\end{equation}
-\item Uses a markov chain random walk to %propose and compare new \textit{h} profiles
-arrive at a posterior distribution of \textit{h} profiles %which are expected to describe true bathymetry
-\end{itemize}
-\end{frame}
-%==========================================================================================================================================
-% SLIDE 10: Nonlinear least squares
-%===================================================================================================================
-
- \begin{frame}
-\frametitle{Nonlinear Least Squares: Trusted Region-Reflective Method}
-
-\begin{equation}\label{LS}
-\mathbf{\hat{h}}= \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \ \ f(\mathbf{h}) = \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2,
-\end{equation}
-
-\begin{figure}[H]
-	 	\centering
-	 	\includegraphics[width=.70\linewidth]{img/trust_region_linear.png}
-	 	\end{figure}
-
-\end{frame}
-
-
-%===========================================================================================================================================
-% SLIDE 12: MCMC Method: Log-Likelihood Function
-%======================================================================================
-\begin{frame}
- \frametitle{MCMC Method: Log-Likelihood Function}
- Loglikelihood function compares simulated and observed \textit{k}
-
-\begin{equation} \label{likely}
-\log{L(h|%H,
-k)}=log[{exp(- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{k}^2})]}
-\end{equation} 
-
-
-\end{frame}
-%==========================================================================================================================================
-
+%\end{frame}
+%%==========================================================================================================================================
+%% SLIDE 10: Nonlinear least squares
+%%===================================================================================================================
+%
+% \begin{frame}
+%\frametitle{Nonlinear Least Squares: Trusted Region-Reflective Method}
+%
+%\begin{equation}\label{LS}
+%\mathbf{\hat{h}}= \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \ \ f(\mathbf{h}) = \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2,
+%\end{equation}
+%
+%\begin{figure}[H]
+%	 	\centering
+%	 	\includegraphics[width=.70\linewidth]{img/trust_region_linear.png}
+%	 	\end{figure}
+%
+%\end{frame}
+%
+%
+%%===========================================================================================================================================
+%% SLIDE 12: MCMC Method: Log-Likelihood Function
+%%======================================================================================
+%\begin{frame}
+% \frametitle{MCMC Method: Log-Likelihood Function}
+% Loglikelihood function compares simulated and observed \textit{k}
+%
+%\begin{equation} \label{likely}
+%\log{L(h|%H,
+%k)}=log[{exp(- \frac{\sum\limits_{i=1}^n({k}_{m,i}-k_{d,i})^2}{2\sigma_{k}^2})]}
+%\end{equation} 
+%
+%
+%\end{frame}
+%%==========================================================================================================================================
+%
 
 \end{document}
 
