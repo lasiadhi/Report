@@ -3,6 +3,8 @@ The Bayesian inversion approach samples a posterior distribution of depth profil
 
 This method is first applied using synthetic $k$ input and the resulting depth estimate is shown in Figure~\ref{mcmc-synthetic}. As for other methods, the synthetic result accurately represents the sandbar located at $x~\sim~950~m$ along the profile, which is an important feature to recreate. However, at offshore locations ($x~<~600~m$), the estimation appears to break down. As in other methods, this is expected because of the lower sensitivity of $k$ on $h$ at these depths, a relationship on which our inverse methods rely.
 
+The synthetic data MCMC results were generated using 20,000 iterations of the Metropolis algorithm after 1000 ``burn in" iterations were discarded. The first iterations are considered to be a transient and unreliable portion of the solution so extra iterations, known as ``burn in" iterations are included to account for this. Proposal $h_{i+1}$ profiles were computed by adding a randomly generated step to $h_i$ and a proposal posterior distribution was computed for the $(i+1)th$ step. An arbitrary scale factor of 0.5 was used to moderate the step size between iterations. 
+
 
 \begin{figure}[H]
 \center

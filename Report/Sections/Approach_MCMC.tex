@@ -1,5 +1,5 @@
 \subsection{Bayesian MCMC Inverse Method}
-We implement a Bayesian approach because this method uses past information about the parameter, $h$, to form a prior distribution for analysis and it will sample the posterior probability distribution of "true" $h$. The recovered distribution of $h$ profiles allows for an intuitive understanding of uncertainty in estimated $h$.
+We implement a Bayesian approach because this method uses past information about the parameter, $h$, to form a prior distribution for analysis and it will sample the posterior probability distribution of ``true" $h$. The recovered distribution of $h$ profiles allows for an intuitive understanding of uncertainty in estimated $h$.
 
 \subsubsection{Bayesian Formulation}
 
@@ -18,12 +18,12 @@ k)$ is the likelihood function.
 
 We create a random walk Metropolis algorithm \citep{Metropolis1953} which samples proposed depth profiles and updates the posterior probability distribution of \textit{h} according to the likelihood that the proposed depth profiles describe the true bathymetry. 
 
-To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry [which come from somewhere we should probably mention].  We assume a normal conjugate prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}, this ensures our posterior distribution is normal as well. 
+To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry derived by the U.S. Army Corps of Engineers.  We assume a normal conjugate prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}, this ensures our posterior distribution is normal as well. 
 
 \begin{equation}\label{prior}
-\Pi(h) \sim N(\bar{h}_{sim},\sigma_{sim}^2)
+\Pi(h) \sim N(0,\sigma_{sim}^2)
 \end{equation}
-where $\bar{h}_{sim}$ is the mean and $\sigma_{sim}^2$ is the variance of the simulated \textit{h} profiles. 
+where $\sigma_{sim}^2~=~1.01~m$ is the variance of the simulated \textit{h} profiles. 
 
 Given the sample bathymetry, we evaluated the forward model to compute wave numbers along the 1D profile%and wave heights
 . A likelihood function (Equation~\ref{likely}) compares the computed \textit{k} profile to \textit{k} values observed along the 1D profile. 
@@ -41,8 +41,8 @@ The Metropolis algorithm begins with an initial \textit{h} profile sampled from 
 
 \begin{equation}\label{post}
 P(h|%H,
-k) = log(\Pi(h)) + log(L(h|%H,
-k))
+k) = log[\Pi(h)] + log[L(h|%H,
+k)]
 \end{equation}
 
 The algorithm then uses a markov chain random walk to propose new \textit{h} profiles. Each proposed \textit{h} is evaluated in the forward model to get a proposed \textit{k} profile. The proposed \textit{k} is then compared to observed \textit{k} using the likelihood function and a proposed posterior distribution is computed.
@@ -50,13 +50,21 @@ The algorithm then uses a markov chain random walk to propose new \textit{h} pro
 A unique characteristic of the Metropolis algorithm is the way in which proposed posteriors are accepted or rejected by comparison to the previous step's posterior probability. The probabilty of accepting a proposed posterior is 
 
 \begin{equation}\label{accept}
-\rho = exp(P(h|%H,
+\rho = exp[P(h|%H,
 k)_{prop} - P(h|%H,
-k)_{current})
+k)_{current}]
 \end{equation}
 
 The formulation in equation \ref{accept} implies that if the proposed posterior probability is higher than the current posterior probability than the proposed posterior probability replaces the current posterior probability and the proposed \textit{h} is also accepted as a solution. The algorithm is then incremented and a new proposal is selected and evaluated. We perform 10,000 iterations to arrive at a posterior distribution of \textit{h} profiles which are expected to describe the true bathymetry.
 
+
+\subsubsection{Verification}
+The Metropolis algorithm used for this project was developed by the authors. To verify the algorithm is working correctly, it was tested on a simple ODE:
+
+\begin{equation}
+y = \alpha x 
+\end{equation}
+where the goal is to estimate the value of $\alpha$. 
 
 
 
