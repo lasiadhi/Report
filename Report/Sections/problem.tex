@@ -1,5 +1,3 @@
-%==============================================
-
 Although there have been uncertainties in capturing the topography of the ocean near shore, mathematical methods can estimate bathymetry using the dispersion relationship between wavelength and the period. Stockdon et al. used video imagery, which compared true wave signal and remotely sensed video signal to create a linear representation between wave amplitudes and phases \citep{stockdon2000}.  Holman et al. used a 2-dimensional method with Kalman filtering to estimate the depth, $h$ \citep{holman2013}.
 
 We invert for depth, \textit{h}, using wave length and wave number with a 1D model derived using the energy flux method to create a correlation between wave length and depth from the water surface as shown in Figure~\ref{flowchart}.
@@ -12,12 +10,7 @@ We invert for depth, \textit{h}, using wave length and wave number with a 1D mod
 \end{figure}
 
 \subsection{Forward Problem}\label{forwardproblem}
-
 The forward problem is described by 1D linear wave theory:
-\begin{equation}\label{eqn:model}
-\frac{d}{dx}\left(EC_g\right)=-\delta,\\
-\end{equation}
-
 \begin{eqnarray}
 \label{fp1}
 \left \{
@@ -59,26 +52,25 @@ The wave breaking function, $\delta$, proposed by (Janssen and Battjes, 2007) is
 \end{equation}
 This breaking function is basically depends on the wave height ${H}$ using the following parameters in terms of ${H}$\\
 $$R=\frac{H_b}{H_{rms}}, \quad H_{rms} = 0.7H,\quad H_b=0.78h,\quad f=\frac{1}{T},\quad B=1.$$
-In the above expression ${H_{b}}$ is the local wave breaking height influenced by the breaking condition in the shallow water. ${H_{rms}}$ gives the root mean square of height. and ${f}$ represents frequency. We can see that ${R}$ is wave breaking condition is provided 
+In the above expression ${H_{b}}$ is the local wave breaking height, ${H_{rms}}$ is the root mean square of height and ${f}$ represents frequency. We can see that ${R}$ is wave breaking condition is provided 
 
 \subsection{Numerical Solution of the Forward Model}
-An upwinding scheme is applied to obtain a numerical solution with appropriate initial and boundary conditions.The goal is to provide wave height from the model equation (\ref{eqn:model}). In the process, MATLAB's fsolve function is applied to obtain the wave number. Furthermore, the Newton-Raphson method is used to verify the solution of wave number $k$ obtained by the fsolve function.
-
-\subsubsection{Discretization and Implementation of the Model}
- To apply the upwinding method we first discretize the space vector, ${x}$, depending on predefined mesh size, ${\Delta x}$. For the numerical experiments we applied $\Delta x=10$ and ${\Delta x=25}$ which means index points are set in ${10m}$ and ${25m}$ apart respectively.We have applied equal spacing for this numerical scheme. Depending on the ${\Delta x}$ the wave height${H}$ will be computed at each index point from the model equation . In the process we calculate the following terms:\\
+A finite difference scheme is applied to obtain a numerical solution with appropriate initial and boundary conditions. In the scheme of finite differences, the derivatives are replaced using their finite-difference approximations. The goal is to provide wave height using the finite difference method. In the process, MATLAB's fsolve function is applied to obtain the wave number. Furthermore, the Newton-Raphson method is used to verify the solution of wave number $k$ obtained by the fsolve function.
+\subsubsection{Discretization of the Model}
+A forward difference method is applied depending on the nature of the model given in equation (\ref{fpdelta}). The main goal is to obtain the wave height${H}$. In the process we calculate the following terms:\\
 Total energy per unit area
 $${E=\frac{1}{8}\rho g H_{rms}^2}$$\\
 where ${\rho}$ is water density 1000${kg/m^3}$ and ${g}$ represents the gravitational acceleration ${9.8m/sec^2}$. \\
 The root mean square of height as\\
 $${H_{rms}=0.7 H}$$\\
 Group wave celerity will be defined as in  (\ref{cg}). The wave period is provided from the original data with boundary condition ${H_{0}}$. 
-Wave number plays an important role in estimating the wave height as well. Wave number is employed through the group celerity ${C_g}$.To calculate the wave number MATLAB function fsolve used as non-linear solver to find the zeros of the function given in (\ref{fk}). %obtained from the dispersion relationship
-%$$
-%\sigma^{2}=gk tanh(kh).
-%$$ 
+Wave number plays an important role in estimating the wave height as well. To calculate the wave number MATLAB function fsolve used as non-linear solver to find the zeros of the function given in (\ref{fk}) obtained from the dispersion relationship
+$$
+\sigma^{2}=gk tanh(kh).
+$$ 
 So, at each index point, wave number, $k$, is generated with initial guess $k_0$:
 $$k_0=\frac{\sigma}{\sqrt{gh}}.$$
-This initial condition is chosen, because in shallow water the dispersion relation provides \\
+This initial condition is chosen because in shallow water the dispersion relation provides \\
 %$${c=\frac{\sigma}{k}\simeq\sqrt{gh}}
 $${\sigma^2\simeq g\,k^2\,h}$$
 
@@ -87,10 +79,9 @@ Newton-Raphson method is applied to verify the wave number from fsolve. Therefor
 k_{i+1}& =& k_{i}-\frac{gk_i\tanh(k_ih)-\sigma^2}{g\tanh(k_ih)-ghk_i sech^2(k_ih)},
 \end{eqnarray}
 
-Wave breaking condition is passed via the breaking function ${\delta}$ at each step of the computation.
 Thus at each index forward finite difference expression is calculated as
 $$E_{i}=\frac{\delta_{i-1}\Delta x}{(C_g)_{i}}+\frac{E_{i-1}(C_g)_{i-1}}{(C_g)_{i}}$$
- After estimating the energy ${E}$ at each index points we update the value of the root mean square of height ${H_{rms}}$. This updated value is applied in the ${H=\frac{H_{rms}}{0.7}}$ to obtain the wave height at each index points. 
+In the above expression ${\Delta x}$ represents the mesh spacing. We have applied equal spacing for this numerical scheme.After estimating the energy ${E}$ at each index points we update the value of the root mean square of height ${H_{rms}}$. This updated value is applied in the ${H=\frac{H_{rms}}{0.7}}$ to obtain the wave height at each index points. 
 
 
 %\begin{comment}
@@ -125,9 +116,8 @@ $$E_{i}=\frac{\delta_{i-1}\Delta x}{(C_g)_{i}}+\frac{E_{i-1}(C_g)_{i-1}}{(C_g)_{
 %using the same initial guess as for fsolve.
 %This provides the wave number, $k$, for each index.
 %\end{comment}
-
-%\subsubsection{Implementation}
-
+\subsubsection{Implementation}
+To apply the finite difference method we first discretize the space vector, ${x}$, depending on predefined mesh size, ${\Delta x}$. For the numerical experiments we usually applied $\Delta x=10$ and ${\Delta x=25}$ which means index points are set in ${10m}$ and ${25m}$ apart respectively. Wave breaking condition is supplied using the breaking parameter ${\delta}$.
 %The wave breaking condition applied in this experiment is
 %$${H=0.78h}$$
 %The reason for this condition is the model is focused on the shallow water. In shallow water the individual wave breaks when the wave height  ${(H)}$ and depth ${h}$ relationship is 
@@ -158,10 +148,9 @@ The implementation of the algorithm is as follows
 %\State $\bullet \quad\textit{Find\,\,} c^{*} \textit{\,\,depending on \,\,}k:\quad c^{*}=\frac{(1+(2kh)}{sinh(2kh)}\lambda \,\, k$
 
 \BState \emph{\textbf{Step 3:Compute wave height H}}
-\State $\textit{for i=\,\,}1,2,...,N$
 \State $\bullet \quad\textit{Compute wave breaking function:\,\,} \delta$
 \State $\bullet \quad\textit{Compute wave group celerity:\,\,} C_g$
-\State $\bullet \quad\textit{Compute:\,\,} \quad E_{i}=\frac{\delta{i-1}*\Delta x}{(C_g)_{i}}+\frac{E_{i-1}*(C_g)_{i-1}}{(C_g)_{i}}$
+\State $\bullet \quad\textit{Compute:\,\,} H:\quad E_{i}=\frac{\delta{i-1}*\Delta x}{(C_g)_{i}}+\frac{E_{i-1}*(C_g)_{i-1}}{(C_g)_{i}}$
 \State $\bullet \quad\textit{Update :\,\,} (H_{rms})_{i}=\sqrt{\frac{8.0\,E_{i}}{\rho\, g}}$
 \State $\bullet \quad\textit{Compute :\,\,} H_{i}=\frac{(H_{rms})_{i}}{0.707}$
 \EndProcedure
@@ -204,6 +193,7 @@ Figure 6 shows the variation of wave height along with depth. The data at zeros 
 Figure 7 shows the variation of wave energy along with wave height. The data at zeros should not be taken into consideration. As the energy is calculated by $E=\frac{1}{8}\rho g H^2$, the curve is a part of $y=x^2$.
 
 Figure 8 is the variation of wave energy dissipation along x-axis. Just as the basic assumption of our model, the energy does not dissipate significantly until the depth becomes relatively small (the after the main peak is not reliable as the depth there is too small). The small peak around $x=900 m$ is caused by the peak part of the bathymetry.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
