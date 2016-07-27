@@ -5,7 +5,6 @@
 \usepackage{float}
 \usepackage{subfig}
 \usepackage{natbib}
-\usepackage{epstopdf}
 
 
 % lasith added 
@@ -66,8 +65,6 @@ Matthew Farthing\footnote{U.S. Army Corps of Engineers}
 \section{Introduction}
 \input{Sections/introduction.tex}
 
-\section{The Problem}
-\input{Sections/problem.tex}
 
 \section{Data}
 \input{Sections/data_intro.tex}
@@ -75,16 +72,23 @@ Matthew Farthing\footnote{U.S. Army Corps of Engineers}
 \input{Sections/data_truebath.tex}
 \input{Sections/data_k.tex}
 
+
+\section{The Problem}
+\input{Sections/problem.tex}
+
+
 \section{Inversion Methods} \label{inv_techniques}
 \input{Sections/approach.tex}
 \input{Sections/Approach_MCMC.tex}
+
+
 \section{Estimating Bathymetry}
 \input{Sections/recon_simulated.tex}
 \input{Sections/recon_real.tex}
-
+\input{Sections/results_mcmc.tex}
 
 %\input{Sections/experiments.tex}
-%\input(Sections/results_mcmc.tex}
+
 
 \section{Summary and Future Work}
 \input{Sections/summary.tex}
