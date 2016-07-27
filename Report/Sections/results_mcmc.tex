@@ -27,6 +27,7 @@ Overall, the MCMC result performs better for the synthetic case, as may be expec
 
 \subsubsection{Posterior Probability Distributions}
 
+
 Unlike the other methods, the Bayesian approach results in a distribution of depth profiles which optimize bathymetry given uncertain wave number. Measurements of wave number, $\mathbf{k}_m$, are not perfect and our resulting distribution of depth profiles translates that uncertainty into an ensemble of depth estimates which are consistent with the $\mathbf{k}_m$ data to within uncertainty. Figures~\ref{mcmc-posterior-h-synthetic} and \ref{mcmc-posterior-h-real} show the resulting posterior depth distributions. 
 
 As expected, the posterior distribution shows confidence in the location and shape of the true bathymetry in the area of the sandbar. However, the posterior also seems to show confidence in the high variability area seaward of the sandbar. As discussed previously, we expect our estimates to perform poorly in the offshore region, which would suggest our posterior distribution demonstrate less confidence in this area. Further tests are needed to thoroughly examine this issue, but it is possible our Metropolis algorithm is heavily dependent on choices of the prior distribution and proposal function. 
@@ -40,6 +41,5 @@ As expected, the posterior distribution shows confidence in the location and sha
 \end{figure}
 
 
-
-
+The posterior distribution resulting from use of real $k$ values leaves the position of the sandbar ambiguous because the posterior distribution does not appear to converge to a single solution. This suggests less confidence in our estimate of the sandbar bathymetry, though the maximum of our posterior density appears to converge to the true sandbar location. The lack of confidence in the real versus manufactured data results may be due to discrepancies in the number of iterations for each. Because the real data result is derived from only 1000 iterations as opposed to 20,000 for the manufactured data result, it is possible the solution has not converged sufficiently to the true posterior disribution of depth, $h$. Increasing the number of iterations and burn in may therefore improve the posterior distribution and therefore confidence in our estimate of the true bathymetry. 
 
