@@ -8,8 +8,8 @@ for j = 1;   %0.1 for 1 % 0.13 for 2 % 0.16 for 16
 %% CALL-1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get Boundary Conditions (vector for a fixed time period, record hourly)
-H_0_vec = getBC('waveHs', '2015-10-09 22:00:00', '2015-10-09 23:00:00');
-  T_b_vec = getBC('wavePeakFrequency', '2015-10-09 22:00:00', '2015-10-09 23:00:00');
+H_0_vec = getBC('waveHs', '2015-10-09 3:00:00', '2015-10-09 4:00:00');
+  T_b_vec = getBC('wavePeakFrequency', '2015-10-09 3:00:00', '2015-10-09 4:00:00');
   
 % Choose one set of H_0_vec & T_b_max (index must match)
 H_0 = H_0_vec(j);        %H_0_vec(j);
