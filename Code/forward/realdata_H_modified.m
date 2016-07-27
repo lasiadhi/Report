@@ -90,7 +90,7 @@ end
 %% PLOT-1
 %% (x & H) & (x & h/10) & (x & 10k)
 figure;
-plot(xq, 2*H, '-*', xq, -hgrid/10, '-o', xq, 10*k, '-^')
+plot(xq, 2*H, '*', xq, -hgrid/10, 'o', xq, 10*k, '^')
 xlabel('x', 'interpreter', 'latex', 'FontSize', 20)
 ylabel('H, h, k', 'interpreter', 'latex', 'FontSize', 20)
 legend('Wave Height(scale by 2)', 'Depth(scale by 0.1)', 'Wave Number(scale by 10)')
@@ -102,7 +102,7 @@ hold on
 %% PLOT-2
 %% k & hgrid
 figure;
-plot(hgrid, k, '-*')
+plot(hgrid, k, '*')
 xlabel('depth(h)', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave number(k)', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
@@ -113,7 +113,7 @@ hold on
 %% PLOT-3
 %% x & kh
 figure;
-plot(xq, kh, '-*')
+plot(xq, kh, '*')
 xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('hk', 'FontSize', 20, 'interpreter', 'latex')
 y1 = graph2d.constantline(1, 'Color',[1 0 0]);
@@ -146,7 +146,7 @@ hold on
 %% PLOT-6
 %% x & E
 figure;
-plot(xq, E, '-*r')
+plot(xq, E, '*r')
 xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('Energy', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
@@ -167,7 +167,7 @@ hold on
 %% PLOT-8
 %% x & c
 figure;
-plot(xq, cc1,'-^g')
+plot(xq, cc1,'^g')
 xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave phase speed (c)', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
@@ -198,7 +198,7 @@ hold on
 %% PLOT-11
 %% h & H
 figure;
-plot(hgrid,H, '-*')
+plot(hgrid,H, '*')
 xlabel('depth (h)', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave height (H)', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
@@ -219,7 +219,7 @@ hold on
 %% PLOT-13
 %% H & E
 figure;
-plot(H,E, '-*')
+plot(H,E, 'o')
 xlabel('wave height (H)', 'FontSize', 20, 'interpreter', 'latex')
 ylabel('wave energy (E)', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
@@ -230,8 +230,9 @@ hold on
 %% PLOT-14
 %% x & delta
 figure;
-plot(xq, delta, '-*r')
+plot(xq, delta, '*r')
 xlabel('x', 'FontSize', 20, 'interpreter', 'latex')
+set(gca,'xdir','reverse')
 ylabel('Energy Dissipation', 'FontSize', 20, 'interpreter', 'latex')
 str = sprintf('$H_0$=%f, $T_b$=%f', H_0, T_b);
 title(str, 'FontSize', 20, 'interpreter', 'latex')

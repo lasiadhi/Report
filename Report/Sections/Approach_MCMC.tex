@@ -18,14 +18,14 @@ k)$ is the likelihood function.
 
 We create a random walk Metropolis algorithm \citep{Metropolis1953} which samples proposed depth profiles and updates the posterior probability distribution of \textit{h} according to the likelihood that the proposed depth profiles describe the true bathymetry. 
 
-To estimate depth, we created a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry derived by the U.S. Army Corps of Engineers.  We assume a normal conjugate prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}, this ensures our posterior distribution is normal as well. 
+To estimate depth, we create a prior distribution function of \textit{h} given 500 realistic approximations of bathymetry derived by the U.S. Army Corps of Engineers.  We assume a normal conjugate prior with mean and standard deviation determined by the distribution of simulated bathymetry as shown in equation~\ref{prior}, this ensures our posterior distribution is normal as well. 
 
 \begin{equation}\label{prior}
 \Pi(h) \sim N(0,\sigma_{sim}^2)
 \end{equation}
 where $\sigma_{sim}^2~=~1.01~m$ is the variance of the simulated \textit{h} profiles. 
 
-Given the sample bathymetry, we evaluated the forward model to compute wave numbers along the 1D profile%and wave heights
+Given the sample bathymetry, we evaluate the forward model to compute wave numbers along the 1D profile%and wave heights
 . A likelihood function (Equation~\ref{likely}) compares the computed \textit{k} profile to \textit{k} values observed along the 1D profile. 
 
 \begin{equation} \label{likely}
@@ -55,7 +55,7 @@ k)_{prop} - P(h|%H,
 k)_{current}]
 \end{equation}
 
-The formulation in equation \ref{accept} implies that if the proposed posterior probability is higher than the current posterior probability than the proposed posterior probability replaces the current posterior probability and the proposed \textit{h} is also accepted as a solution. The algorithm is then incremented and a new proposal is selected and evaluated. We perform 10,000 iterations to arrive at a posterior distribution of \textit{h} profiles which are expected to describe the true bathymetry.
+The formulation in equation \ref{accept} implies that if the proposed posterior probability is higher than the current posterior probability then the proposed posterior probability replaces the current posterior probability and the proposed \textit{h} is accepted as a solution. The algorithm is then incremented and a new proposal is selected and evaluated. 
 
 
 \subsubsection{Verification}
