@@ -1,60 +1,34 @@
 Although there have been uncertainties in capturing the topography of the ocean near shore, mathematical methods can estimate bathymetry using the dispersion relationship between wavelength and the period. Stockdon et al. used video imagery, which compared true wave signal and remotely sensed video signal to create a linear representation between wave amplitudes and phases \citep{stockdon2000}.  Holman et al. used a 2-dimensional method with Kalman filtering to estimate the depth, $h$ \citep{holman2013}.
-
-We invert for depth, \textit{h}, using wave number with a 1D model derived using the energy flux method to create a correlation between wave length and depth from the water surface as shown in Figure~\ref{flowchart}.
-
-\begin{figure}[H]
-		\centering
-		\includegraphics[width=.90\linewidth]{img/Flow_Chart.png}
-		\caption{Flow chart of the workflow for this research}
-		\label{AWAC}
-\end{figure}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Forward Problem}\label{forwardproblem}
-
-There are a number of models to show relation among different wave dynamics. The first question we faced is that what kind of wave we should simulate in our model. As our interest is on the near shore zone which have a relatively shallow water depth and small amplitude wave (mainly gravity wave), we chose linear wave to fit our model. Based on the basic assumptions such as, incompressible, inviscid and small amplitude, this is a reasonable choice. The shallow water model is the most common way to start modeling this problem with linear wave. This is using the shallow water model which is constructed by continuity equation and simplified Navier-Stokes equation of momentum \cite{dean1991water}. This method is mentioned in 2015. However, we might not go further with it as we did not have any data related to the velocity distribution under water. So we considered to use the energy flux method which is defined as
-$${\frac{d}{dx}}\left( E\,C_{g}\,cos (\theta)\right)= -\delta$$
-In the above model ${\theta}$ is the mean wave angle relative to the shore line. In our study of model, focus is on one dimensional case. For this reason by setting ${\theta=0}$ the model becomes
+Though there are many wave dynamic models showing interactions among wave parameters, our interest is on the near shore zone which have a relatively shallow water depth and small wave amplitude (mainly gravity wave). Based on the basic assumptions such as, incompressibility, inviscid and small amplitude, shallow water model with linear wave is therefore an appropriate model to consider. In \cite{dean1991water}, the shallow water model is constructed by continuity equation and simplified Navier-Stokes equation of momentum. However, the constraint is due to little or no data related to the velocity distribution under water. Therefore, the energy flux method is considered the most appropriate considering the data available to us. Energy flux method in one dimension is given as \cite{Alex2007}
 \begin{equation}\label{eqn:forward}
 \frac{d}{dx}\left(E\,C_{g}\right)=-\delta
-\end{equation} 
-In this model \cite{Alex2007}  ${E\,C_{g}}$ represents the wave energy flux. In the energy flux ${E}$ is the energy per unit area \cite{Alex2007} which is defined as
-\begin{equation}\label{eqn:energy}
-E=\frac{1}{8}\rho g H_{rms}^2
 \end{equation}
-In the above expression ${\rho=1000\,kg/m^3}$ is water density   and ${g=9.8 \,m/sec^2}$ represents the gravitational acceleration . \\
-The root mean square of height ${H_{rms}}$ is defined as\\
-$${H_{rms}=0.707 H}$$\\
-
-$C_g$, called linear theory group speed, is given as
-
+where ${E\,C_{g}}$ represents the wave energy flux which is the product of wave energy $E$ and linear theory group speed $C_g$ given respectively as 
+\begin{equation}\label{eqn:energy}
+E=\frac{1}{8}\rho g H_{rms}^2,
+\end{equation}
+and 
 \begin{equation}
 \label{cg}
 C_g=\frac{c}{2}\left(1+\frac{2kh}{\sinh(2kh)}\right),
 \end{equation}
-with $c=\frac{\sigma}{k}$ and from the linear theory, the wave energy, $E$ is given as
-
-The right hand side ${\delta}$ in the model equation (\ref{eqn:forward}) provides local mean rate of energy dissipation\cite{Alex2007}.  
-
+with water density, ${\rho=1000\,kg/m^3}$, the gravitational acceleration, ${g=9.8 \,m/sec^2}$, the local wave
+phase speed, $c=\frac{\sigma}{k}$, $k$ is the wave number, $h$ is the water depth and $H$ is the wave height and the wave period, $T$, is assumed to be constant.\\
+The root mean square of height ${H_{rms}}$ is defined as\\
+$${H_{rms}=0.707 H}$$.\\
+We consider the wave breaking function $\delta$ proposed by \cite{Alex2007}, which provides local mean rate of energy dissipation, given as
 \begin{equation}\label{eqn:dissipation}
 \delta = \frac{1}{4h}B\rho g f H_{rms}^3\left[(R^3+\frac{3}{2}R)exp(-R^2)+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right],
 \end{equation}
-This breaking function is basically depends on the wave height ${H}$ using the following parameters in terms of ${H}$\\
-$$R=\frac{H_b}{H_{rms}}, \quad H_{rms} = 0.707H,\quad H_b=0.78h,\quad f=\frac{1}{T},\quad B=1.$$
-In the above expression ${H_{b}}$ is the local wave breaking height, ${H_{rms}}$ is the root mean square of height, ${h}$ is the depth and ${f}$ represents frequency.
+with the local wave breaking height, $H_b=0.78h$, $R=\frac{H_b}{H_{rms}}$ and the frequency, $f=\frac{1}{T}$.
 
-Dispersion relationship can describe effect of the dispersion depending on the properties of wave in various medium including water .This way it gives the relations between different wave dynamics, for example depth ${h}$ and wave number ${k}$. For this reason dispersion relationship is an important component in our study
+Dispersion relationship can describe effect of the dispersion depending on the properties of wave in various medium including water. This way, it gives the relations between different wave dynamics, for example depth ${h}$ and wave number ${k}$. For this reason, dispersion relationship is an important component in our study \cite{dean1991water}
 \begin{equation}\label{eqn:dispersion}
 \sigma^2=gk\tanh(kh)
 \end{equation}
-
-In this expression ${\sigma=\frac{2\pi}{T}}$ \cite{dean1991water} is the angular frequency.  
-
-
-
-
-
-
-
+where ${\sigma=\frac{2\pi}{T}}$ is the angular frequency.  
 %The forward problem is described by 1D linear wave theory:
 %\begin{eqnarray}
 %\label{fp1}
