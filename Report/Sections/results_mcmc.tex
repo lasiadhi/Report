@@ -27,7 +27,7 @@ Overall, the MCMC result performs better for the synthetic case, as may be expec
 
 \subsubsection{Posterior Probability Distributions}
 
-Unlike the other methods, the Bayesian approach results in a distribution of depth profiles which optimize $h$ given uncertain $k$. Measurements of wave number, $k$, are not perfect and our resulting distribution of depth profiles translates that uncertainty binto an ensemble of depth estimates which are consistent with the $k$ data to within uncertainty. Figures~\ref{mcmc-posterior-h-synthetic} and \ref{mcmc-posterior-h-real} show the resulting posterior depth distributions. 
+Unlike the other methods, the Bayesian approach results in a distribution of depth profiles which optimize $h$ given uncertain $k$. Measurements of wave number, $k$, are not perfect and our resulting distribution of depth profiles translates that uncertainty binto an ensemble of depth estimates which are consistent with the $k$ data to within uncertainty. Figure~\ref{mcmc-posterior} show the resulting posterior depth distributions. 
 
 As expected, the posterior distribution shows confidence in the location and shape of the true bathymetry in the area of the sandbar. However, the posterior also seems to show confidence in the high variability area seaward of the sandbar. As discussed previously, we expect our estimates to perform poorly in the offshore region, which would suggest our posterior distribution demonstrate less confidence in this area. Further tests are needed to thoroughly examine this issue, but it is possible our Metropolis algorithm is heavily dependent on choices of the prior distribution and proposal function. 
 
@@ -35,11 +35,11 @@ As expected, the posterior distribution shows confidence in the location and sha
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.46]{img/MCMC-posterior-manufactured}
-\caption{Posterior distribution of depth, $h$, estimates for the manufactured data result. The distribution largely dithers around the result shown in Figure~\ref{mcmc-synthetic}. The posterior accurately predicts the location of the sandbar but appears to give false confidence to our bathymetry estimate elsewhere.}
-\label{mcmc-posterior-h-synthetic}
+\includegraphics[scale=0.46]{img/MCMC-posterior-real}
+\caption{Posterior distribution of depth, $h$, estimates for the manufactured (left) and real (right) data result. The distribution largely dithers around the result shown in Figures~\ref{mcmc-synthetic} and ~\ref{mcmc-real}. The maximum of the posterior density accurately predicts the location of the sandbar, particularly, for the synthetic data, but appears to give false confidence to our bathymetry estimate elsewhere. The sandbar prediction from the use of real data does not include as much confidence as for the synthetic data.}
+\label{mcmc-posterior}
 \end{figure}
 
 
-
-
+The posterior distribution resulting from use of real $k$ values leaves the position of the sandbar ambiguous because the posterior distribution does not appear to converge to a single solution. This suggests less confidence in our estimate of the sandbar bathymetry, though the maximum of our posterior density appears to converge to the true sandbar location. The lack of confidence in the real versus manufactured data results may be due to discrepancies in the number of iterations for each. Because the real data result is derived from only 1000 iterations as opposed to 20,000 for the manufactured data result, it is possible the solution has not converged sufficiently to the true posterior disribution of depth, $h$. Increasing the number of iterations and burn in may therefore improve the posterior distribution and therefore confidence in our estimate of the true bathymetry. 
 
