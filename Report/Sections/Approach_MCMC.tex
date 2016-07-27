@@ -64,7 +64,14 @@ The Metropolis algorithm used for this project was developed by the authors. To 
 \begin{equation}
 y = \alpha x 
 \end{equation}
-where the goal is to estimate the value of $\alpha$. 
+where the algorithm estimates the value of $\alpha$. The true value is known to be $\alpha_{true}=2$. Figure~\ref{verifymcmc} shows that our implementation of the random walk Metropolis algorithm is functioning correctly. We are able to accurately estimate the value of the parameter $\alpha$. 
+
+\begin{figure}[H]
+\center
+\includegraphics[scale=0.46]{img/MCMC-verification}
+\caption{Verification that the Metropolis algorithm has been properly implemented in our code. We test a simple ODE problem. The red line represents the known value of the parameter $\alpha$. The blue curve is the posterior probabilty distribution sampled by our algorithm. The posterior we compute accurately estimates the true value of $\alpha$.}
+\label{mcmc-real}
+\end{figure}
 
 
 
