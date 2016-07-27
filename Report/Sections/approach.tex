@@ -1,8 +1,8 @@
 
-In this section, we are going to perform a preliminary study about potential inversion schemes that we can use to recover the unknown bathymetry parameter with the given measurements and the given forward model. In particular, we test and validate six different inversion methods with artifically generated dataset by assuming those data is corrupted by Gaussian noise. 
+Here we perform a preliminary study on potential inversion schemes. We use various inversion schemes to recover an unknown bathymetry using a mock forward model and manufactured data. This preliminary work aided in the selection process of the three inverse methods chosen for this project.
 
 \subsection{The Additive Gaussian Noise Model} \label{Gaussian_noise}
-By assuming the measurements are corrupted by the additive Gaussian noise, the linear estimation model can be written as 
+To accurately mimic the real problem, we create ``measurements'' that are corrupted by the Gaussian noise; this can be written as 
 \begin{equation}
 \mathbf{d} \sim \text{Gaussian}( \mathbf{A} \mathbf{h}_t),
 \end{equation}
@@ -15,7 +15,8 @@ $\mathbf{h}_t$ &=& the true bathymetry (depth).
 \end{tabular}
 
 \vspace{0.3cm}
-\noindent Therefore, a Gaussian noise $\boldsymbol{\epsilon}$ corrupted measurements $\mathbf{d}$ with a standard deviation  $\nu$ is given by 
+Defining $\boldsymbol{\epsilon}$ as our Gaussian noise with a standard deviation $\nu$, the corrupted measurements can be represented as
+
 $$
 \mathbf{d} = \mathbf{A} \mathbf{h}_t + \boldsymbol{\epsilon}.
 $$
@@ -26,13 +27,13 @@ $$
 
 %\subsubsection{Least-Squares Inversion}
 
-As a beginning to approximate the topographic heights of the near-shore sea-floor,  we consider the following least-squares minimization problem,
+To start,  we consider the following least-squares problem,
 \begin{equation}\label{LS}
 \mathbf{\hat{h}}= \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \ \ f(\mathbf{h}) = \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2,
 \end{equation}
 where we minimize the data misfit between the forward predictions and the measurements, in the least-squares sense. In order to test possible Matlab\textsuperscript{\textregistered} inbuilt solvers to solve the minimization problem in  \eqref{LS}, we have generated dummy measurements with $\nu = 0.1$. In particular, in this test, the forward operator \verb|A = rand(50)|, the true bathymetry \verb| ht = -linspace(-11,0,N)'| \verb|- 11|, and the Gaussian noise corrupted measurements \verb|b = A * h_t + 0.1 * randn(N,1)|. Recovered bathymetries from different Matlab\textsuperscript{\textregistered} solvers are given below. Note that the initial guess for all methods is zero. 
 \begin{itemize}
-\item[(1)]  \textit{Nonnegative least-squares method:}  \verb|lsqnonneg(A,b, options)|. This Matlab\textsuperscript{\textregistered} function uses the algorithm so called \textit{active-set} and note that it requires the matrix $\mathbf{A}$ explicitly. Residual norm error for this nonnegativity reconstruction is $8.88 \times 10^{-26}$ (see Fig. \ref{nonLS_fig}).   \\
+\item[(1)]  \textit{Nonnegative least-squares method:}  \verb|lsqnonneg(A,b, options)|. This Matlab\textsuperscript{\textregistered} function uses the \textit{active-set} algorithm; note that it requires the matrix $\mathbf{A}$ explicitly. The residual norm error for this nonnegativity reconstruction is $8.88 \times 10^{-26}$ (see Fig. \ref{nonLS_fig}).   \\
 
 \begin{figure}[H]
 \center
@@ -40,7 +41,7 @@ where we minimize the data misfit between the forward predictions and the measur
 \caption{Nonnegative least-squares method reconstruction of depth $\mathbf{h}$ using the dummy dataset.}
 \label{nonLS_fig}
 \end{figure}
-\item[(2)]  \textit{Trust-Region-Reflective method:}  \verb|lsqnonlin(@(h) A * h - b, zeros(N,1),| \\ \verb|zeros(N,1),inf(N,1), options)|. Note that the reconstruction of $\mathbf{h}$ is restricted to the positive x-axis using the function arguments. Residual norm error for the reconstruction is $4.32 \times 10^{-10}$. 
+\item[(2)]  \textit{Trust-Region-Reflective method:}  \verb|lsqnonlin(@(h) A * h - b, zeros(N,1),| \\ \verb|zeros(N,1),inf(N,1), options)|. Note that the reconstruction of $\mathbf{h}$ is restricted to the positive x-axis using the function arguments. The residual norm error of this reconstruction is $4.32 \times 10^{-10}$. 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.6]{img/trust_region_linear.png} 
@@ -49,7 +50,7 @@ where we minimize the data misfit between the forward predictions and the measur
 \end{figure}
 \item[(3)]  \textit{Levenberg-Marquardt (LM) method:}  
 \verb|lsqnonlin(@(h) A * h - b, 'Algorithm',| \\ \verb|'levenberg-marquardt')|
-Residual norm error for the reconstruction is $6.39 \times 10^{-13}$. The Levenberg-Marquardt algorithm does not handle bound constraints. 
+Residual norm error for this reconstruction is $6.39 \times 10^{-13}$. It should be noted that the Levenberg-Marquardt algorithm does not handle bounded constraints. 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.6]{img/LM_linear.png} 
@@ -69,7 +70,7 @@ Residual norm error for the reconstruction is $6.39 \times 10^{-13}$. The Levenb
 
 \subsection{ Tikhonov Regularization}\label{TikRegMethod}
 
-Although the ordinary least squares solution can deal with well-posed problems (i.e. the solution exist and unique), it might yield into a unstable solutions in the presence of a small noise in the measurements. Due to the ill-conditioned nature of the forward operator matrix $\mathbf{A}$, the noise components of the observations can be amplified and leads into a drastic change in the solution \cite{Tuys2014}. To overcome this problem, we use \textit{regularization}. The Tikhonov regularization is one of the most widely used regularization techniques in the inverse problems community. It couples the least squares term in \eqref{LS} with a additional regularization term as defined by 
+Although the ordinary least squares solution can deal with well-posed problems (i.e. the solution exist and unique), it might yield into a unstable solutions in the presence of a small noise in the measurements. Due to the ill-conditioned nature of the forward operator matrix $\mathbf{A}$, the noise components of the observations can be amplified and leads into a drastic change in the solution \cite{Tuys2014}. To overcome this problem, we use propose the use \textit{regularization}. The Tikhonov regularization is one of the most widely used regularization techniques in the inverse problems community. It couples the least squares term in \eqref{LS} with a additional regularization term as defined by 
 \begin{equation}\label{eq:TR}
 \mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \ \ \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h}\|_2^2
 \end{equation}
@@ -78,7 +79,7 @@ Last but not least, the ordinary least squares method can not incorporate any pr
 \begin{equation}\label{eq:TR-prior}
 \mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \  \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
 \end{equation}
-where $\alpha$ is a regularization parameter $(>0)$. To test this method in \eqref{eq:TR-prior}, Tikhonov method is implemented and tested with sample data set with $\nu = 0.2$. This reconstruction of depth has 0.038 residual norm error. Note that the \verb|tikhonov| Matlab\textsuperscript{\textregistered} function requires the matrix $\mathbf{A}$ explicitly in order to solve the Tikhonov regularized minimization problem. 
+where $\alpha$ is a regularization parameter $(>0)$. To test this method in \eqref{eq:TR-prior}, Tikhonov method is implemented and tested with sample data set with $\nu = 0.2$. This reconstruction of depth has 0.038 residual norm error. Note that the \verb|tikhonov| Matlab\textsuperscript{\textregistered} function requires the matrix $\mathbf{A}$ explicitly in order to solve the regularized minimization problem but the Tikhonov method can be applied through the \verb|fmincon| algorithm when $\mathbf{A}$ is not available. 
 
 \begin{figure}[H]
 \center
