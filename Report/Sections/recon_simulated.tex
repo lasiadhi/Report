@@ -62,19 +62,19 @@ First, we run the \verb|lsqnonlin| function on the synthetic data $\mathbf{k}_s$
 \center
 \includegraphics[scale=0.6]{img/lsqnonlin_real_data_oct09.png} %plot20 
 \caption{Ordinary least-squares reconstruction of the depth $\mathbf{h}$ using the real data.}
-\label{fmincon_simulated}
+\label{lsqnonlin_real}
 \end{figure}
 
-After comfortable with working on synthetic data, the real wave number measurements that we discussed in Section \ref{realData} are used with the Matlab's \verb|lsqnonlin| optimizer. In this reconstruction, we were able to capture the near-shore topography including the sand bar with root mean square error ..
+After comfortable with working on the synthetic data, the real wave number measurements that we discussed in Section \ref{realData} are used with the same Matlab's \verb|lsqnonlin| optimizer. In this reconstruction, we were able to capture the near-shore topography including the sand bar with $53\%$ root mean square error (see Fig. \ref{lsqnonlin_real}). Specifically, here we have interpolated and processed the depth reconstruction based on the missing measurement locations. 
 
 
-\subsection{Tikhonov Regularization}
+\subsection{Tikhonov Regularization} \label{TickReg}
+
+In order to get more stable solution than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}, we solve the following Tikhonov regularization
 
 \begin{equation}\label{LS-regBC}
 \mathbf{\hat{h}} = \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11}}{\arg \min} \ \ \|  \mathbf{A}(\mathbf{h}) -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h}\|_2^2,
 \end{equation}
-
-[Using the Matlab's fmincon function ]
 
 
 \begin{figure}[H]
