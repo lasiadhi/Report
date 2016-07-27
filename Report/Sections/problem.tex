@@ -4,14 +4,14 @@ We invert for depth, \textit{h}, using wave length and wave number with a 1D mod
 
 \begin{figure}[h]
 		\centering
-		\includegraphics[width=.60\linewidth]{img/Flow_Chart.png}
+		\includegraphics[width=.90\linewidth]{img/Flow_Chart.png}
 		\caption{Flow chart of the workflow for this research}
 		\label{AWAC}
 \end{figure}
 
 \subsection{Forward Problem}\label{forwardproblem}
 
-There are a number of models to show relation among different wave dynamics. Among various models we consider energy flux method which is defined as
+There are a number of models to show relation among different wave dynamics. The first question we faced is that what kind of wave we should simulate in our model. As our interest is on the near shore zone which have a relatively shallow water depth and small amplitude wave (mainly gravity wave), we chose linear wave to fit our model. Based on the basic assumptions such as, incompressible, inviscid and small amplitude, this is a reasonable choice. The shallow water model is the most common way to start modeling this problem with linear wave. This is using the shallow water model which is constructed by continuity equation and simplified Navier-Stokes equation of momentum. This method is mentioned in 2015. However, we might not go further with it as we did not have any data related to the velocity distribution under water. So we considered to use the energy flux method which is defined as
 $${\frac{d}{dx}}\left( E\,C_{g}\,cos (\theta)\right)= -\delta$$
 In the above model ${\theta}$ is the mean wave angle relative to the shore line. In our study of model, focus is on one dimensional case. For this reason by setting ${\theta=0}$ the model becomes
 \begin{equation}\label{eqn:forward}
