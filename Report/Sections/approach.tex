@@ -1,3 +1,5 @@
+[Introduction please...]
+
 \subsection{The Additive Gaussian Noise Model} \label{Gaussian_noise}
 By assuming the measurements are corrupted by the additive Gaussian noise, the linear estimation model can be written as 
 \begin{equation}
@@ -19,9 +21,9 @@ $$
 
 
 
-\subsection{Bathymetric Inversion Methods}\label{inv_techniques}
+\subsection{Ordinary Least-Squares Inversion}
 
-\subsubsection{Least-Squares Inversion}
+%\subsubsection{Least-Squares Inversion}
 
 As a beginning to approximate the topographic heights of the near-shore sea-floor,  we consider the following least-squares minimization problem,
 \begin{equation}\label{LS}
@@ -61,12 +63,21 @@ Residual norm error for the reconstruction is $6.39 \times 10^{-13}$. The Levenb
 \label{LM_fig}
 \end{figure}
 \end{itemize}
-%Challenges: What is the dimension of the $\mathbf{A}$? Is this a underdetermined or overdetermined system? If so, we have to consider the Tikhonov regularization,
-If the inverse problem in \eqref{LS} is ill-posed, we have to consider a regularized version of it. If we have some prior estimate for the $\mathbf{h}$, i.e., $\mathbf{h}_p$, then the Tikhonov regularized solution with a prior information can be written as
-$$
-\mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
-$$
-where $\alpha$ is a regularization parameter $(>0)$. To test this method, Tikhonov method is implemented and test with sample data set with $\nu = 0.2$. This reconstruction of depth has 0.038 residual norm error. In order to run this \verb|tikhonov| Matlab function, matrix $\mathbf{A}$ should be explicitly known.
+
+
+
+\subsection{ Tikhonov Regularization}
+
+Although the ordinary least squares solution can deal with well-posed problems (i.e. the solution exist and unique), it might yield into a unstable solutions in the presence of a small noise in the measurements. Due to the ill-conditioned nature of the forward operator matrix $\mathbf{A}$, the noise components of the observations can be amplified and leads into a drastic change in the solution. To overcome this problem, we use \textit{regularization}. The Tikhonov regularization is one of the most widely used regularization techniques in the inverse problems community. It couples the least squares term in \eqref{LS} with a additional regularization term as defined by 
+\begin{equation}\label{eq:TR}
+\mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \ \ \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h}\|_2^2
+\end{equation}
+where $\alpha$ is the regularization parameter ($>0$), which balances the trade-off between data fidelity term (i.e, the least squares term) and the regularization term $\| \mathbf{h}\|_2^2$. %In particular, while the generalized solution strives to fit to the data, the noise components of the observations can be amplified by the forward operator. This leads into so the solution may drastically change. This behavior is due to the ill-conditioned nature of the forward operator matrix $\mathbf{A}$. 
+Last but not least, the ordinary least squares method can not incorporate any prior knowledge about the bathymetry, for e.g., any known depths near the shore. However, If we have  some prior depth estimate $\mathbf{h}_p$ for the $\mathbf{h}_t$, then the Tikhonov regularized solution with the prior information can be written as
+\begin{equation}\label{eq:TR-prior}
+\mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \  \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
+\end{equation}
+where $\alpha$ is a regularization parameter $(>0)$. To test this method in \eqref{eq:TR-prior}, Tikhonov method is implemented and test with sample data set with $\nu = 0.2$. This reconstruction of depth has 0.038 residual norm error. In order to run this \verb|tikhonov| Matlab function, matrix $\mathbf{A}$ should be explicitly known.
 
 \begin{center}
 \includegraphics[scale=0.6]{img/Tikhnove_reg.png} 
