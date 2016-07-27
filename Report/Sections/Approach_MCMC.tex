@@ -69,9 +69,25 @@ where the algorithm estimates the value of $\alpha$. The true value is known to 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.46]{img/MCMC-verification}
-\caption{Verification that the Metropolis algorithm has been properly implemented in our code. We test a simple ODE problem. The red line represents the known value of the parameter $\alpha$. The blue curve is the posterior probabilty distribution sampled by our algorithm. The posterior we compute accurately estimates the true value of $\alpha$.}
-\label{mcmc-real}
+\caption{Verification that the Metropolis algorithm has been properly implemented in our code for a simple ODE problem. The red line represents the known value of the parameter $\alpha$. The blue curve is the posterior probabilty distribution sampled by our algorithm. The posterior we compute accurately estimates the true value of $\alpha$.}
+\label{verifymcmc}
 \end{figure}
+
+For this simple example we add gaussian noise to a sample dataset. The likelihood function is therefore gaussian to account for the gaussian errors:
+
+\begin{equation} \label{likely}
+L\left(h|%H,
+k\right)=\exp\left(- \frac{\sum({\alpha}_{model}-\alpha_{data})^2}{2\sigma_{d}^2}\right)
+\end{equation} 
+we use $\sigma_{d}^2$=1 in this case. We use a standard normal distribution for the prior:
+
+\begin{equation}\label{prior_verify}
+\Pi(h) \sim N(0,1)
+\end{equation}
+
+The proposal step size is 0.5 and the algorithm is iterated 10$^4$ times to arrive at the our example solution, though fewer iterations would have been sufficient. 
+
+
 
 
 
