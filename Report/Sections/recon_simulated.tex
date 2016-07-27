@@ -74,9 +74,9 @@ In order to get more stable solution than the ordinary least squares solution in
 \begin{equation}\label{LS-regBC}
 \mathbf{\hat{h}} = \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11}}{\arg \min} \ \ \|  A(\mathbf{h}) -  \mathbf{k} \|_2^2  +   \| \boldsymbol{\alpha} \cdot  \mathbf{h}\|_2^2,
 \end{equation}
-with the hope of getting more stable solution. Specially, here we use a vector of regularization parameters to balance the trade-off between the data-fidelity and the regularization term according to the x Position. Based on the Matlab's optimization decision table [], there are only two solvers that we can apply to solve this bounded-smooth-nonlinear problem, i.e., \verb|fmincon| and \verb|fseminf|. In this study, we decided to use  most popular \verb|fmincon| solver, which uses \textit{interior-point} algorithm internally. According to the Matlab documentation, \textit{interior-point} algorithm uses special techniques for large-scale problems and it satisfies bounds at all iterations. 
+with the hope of getting more stable solution. Specially, here we use a vector of regularization parameters to balance the trade-off between the data-fidelity and the regularization term according to the x Position. Based on the Matlab's optimization decision table \cite{descTable}, there are only two solvers that we can apply to solve this bounded-smooth-nonlinear problem, i.e., \verb|fmincon| and \verb|fseminf|. In this study, we decided to use  most popular \verb|fmincon| solver, which uses \textit{interior-point} algorithm internally. According to the Matlab documentation, \textit{interior-point} algorithm uses special techniques for large-scale problems and it satisfies bounds at all iterations. 
 
-In this experiment, we heuristically tuned the regularization parameters and recovered the bathymetry with only $15\%$ root mean square error (see Fig. \ref{fmincon_simulated}) for the synthetic measurements with 25m grid resolution. Note that the recovered bathymetry is much stable and has less fluctuations than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}.   
+In this experiment, we heuristically tuned the regularization parameters and recovered the bathymetry only with $15\%$ root mean square error (see Fig. \ref{fmincon_simulated}) for the synthetic measurements with 25m grid resolution. Note that the recovered bathymetry is much stable and has less fluctuations than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}.   
  
 \begin{figure}[H]
 \center
@@ -85,11 +85,13 @@ In this experiment, we heuristically tuned the regularization parameters and rec
 \label{fmincon_simulated}
 \end{figure}
 
+Similarly, we run the Matlab's \verb|fmincon| solver to minimize the Tikhonov regularized objective with the real dataset. In this experiment, we were able to recover the sand bar area much accurately with less artifacts (see Fig. \ref{fmincon_real}).
+
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.46]{img/fmincon_real_data_oct09.png} %plot20 
 \caption{Tikhonov Regularized reconstruction of depth $\mathbf{h}$ using the real data.}
-\label{fmincon_simulated}
+\label{fmincon_real}
 \end{figure}
 
 
