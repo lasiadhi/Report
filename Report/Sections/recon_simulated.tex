@@ -42,7 +42,7 @@ Measured wave numbers $\mathbf{k}_m$ (see Fig. \ref{RealData_oct09}) by US Army 
 
 
 
-\subsection{Ordinary Least-Squares Fitting}
+\subsection{Ordinary Least-Squares Fitting Results}
 Here, we approximate the unknown bathymetry by solving the following optimization problem:
 \begin{equation}\label{LS-BC}
 \mathbf{\hat{h}}= \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11} }{\arg \min} \ \  \|  A(\mathbf{h}) -  \mathbf{k} \|_2^2.
@@ -68,26 +68,51 @@ First, we run the \verb|lsqnonlin| function on the synthetic data $\mathbf{k}_s$
 After comfortable with working on the synthetic data, the real wave number measurements that we discussed in Section \ref{realData} are used with the same Matlab's \verb|lsqnonlin| optimizer. In this reconstruction, we were able to capture the near-shore topography including the sand bar with $53\%$ root mean square error (see Fig. \ref{lsqnonlin_real}). Specifically, here we have interpolated and processed the depth reconstruction based on the missing measurement locations. 
 
 
-\subsection{Tikhonov Regularization} \label{TickReg}
+\subsection{Tikhonov Regularized Results} \label{TickReg}
 
 In order to get more stable solution than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}, we decided to solve the following bounded-constrained Tikhonov regularization optimization problem:
 \begin{equation}\label{LS-regBC}
 \mathbf{\hat{h}} = \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11}}{\arg \min} \ \ \|  A(\mathbf{h}) -  \mathbf{k} \|_2^2  +   \| \boldsymbol{\alpha} \cdot  \mathbf{h}\|_2^2,
 \end{equation}
-with the hope of getting more stable solution. Specially, here we use a vector of regularization parameters to balance the trade-off between data-fidelity and the regularization term according to the x Position. Recovered Bathymetry with $15\%$ root mean square error is shown in Fig. \ref{fmincon_simulated}. 
+with the hope of getting more stable solution. Specially, here we use a vector of regularization parameters to balance the trade-off between the data-fidelity and the regularization term according to the x Position. Based on the Matlab's optimization decision table [], there are only two solvers that we can apply to solve this bounded-smooth-nonlinear problem, i.e., \verb|fmincon| and \verb|fseminf|. In this study, we decided to use  most popular \verb|fmincon| solver, which uses \textit{interior-point} algorithm internally. According to the Matlab documentation, \textit{interior-point} algorithm uses special techniques for large-scale problems and it satisfies bounds at all iterations. 
+
+In this experiment, we heuristically tuned the regularization parameters and recovered the bathymetry with only $15\%$ root mean square error (see Fig. \ref{fmincon_simulated}) for the synthetic measurements with 25m grid resolution. Note that the recovered bathymetry is much stable and has less fluctuations than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}.   
  
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.47]{img/fmincon_simulated_25_new.png} %plot20 
-\caption{fmincon method reconstruction of depth $\mathbf{h}$ using the simulated data.}
+\caption{Tikhonov Regularized reconstruction of depth $\mathbf{h}$ using the simulated data.}
 \label{fmincon_simulated}
 \end{figure}
 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.46]{img/fmincon_real_data_oct09.png} %plot20 
-\caption{fmincon method reconstruction of depth $\mathbf{h}$ using the simulated data.}
+\caption{Tikhonov Regularized reconstruction of depth $\mathbf{h}$ using the real data.}
 \label{fmincon_simulated}
 \end{figure}
+
+
+
+
+%\subsection{Bayesian Inference}
+%The Bayesian inversion approach samples a posterior distribution of depth profiles. For comparison to the other inversion methods, we consider only the depth at each grid point which corresponds to the maximum of the posterior probability distribution at that point. This is achieved by taking the maximum of the kernel density of the estimated depth distribution at each point along the 1D profile. 
+%
+%This method is first applied using synthetic $k$ input and the resulting depth estimate is shown in Figure~\ref{mcmc-synthetic}. As for other methods, the synthetic result accurately represents the sandbar located at $x~\sim~950~m$ along the profile, which is an important feature to recreate. However, at offshore locations ($x~<~600~m$), the estimation appears to break down. As in other methods, this is expected because of the lower sensitivity of $k$ on $h$ at these depths, a relationship on which our inverse methods rely.
+%
+%
+%\begin{figure}[H]
+%\center
+%\includegraphics[scale=0.46]{img/MCMC-manufactured.eps} %plot20 
+%\caption{Bathymetry estimate from the Bayesian Markov Chain Monte Carlo approach. The initial $h$ guess is shown in green, the true $h$ is shown in blue, and the derived estimate of $h$ is shown in red.}
+%\label{mcmc-synthetic}
+%\end{figure}
+%
+%Real $k$ data is then used to estimate the same bathymetry profile (Figure~\ref{mcmc-real}). We find...
+%
+%
+%Unlike the other methods, the Bayesian approach results in a distribution of depth profiles which optimize $h$ given uncertain $k$. Measurements of wave number, $k$, are not perfect and our resulting distribution of depth profiles translates that uncertainty binto an ensemble of depth estimates which are consistent with the $k$ data to within uncertainty. Figures~\ref{mcmc-posterior-h-synthetic} and \ref{mcmc-posterior-h-real} show the resulting posterior depth distributions. Note that...
+%
+
 
 
