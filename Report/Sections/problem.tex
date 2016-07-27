@@ -1,8 +1,8 @@
 Although there have been uncertainties in capturing the topography of the ocean near shore, mathematical methods can estimate bathymetry using the dispersion relationship between wavelength and the period. Stockdon et al. used video imagery, which compared true wave signal and remotely sensed video signal to create a linear representation between wave amplitudes and phases \citep{stockdon2000}.  Holman et al. used a 2-dimensional method with Kalman filtering to estimate the depth, $h$ \citep{holman2013}.
 
-We invert for depth, \textit{h}, using wave length and wave number with a 1D model derived using the energy flux method to create a correlation between wave length and depth from the water surface as shown in Figure~\ref{flowchart}.
+We invert for depth, \textit{h}, using wave number with a 1D model derived using the energy flux method to create a correlation between wave length and depth from the water surface as shown in Figure~\ref{flowchart}.
 
-\begin{figure}[h]
+\begin{figure}[flowchart]
 		\centering
 		\includegraphics[width=.90\linewidth]{img/Flow_Chart.png}
 		\caption{Flow chart of the workflow for this research}
@@ -11,13 +11,13 @@ We invert for depth, \textit{h}, using wave length and wave number with a 1D mod
 
 \subsection{Forward Problem}\label{forwardproblem}
 
-There are a number of models to show relation among different wave dynamics. The first question we faced is that what kind of wave we should simulate in our model. As our interest is on the near shore zone which have a relatively shallow water depth and small amplitude wave (mainly gravity wave), we chose linear wave to fit our model. Based on the basic assumptions such as, incompressible, inviscid and small amplitude, this is a reasonable choice. The shallow water model is the most common way to start modeling this problem with linear wave. This is using the shallow water model which is constructed by continuity equation and simplified Navier-Stokes equation of momentum. This method is mentioned in 2015. However, we might not go further with it as we did not have any data related to the velocity distribution under water. So we considered to use the energy flux method which is defined as
+There are a number of models to show relation among different wave dynamics. The first question we faced is that what kind of wave we should simulate in our model. As our interest is on the near shore zone which have a relatively shallow water depth and small amplitude wave (mainly gravity wave), we chose linear wave to fit our model. Based on the basic assumptions such as, incompressible, inviscid and small amplitude, this is a reasonable choice. The shallow water model is the most common way to start modeling this problem with linear wave. This is using the shallow water model which is constructed by continuity equation and simplified Navier-Stokes equation of momentum \cite{dean1991water}. This method is mentioned in 2015. However, we might not go further with it as we did not have any data related to the velocity distribution under water. So we considered to use the energy flux method which is defined as
 $${\frac{d}{dx}}\left( E\,C_{g}\,cos (\theta)\right)= -\delta$$
 In the above model ${\theta}$ is the mean wave angle relative to the shore line. In our study of model, focus is on one dimensional case. For this reason by setting ${\theta=0}$ the model becomes
 \begin{equation}\label{eqn:forward}
 \frac{d}{dx}\left(E\,C_{g}\right)=-\delta
 \end{equation} 
-In this model ${E\,C_{g}}$ represents the wave energy flux. In the energy flux ${E}$ is the energy per unit area which is defined as
+In this model \cite{Alex2007}  ${E\,C_{g}}$ represents the wave energy flux. In the energy flux ${E}$ is the energy per unit area \cite{Alex2007} which is defined as
 \begin{equation}\label{eqn:energy}
 E=\frac{1}{8}\rho g H_{rms}^2
 \end{equation}
@@ -33,7 +33,7 @@ C_g=\frac{c}{2}\left(1+\frac{2kh}{\sinh(2kh)}\right),
 \end{equation}
 with $c=\frac{\sigma}{k}$ and from the linear theory, the wave energy, $E$ is given as
 
-The right hand side ${\delta}$ in the model equation (\ref{eqn:forward}) provides local mean rate of energy dissipation.  
+The right hand side ${\delta}$ in the model equation (\ref{eqn:forward}) provides local mean rate of energy dissipation\cite{Alex2007}.  
 
 \begin{equation}\label{eqn:dissipation}
 \delta = \frac{1}{4h}B\rho g f H_{rms}^3\left[(R^3+\frac{3}{2}R)exp(-R^2)+\frac{3}{4}\sqrt{\pi}(1-erf(R))\right],
@@ -47,7 +47,7 @@ Dispersion relationship can describe effect of the dispersion depending on the p
 \sigma^2=gk\tanh(kh)
 \end{equation}
 
-In this expression ${\sigma=\frac{2\pi}{T}}$ is the angular frequency.  
+In this expression ${\sigma=\frac{2\pi}{T}}$ \cite{dean1991water} is the angular frequency.  
 
 
 
@@ -123,39 +123,6 @@ $$E_{i}=\frac{\delta_{i-1}\Delta x}{(C_g)_{i}}+\frac{E_{i-1}(C_g)_{i-1}}{(C_g)_{
 In the above expression ${\delta}$ will be updates its value at each index points using (\ref{eqn:dissipation}). the wave numbers will employed during the calculation of group celerity ${C_{g}}$. After estimating the energy ${E}$ at each index points we update the value of the root mean square of height ${H_{rms}}$. This updated value is applied in the ${H=\frac{H_{rms}}{0.7}}$ to obtain the wave height at each index points. 
 
 
-%A forward difference method is applied depending on the nature of the model given in equation (\ref{fpdelta}). The main goal is to obtain the wave height${H}$. In the process we calculate the following terms:\\
-%Total energy per unit area
-%$${E=\frac{1}{8}\rho g H_{rms}^2}$$\\
-%where ${\rho}$ is water density 1000${kg/m^3}$ and ${g}$ represents the gravitational acceleration ${9.8m/sec^2}$. \\
-%The root mean square of height as\\
-%$${H_{rms}=0.7 H}$$\\
-%Group wave celerity will be defined as in  (\ref{cg}). The wave period is provided from the original data with boundary condition ${H_{0}}$. 
-%Wave number plays an important role in estimating the wave height as well. To calculate the wave number MATLAB function fsolve used as non-linear solver to find the zeros of the function given in (\ref{fk}) obtained from the dispersion relationship
-%$$
-%\sigma^{2}=gk tanh(kh).
-%$$ 
-%So, at each index point, wave number, $k$, is generated with initial guess $k_0$:
-%$$k_0=\frac{\sigma}{\sqrt{gh}}.$$
-%This initial condition is chosen because in shallow water the dispersion relation provides \\
-%%$${c=\frac{\sigma}{k}\simeq\sqrt{gh}}
-%$${\sigma^2\simeq g\,k^2\,h}$$
-%
-%Newton-Raphson method is applied to verify the wave number from fsolve. Therefore, using same initial condition the approximate solution is obtained from
-%\begin{eqnarray}
-%k_{i+1}& =& k_{i}-\frac{gk_i\tanh(k_ih)-\sigma^2}{g\tanh(k_ih)-ghk_i sech^2(k_ih)},
-%\end{eqnarray}
-%
-%Thus at each index forward finite difference expression is calculated as
-%$$E_{i}=\frac{\delta_{i-1}\Delta x}{(C_g)_{i}}+\frac{E_{i-1}(C_g)_{i-1}}{(C_g)_{i}}$$
-%In the above expression ${\Delta x}$ represents the mesh spacing. We have applied equal spacing for this numerical scheme.After estimating the energy ${E}$ at each index points we update the value of the root mean square of height ${H_{rms}}$. This updated value is applied in the ${H=\frac{H_{rms}}{0.7}}$ to obtain the wave height at each index points. 
-%
-
-%\subsubsection{Implementation}
-%To apply the finite difference method we first discretize the space vector, ${x}$, depending on predefined mesh size, ${\Delta x}$. For the numerical experiments we usually applied $\Delta x=10$ and ${\Delta x=25}$ which means index points are set in ${10m}$ and ${25m}$ apart respectively. Wave breaking condition is supplied using the breaking parameter ${\delta}$.
-%The wave breaking condition applied in this experiment is
-%$${H=0.78h}$$
-%The reason for this condition is the model is focused on the shallow water. In shallow water the individual wave breaks when the wave height  ${(H)}$ and depth ${h}$ relationship is 
-%$${H>0.8h}$$
 
 The implementation of the algorithm is as follows
 \begin{algorithm}
@@ -172,14 +139,6 @@ The implementation of the algorithm is as follows
 \State $\bullet \quad\sigma=\frac{2\, \pi}{T}$
 
 \State $\bullet \quad\sigma^2=gk\tanh(kh)$
-
-%\State $\textit{Wave breaking:\,\,}\delta$
-%
-%\BState \emph{\textbf{Step 1:}}
-%\State $\bullet \quad\textit{constant}\quad \lambda=\frac{ \rho g \pi}{8T}$
-%
-%\BState \emph{\textbf{Step 2:}}
-%\State $\bullet \quad\textit{Find\,\,} c^{*} \textit{\,\,depending on \,\,}k:\quad c^{*}=\frac{(1+(2kh)}{sinh(2kh)}\lambda \,\, k$
 
 \BState \emph{\textbf{Step 3:Compute wave height H}}
 \State $\bullet \quad\textit{Compute wave breaking function:\,\,} \delta$
