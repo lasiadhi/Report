@@ -15,15 +15,14 @@ There are a number of models to show relation among different wave dynamics. The
 $${\frac{d}{dx}}\left( E\,C_{g}\,cos (\theta)\right)= -\delta$$
 In the above model ${\theta}$ is the mean wave angle relative to the shore line. In our study of model, focus is on one dimensional case. For this reason by setting ${\theta=0}$ the model becomes
 \begin{equation}\label{eqn:forward}
-\frac{d}{dx}}\left(E\,C_{g}\right)=-\delta
+\frac{d}{dx}\left(E\,C_{g}\right)=-\delta
 \end{equation} 
 In this model ${E\,C_{g}}$ represents the wave energy flux. In the energy flux ${E}$ is the energy per unit area which is defined as
 \begin{equation}\label{eqn:energy}
 E=\frac{1}{8}\rho g H_{rms}^2
-\begin{equation}
 \end{equation}
 In the above expression ${\rho=1000\,kg/m^3}$ is water density   and ${g=9.8 \,m/sec^2}$ represents the gravitational acceleration . \\
-The root mean square of height ${H_{rms}$ is defined as\\
+The root mean square of height ${H_{rms}}$ is defined as\\
 $${H_{rms}=0.707 H}$$\\
 
 $C_g$, called linear theory group speed, is given as
@@ -195,7 +194,6 @@ The implementation of the algorithm is as follows
 
 \subsubsection{Numerical Results}
 We present some of the numerical results in the following Figures.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[h]
@@ -214,22 +212,8 @@ We present some of the numerical results in the following Figures.
 \end{minipage}
 \caption{Water Depth(h), Wave Height(H) and Wave Number vary along x direction (Two sets of boundary conditions are applied for following figures. The boundary conditions for the left is extracted from the data of 2015/10/9 22:00-23:00 and for the right is extracted from the data of 2015/10/9 03:00-04:00). Note that $x=0 m$ is located offshore at the boundary point.}
 \end{figure}
-%
-Figure 2 shows that the wave height is positively correlated to the depth. We can see the similar characteristics between depth and wave number. This is the reason for why we can perform the simulation by providing ${H}$ or ${k}$ to obtain the depth ${h}$. The wave height curve and wave number curve will rapidly increase to a significant level around where depth is very close to zero, and the data there is not reliable because of the poor behavior of equations around $h=0 \,m$ (We need to force wave height to zero when depth is close to zero, or the wave height given by those equations will turn to infinity). However, the shape of wave height curve or wave number curve around the peak of depth curve shows our model has a reasonable good response to the changing depth.
 
-Figure 3 shows the shallow water assumption which is $hk\ll 1$ (The red horizontal line is $hk=1$). We can see that our model is well fit the criteria at most data points except some where their depths are close to zero. Also the relatively flat slope of $hk$ reflected that the wave number k will increase as the depth decreases. The data turns to be zero around $x = 1050 \,m$ as the equation cannot provide reliable data when $h = 0 \,m$.
-
-Figure 4 is the variation of wave energy along x-axis. The energy will be accumulated unless the wave height meets the break condition. 
-
-Figure 5 is the variation of wave phase speed (celerity) along x-axis. As celerity is a function of wave number and wave period (wave period is assumed to be fixed in our case). 
-
-
-Figure 6 shows the variation of wave height along with depth. The data at zeros should not be taken into consideration. We can see that the wave height decreases while the depth increases.
-
-Figure 7 shows the variation of wave energy along with wave height. The data at zeros should not be taken into consideration. As the energy is calculated by $E=\frac{1}{8}\rho g H^2$, the curve is a part of $y=x^2$.
-
-Figure 8 is the variation of wave energy dissipation along x-axis. Just as the basic assumption of our model, the energy does not dissipate significantly until the depth becomes relatively small (the data after the main peak is not reliable as the depth there is too small). The small peak around $x=900 m$ is caused by the peak part of the bathymetry.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -346,3 +330,20 @@ Figure 8 is the variation of wave energy dissipation along x-axis. Just as the b
 \end{minipage}
 \caption{Wave Energy Dissipation varies along x-axis}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The following remarks are made from the numerical results obtained from the forward model.
+\begin{enumerate}
+\item Figure $2$ shows that the wave height is positively correlated to the depth. We can see the similar characteristics between depth and wave number. This is the reason for why we can perform the simulation by providing ${H}$ or ${k}$ to obtain the depth ${h}$. The wave height curve and wave number curve will rapidly increase to a significant level around where depth is very close to zero, and the data there is not reliable because of the poor behavior of equations around $h=0 \,m$ (We need to force wave height to zero when depth is close to zero, or the wave height given by those equations will turn to infinity). However, the shape of wave height curve or wave number curve around the peak of depth curve shows our model has a reasonable good response to the changing depth.
+
+\item Figure $3$ shows the shallow water assumption which is $hk\ll 1$ (The red horizontal line is $hk=1$). We can see that our model is well fit the criteria at most data points except some where their depths are close to zero. Also the relatively flat slope of $hk$ reflected that the wave number k will increase as the depth decreases. The data turns to be zero around $x = 1050 \,m$ as the equation cannot provide reliable data when $h = 0 \,m$.
+
+\item Figure $4$ is the variation of wave energy along x-axis. The energy will be accumulated unless the wave height meets the break condition.
+
+\item Figure 5 is the variation of wave phase speed (celerity) along x-axis. As celerity is a function of wave number and wave period (wave period is assumed to be fixed in our case).
+
+\item Figure $6$ shows the variation of wave height along with depth. The data at zeros should not be taken into consideration. We can see that the wave height decreases while the depth increases.
+
+\item Figure $7$ shows the variation of wave energy along with wave height. The data at zeros should not be taken into consideration. As the energy is calculated by $E=\frac{1}{8}\rho g H^2$, the curve is a part of $y=x^2$.
+
+\item Figure $8$ is the variation of wave energy dissipation along x-axis. Just as the basic assumption of our model, the energy does not dissipate significantly until the depth becomes relatively small (the data after the main peak is not reliable as the depth there is too small). The small peak around $x=900 m$ is caused by the peak part of the bathymetry.
+\end{enumerate}
