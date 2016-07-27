@@ -29,17 +29,17 @@ where $A(\cdot)$ represents the nonlinear forward operator defined in Section \r
 
 \subsection{Real Data}\label{realData}
 
+As discussed in Section \ref{datak}, measured wave numbers, $\mathbf{k}_m$, are provided by the USACE for the month of October 2015 at half hour increments during day light hours. To test our inversion schemes, we choose a wave number profile based off of two constraints; available bathymetry data near the time of the chosen profile and minimal noise in the measured data, which is associated with calmer ocean conditions. According to these constraints, we focus on wave number measured around October 9th as the conditions were relatively calm and a survey executed near that time. Figure \ref{RealData_oct09} shows measured profiles for October 9th, 2015 12:00:00 - 23:00:00 (UTC). It should be noted that multiple wave numbers were provided by the USACE at each measurement location; the dominant wave number were considered in this project. Also note that the measured wave numbers near the shore (x Position $>$ 1050m) and the deep end (x Position $<$ 350m) are not available.
 
-Measured wave numbers $\mathbf{k}_m$ (see Fig. \ref{RealData_oct09}) by US Army Corps of Engineers (USACE) at the field research facilities in Duck, NC on 09th October 2015  is used to approximate the true bathymetry using different inversion schemes. Note that the measured wave numbers near the shore (x Position $>$ 1050m) and the deep end (x Position $<$ 350m) are not available for our numerical experiments. 
 
 \begin{figure}[H]
 \center
-\includegraphics[scale=0.5]{img/real_data_k_Oct09.png} 
-\caption{Real measurements of wave numbers $(k)$ on the 09th October 2015 at 21:59 by the US. Army Corps of Engineers (USACE) Engineer Research and Development Center (ERDC).}
+\includegraphics[scale=0.5]{img/Real_k_data.jpg} 
+\caption{Real measurements of wave numbers $(k)$ on the 09th October 2015.}
 \label{RealData_oct09}
 \end{figure}
 
-
+Upon inspection of each wave number profile from this time period it is evident that the profile corresponding to 21:59:00 UTC (highlighted in red) contains little noise relative to the others; this profile will be used for our inversion schemes.
 
 
 \subsection{Ordinary Least-Squares Fitting}
