@@ -42,12 +42,16 @@ As discussed in Section \ref{datak}, measured wave numbers, $\mathbf{k}_m$, are 
 Upon inspection of each wave number profile from this time period it is evident that the profile corresponding to 21:59:00 UTC (highlighted in red) contains little noise relative to the others; this profile will be used for our inversion schemes.
 
 
-\subsection{Ordinary Least-Squares Fitting Results}
+\subsection{Ordinary Least-Squares Fitting Results} \label{OrdLstSqrRes}
 Here, we approximate the unknown bathymetry by solving the following optimization problem:
 \begin{equation}\label{LS-BC}
 \mathbf{\hat{h}}= \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11} }{\arg \min} \ \  \|  A(\mathbf{h}) -  \mathbf{k} \|_2^2.
 \end{equation}
-In particular, here we modify the ordinary least squares problem in \eqref{LS} to a bounded constrained optimization problem to incorporate the known bathymetry bounds. Based on the preliminary studies and referring the Matlab documentation, we decided to use the Matlab's \verb|lsqnonlin| function to solve this problem \eqref{LS-BC} for the simulated and real $\mathbf{k}$ measurements. According to the Matlab documentation, here we have two algorithm choices: \textit{trust-region-reflective} (default) or \textit{Levenberg-Marquardt}. However, the Levenberg-Marquardt algorithm does not handle bound constraints. Therefore, we use the trust-region-reflective algorithm (See \cite{trustregion} for more details regarding the algorithm) inside the \verb|lsqnonlin| function to recover the unknown depth parameter. Rather than input the sum of squares of the objective function in \eqref{LS-BC} to the \verb|lsqnonlin| function, it requires a user-defined vector-valued function $f(\mathbf{h}) = A(\mathbf{h}) -  \mathbf{k}$ as the function argument along on the boundary conditions. 
+%<<<<<<< HEAD
+In particular, here we modify the ordinary least squares problem in \eqref{LS} to a bounded constrained optimization problem to incorporate the known bathymetry bounds. Based on the preliminary studies and referring the Matlab\textsuperscript{\textregistered} documentation, we decided to use the Matlab's \verb|lsqnonlin| function to solve this problem \eqref{LS-BC} for the simulated and real $\mathbf{k}$ measurements. According to the Matlab\textsuperscript{\textregistered} documentation, here we have two algorithm choices: \textit{trust-region-reflective} (default) or \textit{Levenberg-Marquardt}. However, the Levenberg-Marquardt algorithm does not handle bound constraints. Therefore, we use the trust-region-reflective algorithm (See \cite{trustregion} for more details regarding the algorithm) inside the \verb|lsqnonlin| function to recover the unknown depth parameter. Rather than input the sum of squares of the objective function in \eqref{LS-BC} to the \verb|lsqnonlin| function, it requires a user-defined vector-valued function $f(\mathbf{h}) = A(\mathbf{h}) -  \mathbf{k}$ as the function argument along on the boundary conditions. 
+%=======
+%In particular, here we modify the ordinary least squares problem in \eqref{LS} to a bounded constrained optimization problem to incorporate the known bathymetry bounds. Based on the preliminary studies and referring the Matlab documentation, we decided to use the Matlab's \verb|lsqnonlin| function to solve this problem \eqref{LS-BC} for the simulated and real $\mathbf{k}$ measurements. According to the Matlab documentation, here we have two algorithm choices: \textit{trust-region-reflective} (default) or \textit{Levenberg-Marquardt}. However, the Levenberg-Marquardt algorithm does not handle bounded constraints. Therefore, we use the trust-region-reflective algorithm (See \cite{trustregion} for more details regarding the algorithm) inside the \verb|lsqnonlin| function to recover the unknown depth parameter. Rather than input the sum of squares of the objective function in \eqref{LS-BC} to the \verb|lsqnonlin| function, it requires a user-defined vector-valued function $f(\mathbf{h}) = A(\mathbf{h}) -  \mathbf{k}$ as the function argument along on the boundary conditions. 
+%>>>>>>> 1f18d0b22683c8c5406c9d75230a94687fa68929
 
 \begin{figure}[H]
 \center
@@ -55,7 +59,7 @@ In particular, here we modify the ordinary least squares problem in \eqref{LS} t
 \caption{Ordinary least-squares reconstruction of depth $\mathbf{h}$ using the simulated data.}
 \label{lsqnonlin_simulated}
 \end{figure}
-First, we run the \verb|lsqnonlin| function on the synthetic data $\mathbf{k}_s$ with 10m grid resolution. As we expected, the least-squares method captured the most interesting and important sand bar near the shoreline (see Fig. \ref{lsqnonlin_simulated} from 800m to 1000m area). However, the recovered depth is unstable from the 600m to the deep-end due to the ill-conditioned nature of the nonlinear forward operator. 
+First, we run the \verb|lsqnonlin| function on the synthetic data $\mathbf{k}_s$ with 10m grid resolution. The least-squares method captured the most interesting and important sand bar near the shoreline (see Fig. \ref{lsqnonlin_simulated} from 800m to 1000m area). However, the recovered depth is unstable from the 600m to the deep-end due to the ill-conditioned nature of the nonlinear forward operator. 
 
 %Note that a linear function is used as the initial guess for this numerical method  and which is represented in a green color line. 
 \begin{figure}[H]
@@ -65,7 +69,7 @@ First, we run the \verb|lsqnonlin| function on the synthetic data $\mathbf{k}_s$
 \label{lsqnonlin_real}
 \end{figure}
 
-After comfortable with working on the synthetic data, the real wave number measurements that we discussed in Section \ref{realData} are used with the same Matlab's \verb|lsqnonlin| optimizer. In this reconstruction, we were able to capture the near-shore topography including the sand bar with $53\%$ root mean square error (see Fig. \ref{lsqnonlin_real}). Specifically, here we have interpolated and processed the depth reconstruction based on the missing measurement locations. 
+After considering the synthetic data, the real wave number measurements discussed in Section \ref{realData} are used with the same Matlab's \verb|lsqnonlin| optimizer. In this reconstruction, we capture the near-shore topography including the sand bar with $53\%$ root mean square error (see Fig. \ref{lsqnonlin_real}); errors sea-ward of the sand bar are again attributed to the ill-conditioned nature of this problem in combination with noise in the measured wave number. NIt should be noted that we have interpolated and processed the depth reconstruction based on the missing measurement locations. 
 
 
 \subsection{Tikhonov Regularized Results} \label{TickReg}
@@ -74,9 +78,13 @@ In order to get more stable solution than the ordinary least squares solution in
 \begin{equation}\label{LS-regBC}
 \mathbf{\hat{h}} = \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11}}{\arg \min} \ \ \|  A(\mathbf{h}) -  \mathbf{k} \|_2^2  +   \| \boldsymbol{\alpha} \cdot  \mathbf{h}\|_2^2,
 \end{equation}
-with the hope of getting more stable solution. Specially, here we use a vector of regularization parameters to balance the trade-off between the data-fidelity and the regularization term according to the x Position. Based on the Matlab's optimization decision table \cite{descTable}, there are only two solvers that we can apply to solve this bounded-smooth-nonlinear problem, i.e., \verb|fmincon| and \verb|fseminf|. In this study, we decided to use  most popular \verb|fmincon| solver, which uses \textit{interior-point} algorithm internally. According to the Matlab documentation, \textit{interior-point} algorithm uses special techniques for large-scale problems and it satisfies bounds at all iterations. 
+%<<<<<<< HEAD
+with the hope of getting more stable solution. Specially, here we use a vector of regularization parameters to balance the trade-off between the data-fidelity and the regularization term according to the x Position. Based on the Matlab's optimization decision table \cite{descTable}, there are only two solvers that we can apply to solve this bounded-smooth-nonlinear problem, i.e., \verb|fmincon| and \verb|fseminf|. In this study, we decided to use  most popular \verb|fmincon| solver, which uses \textit{interior-point} algorithm internally. According to the Matlab\textsuperscript{\textregistered} documentation, \textit{interior-point} algorithm uses special techniques for large-scale problems and it satisfies bounds at all iterations. 
+%=======
+%with the hope of getting more stable solution. Specially, here we use a vector of regularization parameters to balance the trade-off between the data-fidelity and the regularization term according to the x Position. Based on the Matlab's optimization decision table []\cite{descTable}, there are only two solvers that we can apply to solve this bounded-smooth-nonlinear problem, i.e., \verb|fmincon| and \verb|fseminf|. In this study, we decided to use  most popular \verb|fmincon| solver, which uses \textit{interior-point} algorithm internally. According to the Matlab documentation, \textit{interior-point} algorithm uses special techniques for large-scale problems and it satisfies bounds at all iterations. 
+%>>>>>>> 1f18d0b22683c8c5406c9d75230a94687fa68929
 
-In this experiment, we heuristically tuned the regularization parameters and recovered the bathymetry only with $15\%$ root mean square error (see Fig. \ref{fmincon_simulated}) for the synthetic measurements with 25m grid resolution. Note that the recovered bathymetry is much stable and has less fluctuations than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}.   
+In this experiment, we heuristically tuned the regularization parameters and recovered the bathymetry with onlyonly with $15\%$ root mean square error (see Fig. \ref{fmincon_simulated}) for the synthetic measurements with 25m grid resolution. Note that the recovered bathymetry is much stable and has less fluctuations than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}.   
  
 \begin{figure}[H]
 \center
@@ -85,13 +93,13 @@ In this experiment, we heuristically tuned the regularization parameters and rec
 \label{fmincon_simulated}
 \end{figure}
 
-Similarly, we run the Matlab's \verb|fmincon| solver to minimize the Tikhonov regularized objective with the real dataset. In this experiment, we were able to recover the sand bar area much accurately with less artifacts (see Fig. \ref{fmincon_real}).
+Similarly, we run the Matlab's \verb|fmincon| solver to minimize the Tikhonov regularized objective with the real dataset. In this experiment, we were able to recover the sand bar area much accurately with less artifacts (see Fig. \ref{fmincon_real}) but again deviations are noted sea-ward of the sand bar.
 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.46]{img/fmincon_real_data_oct09.png} %plot20 
 \caption{Tikhonov Regularized reconstruction of depth $\mathbf{h}$ using the real data.}
-\label{fmincon_real}
+\label{fmincon_simulatedreal}
 \end{figure}
 
 
