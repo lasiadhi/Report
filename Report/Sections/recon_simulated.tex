@@ -70,13 +70,12 @@ After comfortable with working on the synthetic data, the real wave number measu
 
 \subsection{Tikhonov Regularization} \label{TickReg}
 
-In order to get more stable solution than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}, we solve the following Tikhonov regularization
-
+In order to get more stable solution than the ordinary least squares solution in Fig. \ref{lsqnonlin_simulated}, we decided to solve the following bounded-constrained Tikhonov regularization optimization problem:
 \begin{equation}\label{LS-regBC}
-\mathbf{\hat{h}} = \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11}}{\arg \min} \ \ \|  \mathbf{A}(\mathbf{h}) -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h}\|_2^2,
+\mathbf{\hat{h}} = \underset{\mathbf{0} \preceq \mathbf{h} \preceq \mathbf{11}}{\arg \min} \ \ \|  A(\mathbf{h}) -  \mathbf{k} \|_2^2  +   \| \boldsymbol{\alpha} \cdot  \mathbf{h}\|_2^2,
 \end{equation}
-
-
+with the hope of getting more stable solution. Specially, here we use a vector of regularization parameters to balance the trade-off between data-fidelity and the regularization term according to the x Position. Recovered Bathymetry with $15\%$ root mean square error is shown in Fig. \ref{fmincon_simulated}. 
+ 
 \begin{figure}[H]
 \center
 \includegraphics[scale=0.47]{img/fmincon_simulated_25_new.png} %plot20 
@@ -90,4 +89,5 @@ In order to get more stable solution than the ordinary least squares solution in
 \caption{fmincon method reconstruction of depth $\mathbf{h}$ using the simulated data.}
 \label{fmincon_simulated}
 \end{figure}
+
 
