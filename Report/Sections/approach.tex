@@ -1,7 +1,5 @@
 
-Here we perform a preliminary study on potential inversion schemes. We use various inversion schemes to recover an unknown bathymetry using a mock forward model and manufactured data. This preliminary work aided in the selection process of the three inverse methods chosen for this project.
-
-\subsection{The Additive Gaussian Noise Model} \label{Gaussian_noise}
+Here we perform a preliminary study on potential inversion schemes. We use various inversion schemes to recover an unknown bathymetry using a mock forward model and manufactured data. This preliminary work aided in the selection process of the three inverse methods chosen for this project. %\subsection{The Additive Gaussian Noise Model} \label{Gaussian_noise}
 To accurately mimic the real problem, we create ``measurements'' that are corrupted by the Gaussian noise; this can be written as 
 \begin{equation}
 \mathbf{d} \sim \text{Gaussian}( \mathbf{A} \mathbf{h}_t),
@@ -15,7 +13,7 @@ $\mathbf{h}_t$ &=& the true bathymetry (depth).
 \end{tabular}
 
 \vspace{0.3cm}
-Defining $\boldsymbol{\epsilon}$ as our Gaussian noise with a standard deviation $\nu$, the corrupted measurements can be represented as
+\noindent By defining $\boldsymbol{\epsilon}$ as our mean zero Gaussian noise with a standard deviation $\nu$, i.e., $\mathcal{N}(0, \nu^2)$, the corrupted measurements can be represented as
 
 $$
 \mathbf{d} = \mathbf{A} \mathbf{h}_t + \boldsymbol{\epsilon}.
@@ -37,7 +35,7 @@ where we minimize the data misfit between the forward predictions and the measur
 
 \begin{figure}[H]
 \center
-\includegraphics[scale=0.6]{img/NonLS_linear.png} 
+\includegraphics[scale=0.475]{img/NonLS_linear.png} 
 \caption{Nonnegative least-squares method reconstruction of depth $\mathbf{h}$ using the dummy dataset.}
 \label{nonLS_fig}
 \end{figure}
