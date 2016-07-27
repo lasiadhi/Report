@@ -66,7 +66,7 @@ Residual norm error for the reconstruction is $6.39 \times 10^{-13}$. The Levenb
 
 
 
-\subsection{ Tikhonov Regularization}
+\subsection{ Tikhonov Regularization}\label{TikRegMethod}
 
 Although the ordinary least squares solution can deal with well-posed problems (i.e. the solution exist and unique), it might yield into a unstable solutions in the presence of a small noise in the measurements. Due to the ill-conditioned nature of the forward operator matrix $\mathbf{A}$, the noise components of the observations can be amplified and leads into a drastic change in the solution. To overcome this problem, we use \textit{regularization}. The Tikhonov regularization is one of the most widely used regularization techniques in the inverse problems community. It couples the least squares term in \eqref{LS} with a additional regularization term as defined by 
 \begin{equation}\label{eq:TR}
