@@ -77,11 +77,16 @@ Last but not least, the ordinary least squares method can not incorporate any pr
 \begin{equation}\label{eq:TR-prior}
 \mathbf{\hat{h}} = \underset{\mathbf{h} \in \mathbb{R}^n}{\arg \min} \  \|  \mathbf{A}\mathbf{h} -  \mathbf{d} \|_2^2  +  \alpha \| \mathbf{h} -  \mathbf{h}_p\|_2^2,
 \end{equation}
-where $\alpha$ is a regularization parameter $(>0)$. To test this method in \eqref{eq:TR-prior}, Tikhonov method is implemented and test with sample data set with $\nu = 0.2$. This reconstruction of depth has 0.038 residual norm error. In order to run this \verb|tikhonov| Matlab function, matrix $\mathbf{A}$ should be explicitly known.
+where $\alpha$ is a regularization parameter $(>0)$. To test this method in \eqref{eq:TR-prior}, Tikhonov method is implemented and tested with sample data set with $\nu = 0.2$. This reconstruction of depth has 0.038 residual norm error. Note that the \verb|tikhonov| Matlab function requires the matrix $\mathbf{A}$ explicitly in order to solve the Tikhonov regularized minimization problem. 
 
-\begin{center}
+\begin{figure}[H]
+\center
 \includegraphics[scale=0.6]{img/Tikhnove_reg.png} 
-\end{center}
+\caption{The \textit{tikhonov }Matlab function reconstruction of the depth using the dummy data.}
+\label{TR-recon}
+\end{figure}
+
+%In order to use the \verb|tikhonov| Matlab function to solve \eqref{eq:TR} or \eqref{eq:TR-prior}, the matrix $\mathbf{A}$ in should be explicitly known as a matrix. However, according to the our model derivation, forward model is nonlinear and it can not be wrtting  Therefore, we have to use some general Matlab 
 
 %Reference: I found a MATLAB package for analysis and solution of discrete ill-posed problems, which is available in http://www2.imm.dtu.dk/~pcha/Regutools/\\
 
